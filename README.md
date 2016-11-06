@@ -1,7 +1,7 @@
 # Machinima Studio for Guild Wars 2
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/karliky/machinima-studio/master/resources/promo.gif" />
+<a href="https://www.youtube.com/watch?v=T-LmVy0EfNA"><img src="(https://img.youtube.com/vi/T-LmVy0EfNA/0.jpg"/></a>
 </p>
 
 Machinima Studio is a tool that let’s you create **in-game cinematics for GW2**. It also can be used for exploring the game without limits.
