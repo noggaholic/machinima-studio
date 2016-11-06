@@ -20,6 +20,7 @@
     "comma-dangle": [ 2, "never" ],
     "consistent-return": "off",
     "func-names": "off",
+    "max-len": "off",
     "new-cap": "off",
     "no-else-return": "off",
     "no-multi-spaces": "off",
