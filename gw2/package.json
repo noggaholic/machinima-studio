@@ -11,6 +11,10 @@
   "devDependencies": {
     "async": "^2.1.2",
     "bswap": "^1.1.6",
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "~6.2.0",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^1.16.0",
     "robot-js": "^1.0.2"
   },
   "dependencies": {
