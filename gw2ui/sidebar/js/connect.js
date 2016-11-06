@@ -39,7 +39,7 @@ $(".rendering").change(function() {
 		case 'props':
 			socket.emit('RENDERING', { section: 'PROPS' });
 			break;
-	}
+		}
 });
 
 $("#enableFlying").change(function() {
