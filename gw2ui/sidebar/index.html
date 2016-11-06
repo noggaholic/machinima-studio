@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sidebar - Machinima Studio</title>
+		<link rel='stylesheet' href='css/spectrum.css' />
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<!-- <div class="panel list-group">
+	    <span href="#" class="list-group-item" style="-webkit-app-region: drag;">Machinima Studio</span>
+	    <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">MESSAGES <span class="label label-info">5</span> <span class="glyphicon glyphicon-envelope pull-right"></span></a>
+	    <div id="sm" class="sublinks collapse">
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> inbox</a>
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> sent</a>
+	    </div>
+	    <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sl" data-parent="#menu">TASKS <span class="glyphicon glyphicon-tag pull-right"></span></a>
+	    <div id="sl" class="sublinks collapse">
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>
+	    </div>
+	    <a href="#" class="list-group-item">ANOTHER LINK ...<span class="glyphicon glyphicon-stats pull-right"></span></a>
+	</div> -->
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+							<img src="images/logo.png" class="logo" style="-webkit-app-region: drag" />
+								<div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active "><a href="#intro" data-toggle="tab" class=''>Intro</a></li>
+                            <li><a href="#camera" data-toggle="tab"><span class="fa fa-camera-retro fa-lg"></span>Camera</a></li>
+                            <li><a href="#env" data-toggle="tab"><span ></span>Environment</a></li>
+                            <li><a href="#debug" data-toggle="tab" class="fa fa-cogs fa-lg menu-debug">Debug</a></li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="intro">
+				                  <p>This is a free Machinima tool for GW2 Machinima makers only.
+				                    Use it freely and make awesome videos with it, explore or just play around.
+				                    This tool is not associated to ArenaNet in any way.</p>
+				                  <p><b>Do not use</b> this tool for cheating.</p>
+				                  <p>Any questions regarding this tool? Contact me at <a href="http://www.twitter.com/k4rliky" class="support" target="_blank">@k4rliky</a> and I will get back to you soon!</p>
+												</div>
+                        <div class="tab-pane fade" id="camera">
+													<div class="rendering_block">
+														Enable spectate mode
+														<section title=".spectate">
+															<!-- .squaredThree -->
+															<div class="squaredThree">
+																<input type="checkbox" id="spectate" class="enableCamera" />
+																<label for="spectate"></label>
+															</div>
+															<!-- end .squaredThree -->
+														</section>
+													</div>
+												</div>
+                        <div class="tab-pane fade" id="env">
+													<ul class="nav nav-tabs">
+															<li  class="active"><a href="#module1-step1" data-toggle="tab">Map settings</a></li>
+															<li><a href="#module1-step2" data-toggle="tab">Advanced settings</a></li>
+													</ul>
+													<ul class="tab-content" style="padding-left: 25px;">
+															<li class="tab-pane active" id="module1-step1">
+																<div class="rendering_block">Audio
+																	<section title=".squaredThree">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="squaredThree" class="rendering" name="check" checked data-id="audio" />
+																			<label for="squaredThree"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Blocks
+																	<section title=".blocks">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="blocks" class="rendering" name="check" checked data-id="blocks" />
+																			<label for="blocks"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Decal
+																	<section title=".decal">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="decal" class="rendering" name="check" checked data-id="decal" />
+																			<label for="decal"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Environment
+																	<section title=".environment">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="environment" class="rendering" name="check" checked data-id="environment" />
+																			<label for="environment"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">River
+																	<section title=".river">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="river" class="rendering" name="check" checked data-id="river" />
+																			<label for="river"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Under water
+																	<section title=".under_water">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="under_water" class="rendering" name="check" checked data-id="under_water" />
+																			<label for="under_water"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Zone
+																	<section title=".zone">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="zone" class="rendering" name="check" checked data-id="zone" />
+																			<label for="zone"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Lights
+																	<section title=".lights">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="lights" class="rendering" name="check" checked data-id="lights" />
+																			<label for="lights"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Shadows
+																	<section title=".shadows">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="shadows" class="rendering" name="check" checked data-id="shadows" />
+																			<label for="shadows"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Terrain
+																	<section title=".terrain">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="terrain" class="rendering" name="check" checked data-id="terrain" />
+																			<label for="terrain"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Cube map
+																	<section title=".cube_map">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="cube_map" class="rendering" name="check" checked data-id="cube_map" />
+																			<label for="cube_map"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+																<div class="rendering_block">Props (Doodads)
+																	<section title=".props">
+																		<!-- .squaredThree -->
+																		<div class="squaredThree">
+																			<input type="checkbox" id="props" class="rendering" name="check" checked data-id="props" />
+																			<label for="props"></label>
+																		</div>
+																		<!-- end .squaredThree -->
+																	</section>
+																</div>
+															</li>
+															<li class="tab-pane" id="module1-step2">
+																<div class="row">
+																	<div class="rendering_block">
+																		<p>Uncheck the "Environment" section under "Map settings" before doing changes here.</p>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="rendering_block">Fog density
+																		<input type="range" class="form-control fogDensity" value="-0.2623151243" step="0.000001" min="-6" max="6">
+																	</div>
+																	<div class="rendering_block">Fog color
+																    <input type='text' id="flat" />
+																	</div>
+																	<div class="rendering_block">Enable time of day
+																		<section title=".enableTimeOfDay">
+																			<!-- .squaredThree -->
+																			<div class="squaredThree">
+																				<input type="checkbox" id="enableTimeOfDay" class="rendering" name="check" checked data-id="enableTimeOfDay" />
+																				<label for="enableTimeOfDay"></label>
+																			</div>
+																			<!-- end .squaredThree -->
+																		</section>
+																		<input type="range" class="form-control timeOfDay" value="0" step="0.000001" min="0" max="1">
+																	</div>
+																</div><!-- /.row -->
+															</li>
+													</ul>
+												</div>
+                        <div class="tab-pane fade" id="debug">
+												</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    var shell = require('electron').shell;
+    jQuery('.support').click(function(event) {
+      event.preventDefault();
+      shell.openExternal(this.href);
+    });
+    </script>
+
+    <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+    <script src="js/connect.js"></script>
+		<script src='js/spectrum.js'></script>
+</body>
+
+</html>

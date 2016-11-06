@@ -1,0 +1,121 @@
+html, body{ height:100%; }
+
+body:before, body:after {
+    content: "";
+    position: fixed;
+    background: #444;
+    left: 0;
+    right: 0;
+    height: 5px;
+}
+body:before {
+    top: 0;
+}
+body:after {
+    bottom: 0;
+}
+
+.deleteWaypoint{
+	cursor: pointer;
+}
+
+body {
+	background: url(../images/background.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	border-left: 5px solid #444;
+	border-right: 5px solid #444;
+}
+
+.navbar {
+	margin-bottom: 0;
+	border: 0px;
+	border-radius: 0px;
+}
+
+.waypoints thead {
+  background-color: #1a1a1a;
+  color: #e7e399;
+}
+.waypoints tbody{
+	font-size: 11px;
+}
+
+.interSelector {
+	color:#9d9d9d;
+	margin-top: 15px;
+}
+
+.interSelector select{
+	color: #000;
+}
+
+.durationSelector{
+	color:#9d9d9d;
+	margin-top: 15px;
+	margin-left: 5px;
+}
+.durationSelector input{
+	width: 40px;
+	height: 21px;
+	color:#000;
+}
+
+.navbar-inverse .navbar-nav>li>a.play {
+	color: #dc2c2c;
+}
+
+.navbar-inverse .navbar-nav>li.player {
+	width: 95px;
+}
+.navbar-inverse .navbar-nav>li>a.playing {
+	color: #dc2c2c;
+}
+
+.waypoints tbody textarea{
+	background: transparent;
+	width: 100%;
+	height: 14px;
+	resize: none;
+	border: 0 none;
+  overflow: hidden;
+  padding: 0;
+  outline: none;
+}
+
+.table-striped>tbody>tr>td,
+.table-striped>tbody>tr>th {
+   background-color: #9a9a9a;
+	 color: #fff;
+ }
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #6f6f6f;
+ }
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(56, 56, 56, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background:  rgba(56, 56, 56, 0.3);
+}
