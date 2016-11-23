@@ -9,7 +9,11 @@
   },
   "devDependencies": {
     "electron": "^1.4.1",
-    "tty": "^1.0.1"
+    "tty": "^1.0.1",
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "~6.2.0",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^1.16.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

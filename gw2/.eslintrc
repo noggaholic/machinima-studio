@@ -1,0 +1,41 @@
+# The general mapping for rules is:
+# "error" or 2 to throw an error
+# "off" or 0 to deactivate
+# "warn" or 1 to throw a warning
+{
+  "extends": "airbnb/legacy",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "require": true,
+    "module": true
+  },
+  "plugins": [],
+  "rules": {
+    "brace-style": "off",
+    "comma-dangle": [ 2, "never" ],
+    "consistent-return": "off",
+    "func-names": "off",
+    "max-len": "off",
+    "new-cap": "off",
+    "no-else-return": "off",
+    "no-multi-spaces": "off",
+    "no-param-reassign": "off",
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "no-use-before-define": "off",
+    "padded-blocks": "off",
+    "space-before-function-paren": "off",
+    "strict": "off",
+    "vars-on-top": "off",
+    "valid-jsdoc": ["error", {
+      "requireParamDescription": true,
+      "requireReturn": false,
+      "requireReturnDescription": true
+    }]
+  }
+}

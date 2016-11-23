@@ -15,3 +15,8 @@ If you **really want to contribute** to the development of Machinima Studio, you
  - Participate as a developer/reverse engineer (contact me if this is the case).
  - Donate to UNHCR http://www.unhcr.org/ ($15 could provide a plastic tarpaulin to waterproof one family’s emergency shelter.) If you ever donate to this NGO then contact me and your name will appear in the credits section of the tool.
  - Native english speakers are needed to improve all the texts as I'm from Spain.
+
+# License and terms of use
+The license of Machinima Studio is http://unlicense.org/.
+
+This project is not affiliated with Arenanet. you should not use it in official servers. I made this tool just for learning purposes, Arenanet doesn't approve the usage of this tool in the game. You might be banned if you use this tool. **Use at your own risk.**

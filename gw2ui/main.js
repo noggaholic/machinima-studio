@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const electron = require('electron');
 const size     = require('window-size');
 
@@ -20,40 +21,32 @@ function createWindow () {
     x: 5,
     y: size.height - 297 - 40,
     height: 297,
-    transparent: true,
-		webPreferences: {
-	    nodeIntegration: false
-		}
+    webPreferences: {
+      nodeIntegration: false
+    }
   };
 
   mainWindow = new BrowserWindow(params);
-  // and load the index.html of the app.
-  // mainWindow.loadURL(`file://${__dirname}/editor/test.html`)
   mainWindow.loadURL(`file://${__dirname}/bottombar/index.html`)
-  //mainWindow.loadURL(`file://${__dirname}/tests/bezier.html`)
-  //mainWindow.webContents.openDevTools()
-  // Emitted when the window is closed.
+
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     mainWindow = null
   });
 
-	var halfOfHalfWidth = (size.width / 2) / 2;
-	var halfOfHalfHeight = (size.height / 2);
+  var halfOfHalfWidth = (size.width / 2) / 2;
+  var halfOfHalfHeight = (size.height / 2);
 
-	var params = {
+  params = {
     frame: false,
     transparent: true,
     width: halfOfHalfWidth + 20,
     x: size.width - (halfOfHalfWidth + 20),
     y: 0,
-    height: size.height - 330,
-    transparent: true
+    height: size.height - 330
   };
-	rightWindow = new BrowserWindow(params);
-	rightWindow.loadURL(`file://${__dirname}/sidebar/index.html`)
+
+  var rightWindow = new BrowserWindow(params);
+  rightWindow.loadURL(`file://${__dirname}/sidebar/index.html`)
   /**
    * Taken from https://github.com/konsumer/electron-prompt/blob/master/main.js
    */
@@ -83,33 +76,25 @@ function createWindow () {
     })
   })
   ipcMain.on('prompt-response', function(event, arg) {
-    if (arg === ''){ arg = null }
-    promptResponse = arg
-  })
-
+    if (arg === '') { arg = null; }
+    promptResponse = arg;
+  });
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
 })
 
 app.on('activate', function () {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
