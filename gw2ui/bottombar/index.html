@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Camera Path Editor</title>
-
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -17,6 +17,10 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<!-- Include the plugin's multiselect CSS and JS: -->
+		<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+		<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -54,28 +58,21 @@
 						<li>
 							<div class="interSelector">
 								<span class="glyphicon glyphicon-send"></span> Interpolation
-								<select>
-									<option selected="selected">Power0</option>
-									<option>Power1</option>
-									<option>Power2</option>
-									<option>Power3</option>
-									<option>Power4</option>
-									<option>Back</option>
-									<option>Elastic</option>
-									<option>Bounce</option>
-									<option>Rough</option>
-									<option>SlowMo</option>
-									<option>Stepped</option>
-									<option>Circ</option>
-									<option>Expo</option>
-									<option>Sine</option>
+								<select id="easeBase">
 								</select>
+								<select id="easeSub">
+								</select>
+								<div id="subConfig">
+								</div>
 							</div>
 						</li>
 						<li>
 							<div class="durationSelector">
 								<span class="glyphicon glyphicon-time"></span> Duration
 								<input type="text" value="8"/> seconds
+								<span class="easingInfoParent">
+									<a href="http://greensock.com/ease-visualizer" class="easingInfo" target="_blank"> <span class="glyphicon glyphicon-info-sign"></span> Open ease visualizer</a>
+								</span>
 							</div>
 						</li>
 		      </ul>
@@ -92,7 +89,7 @@
 	      <th>lookat x</th>
 	      <th>lookat y</th>
 	      <th>lookat z</th>
-	      <th>Field Of view</th>
+	      <th>Roll</th>
 	      <th>Map time of day</th>
 	    </tr>
 	  </thead>
@@ -105,8 +102,8 @@
 	      <td class="float">n/a</td>
 	      <td class="float">n/a</td>
 	      <td class="float">n/a</td>
-	      <td>n/a</td>
-	      <td>n/a</td>
+	      <td class="float">n/a</td>
+	      <td class="float">n/a</td>
 	    </tr>
 	  </tbody>
 	</table>

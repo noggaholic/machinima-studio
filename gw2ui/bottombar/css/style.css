@@ -44,9 +44,38 @@ body {
 	font-size: 11px;
 }
 
+.easingInfoParent {
+	margin-left:10px;
+}
+
+#subConfig {
+	display: inline;
+}
+
+#subConfig input {
+	width: 100px;
+	margin-right: 5px;
+}
+
+.easingInfo {
+	color: #8e8e8e;
+	text-decoration: none;
+	font-style: italic;
+}
+
+.easingInfo:focus {
+	color: #8e8e8e;
+	text-decoration: none;
+	font-style: italic;
+}
+
+.easingInfo:hover {
+	color: #989898;
+	text-decoration: none;
+}
 .interSelector {
 	color:#9d9d9d;
-	margin-top: 15px;
+	margin-top: 9px;
 }
 
 .interSelector select{

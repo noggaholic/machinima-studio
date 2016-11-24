@@ -74,6 +74,18 @@
 															</div>
 															<!-- end .squaredThree -->
 														</section>
+														<div>
+															<h3 class="cameraTableHeader">Current camera position</h3>
+															<ul class="list-group cameraTable">
+															  <li class="list-group-item">camera.x <span></span></li>
+															  <li class="list-group-item">camera.y <span></span></li>
+															  <li class="list-group-item">camera.z <span></span></li>
+															  <li class="list-group-item">camera.lookAtx <span></span></li>
+															  <li class="list-group-item">camera.lookAty <span></span></li>
+															  <li class="list-group-item">camera.lookAtz <span></span></li>
+															  <li class="list-group-item">camera.roll <span></span></li>
+															</ul>
+														</div>
 													</div>
 												</div>
                         <div class="tab-pane fade" id="env">
@@ -252,6 +264,8 @@
     <!-- Menu Toggle Script -->
     <script>
     var shell = require('electron').shell;
+		const ipc = require('electron').ipcRenderer;
+
     jQuery('.support').click(function(event) {
       event.preventDefault();
       shell.openExternal(this.href);
@@ -259,8 +273,8 @@
     </script>
 
     <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
-    <script src="js/connect.js"></script>
 		<script src='js/spectrum.js'></script>
+    <script src="js/connect.js"></script>
 </body>
 
 </html>

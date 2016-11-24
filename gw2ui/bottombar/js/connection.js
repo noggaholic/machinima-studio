@@ -1,4 +1,8 @@
-var socket = io('http://127.0.0.1:8080');
+window.socket = io('http://127.0.0.1:8080');
+socket.on('error', function (err) {
+   console.log("Socket.IO Error");
+   console.log(err); // this is changed from your code in last comment
+});
 var firstTime = true;
 
 var clearRows = function() {
@@ -6,6 +10,7 @@ var clearRows = function() {
 };
 
 $(document).ready(function() {
+
 	socket.on('CAMERA_PLAY', () => {
 		$(".play").click();
 	});
@@ -17,6 +22,7 @@ $(document).ready(function() {
 	socket.on('CAMERA_CLEAR_PATH', (data) => {
 		clearRows();
 	});
+
 	socket.on('CAMERA_ADD_POSITION', (data) => {
 
 		if (firstTime) {
@@ -32,7 +38,7 @@ $(document).ready(function() {
 			'<td class="float"><textarea>'+data.lookAt.x+'</textarea></td>' +
 			'<td class="float"><textarea>'+data.lookAt.y+'</textarea></td>' +
 			'<td class="float"><textarea>'+data.lookAt.z+'</textarea></td>' +
-			'<td>n/a</td>' +
+			'<td class="float"><textarea>'+data.roll+'</textarea></td>' +
 			'<td class="float"><textarea>'+data.timeOfDay+'</textarea></td>' +
 		'</tr>';
 		var rowSelector = $('.waypoints tbody:last-child').append(newRow);

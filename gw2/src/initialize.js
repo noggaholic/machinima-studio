@@ -59,7 +59,7 @@ module.exports = (cb) => {
 
   for (let w of Window.getList(offsets.WINDOW_NAME)) {
     if (selectByWindow(w)) {
-      return cb(null, process, module, memory, window);
+      return cb(null, process, module, memory, w);
     }
   }
 

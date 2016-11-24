@@ -1,5 +1,8 @@
-var socket = io('http://127.0.0.1:8080');
-
+window.socket = io('http://127.0.0.1:8080');
+socket.on('error', function (err) {
+   console.log("Socket.IO Error");
+   console.log(err); // this is changed from your code in last comment
+});
 $(".rendering").change(function() {
 
 	switch ($(this).data( "id" )) {
@@ -98,10 +101,21 @@ $(".play").click(() => {
   socket.emit('CAMERA_TWEEN_TO',positions);
 });
 
-socket.on('CAMERA_PLAY', () => {
-	console.log('playing...')
-	$(".play").click();
-});
+	socket.on('CAMERA_PLAY', () => {
+		console.log('playing...')
+		$(".play").click();
+	});
+
+	var cameraInfo = $('.cameraTable>.list-group-item>span');
+	socket.on('UPDATE_UI', (data) => {
+		cameraInfo[0].innerHTML = data.x;
+		cameraInfo[1].innerHTML = data.y;
+		cameraInfo[2].innerHTML = data.z;
+		cameraInfo[3].innerHTML = data.lookAtx;
+		cameraInfo[4].innerHTML = data.lookAty;
+		cameraInfo[5].innerHTML = data.lookAtz;
+		cameraInfo[6].innerHTML = data.roll;
+	});
 
 socket.on('CAMERA_ADD_POSITION', (data) => {
   let templ = `<tr><th scope='row'>${cameraCounter}</th>

@@ -162,3 +162,23 @@ h1{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.cameraTableHeader {
+	font-size: 1.5em;
+}
+.cameraTable {
+	background-color: #242526;
+	color: #c3c3c3;
+	font-size: 14px;
+}
+
+.cameraTable>.list-group-item>span{
+	display: inline-block;
+	float: right;
+}
+
+.cameraTable>.list-group-item {
+	background-color: #242526;
+	color: #c3c3c3;
+	border: 1px solid #151515;
+}

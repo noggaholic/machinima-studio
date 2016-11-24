@@ -8,7 +8,7 @@
     "window-size": "git://github.com/jonschlinkert/window-size.git"
   },
   "devDependencies": {
-    "electron": "^1.4.1",
+    "electron": "1.4.8",
     "tty": "^1.0.1",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "~6.2.0",

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const electron = require('electron');
 const size     = require('window-size');
+const path     = require('path');
 
 // Module to control application life.
 const app = electron.app
@@ -12,41 +13,43 @@ const ipcMain = electron.ipcMain
 let mainWindow
 
 function createWindow () {
-  // Create the browser window.
+	var params = {
+		frame: false,
+		transparent: true,
+		width: size.width - 10,
+		x: 5,
+		y: size.height - 297 - 40,
+		height: 297,
+		webPreferences: {
+			nodeIntegration: true
+		}
+	};
+	params.icon = path.join(__dirname, '/machinimastudio.ico')
+	mainWindow = new BrowserWindow(params);
+	mainWindow.loadURL(`file://${__dirname}/bottombar/index.html`)
 
-  var params = {
-    frame: false,
-    transparent: true,
-    width: size.width - 10,
-    x: 5,
-    y: size.height - 297 - 40,
-    height: 297,
-    webPreferences: {
-      nodeIntegration: false
-    }
-  };
-
-  mainWindow = new BrowserWindow(params);
-  mainWindow.loadURL(`file://${__dirname}/bottombar/index.html`)
-
-  mainWindow.on('closed', function () {
-    mainWindow = null
-  });
+	mainWindow.on('closed', function () {
+		mainWindow = null
+	});
 
   var halfOfHalfWidth = (size.width / 2) / 2;
   var halfOfHalfHeight = (size.height / 2);
 
-  params = {
+  var params = {
     frame: false,
     transparent: true,
     width: halfOfHalfWidth + 20,
     x: size.width - (halfOfHalfWidth + 20),
     y: 0,
-    height: size.height - 330
+    height: size.height - 330,
+		webPreferences: {
+			nodeIntegration: true
+		}
   };
-
+	params.icon = path.join(__dirname, '/machinimastudio.ico')
   var rightWindow = new BrowserWindow(params);
   rightWindow.loadURL(`file://${__dirname}/sidebar/index.html`)
+
   /**
    * Taken from https://github.com/konsumer/electron-prompt/blob/master/main.js
    */

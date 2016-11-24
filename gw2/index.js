@@ -8,18 +8,21 @@ const Environment  = require(__dirname + '/src/environment.js');
 const async        = require('async');
 const io           = require('socket.io')(8080);
 
+let firstTime 		= true;
 /**
  * Start by trying to find the correct GW2 process
  * Terminates with an error if no process is found
  */
+
+ console.log('Welcome to machinima studio! now open the ui :)');
+
 gw2(function(err, process, module, memory, window) {
   if (err) {
     throw new Error(err);
   }
 
   const sendMessage = (message, data) => {
-    console.log(message);
-    socket.emit(message, data);
+    io.sockets.emit(message, data);
   };
 
   let socket;
@@ -34,6 +37,30 @@ gw2(function(err, process, module, memory, window) {
 
   io.on('connection', function (so) {
     socket = so;
+
+		if (firstTime) {
+			setInterval(() => {
+				let curFwd    = camera.getFwdPosition();
+				let cameraPos = camera.getPosition();
+				let roll 			= camera.getRoll();
+				let data  	= {
+					x: cameraPos.x,
+					y: cameraPos.y,
+					z: cameraPos.z,
+					lookAtx: curFwd.x,
+					lookAty: curFwd.y,
+					lookAtz: curFwd.z,
+					roll: roll
+				};
+				io.sockets.emit('UPDATE_UI', data);
+			}, 900);
+			firstTime = false;
+		}
+
+		socket.on('error', function (err) {
+		   console.log("Socket.IO Error");
+		   console.log(err); // this is changed from your code in last comment
+		});
     console.log('Window connected :)');
 
     socket.on('RENDERING', function (data) {
@@ -49,6 +76,7 @@ gw2(function(err, process, module, memory, window) {
     socket.on('CAMERA_SET_POS', function (data) {
       camera.setPos(data.x, data.y, data.z);
       camera.lookAt(data.lookAtx, data.lookAty, data.lookAtz);
+      camera.setRoll(data.roll);
       if (data.timeOfDay > 0 && data.timeOfDay < 1) {
         environment.setTimeOfDay(data.timeOfDay);
       }
@@ -85,7 +113,7 @@ gw2(function(err, process, module, memory, window) {
         camera.moveToWithTween(from, to, 'linear', next);
       };
       async.eachSeries(data, tweenTo, () => {
-        socket.emit('CAMERA_TWEEN_DONE');
+        io.sockets.emit('CAMERA_TWEEN_DONE');
       });
     });
 

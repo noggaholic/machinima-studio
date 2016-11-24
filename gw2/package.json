@@ -20,6 +20,6 @@
   "dependencies": {
     "md5-file": "^3.1.1",
     "shifty": "^1.5.2",
-    "socket.io": "^1.4.8"
+    "socket.io": "1.6.0"
   }
 }

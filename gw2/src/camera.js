@@ -18,7 +18,8 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   const cameraWritePosition     = new Buffer(0xC);
   const cameraFwdWritePosition  = new Buffer(0xC);
 
-  const cameraRoll  = new Buffer(0x4);
+  const cameraRoll  			= new Buffer(0x4);
+	const cameraRollReader  = new Buffer(0x4);
   const cameraYaw   = new Buffer(0x4);
   const cameraPitch = new Buffer(0x4);
   const verticalAlignment = new Buffer(0x4);
@@ -223,11 +224,14 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
     cameraRoll.writeFloatLE(0, 0x0);
     let newAngle;
     cameraControls = setInterval(() => {
+			if (robot.Window.getActive().getTitle() !== offsets.WINDOW_NAME) {
+				return; // only move the camera if we are inside GW2
+			}
       let curFwd    = that.getFwdPosition();
       let cameraPos = that.getPosition();
-
+			let roll 			= that.getRoll();
       if (checkForKeyStroke(robot.KEY_F3)) {
-        let params = { pos: cameraPos, lookAt: curFwd, timeOfDay: environment.getTimeOfDay() };
+        let params = { pos: cameraPos, lookAt: curFwd, timeOfDay: environment.getTimeOfDay(), roll: roll };
         sendMessage('CAMERA_ADD_POSITION', params);
       }
 
@@ -259,11 +263,11 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       let angle = Math.atan2((curFwd.y - cameraPos.y), (curFwd.x - cameraPos.x));
 
       if (Keyboard.getState(robot.KEY_Q)) {
-        cameraRoll.writeFloatLE(cameraRoll.readFloatLE(0) + 0.006, 0x0);
+        cameraRoll.writeFloatLE(roll + 0.006, 0x0);
       }
 
       if (Keyboard.getState(robot.KEY_E)) {
-        cameraRoll.writeFloatLE(cameraRoll.readFloatLE(0) - 0.006, 0x0);
+        cameraRoll.writeFloatLE(roll - 0.006, 0x0);
       }
 
       if (Keyboard.getState(robot.KEY_R)) {
@@ -349,7 +353,17 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       memory.writeData(cameraOffsetBase + offsets.camera.pos.x, cameraWritePosition, 0xC);
       memory.writeData(cameraOffsetBase + offsets.camera.playerPos.x, cameraFwdWritePosition, 0xC);
       memory.writeData(cameraOffsetBase + offsets.camera.ortientation.roll, cameraRoll, 0x4);
-    }, 17);
+    }, 16);
+  };
+
+	that.setRoll = (value) => {
+		cameraRoll.writeFloatLE(value, 0x0);
+		memory.writeData(cameraOffsetBase + offsets.camera.ortientation.roll, cameraRoll, 0x4);
+	};
+
+	that.getRoll = () => {
+		memory.readData(cameraOffsetBase + offsets.camera.ortientation.roll, cameraRollReader, 0x4);
+    return cameraRollReader.readFloatLE(0);
   };
 
   that.getVerticalAlignment = () => {
