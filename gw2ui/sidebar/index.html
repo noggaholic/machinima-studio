@@ -75,7 +75,7 @@
 															<!-- end .squaredThree -->
 														</section>
 														<div>
-															<h3 class="cameraTableHeader">Current camera position</h3>
+															<h3 class="cameraTableHeader">Current camera data</h3>
 															<ul class="list-group cameraTable">
 															  <li class="list-group-item">camera.x <span></span></li>
 															  <li class="list-group-item">camera.y <span></span></li>
@@ -84,6 +84,15 @@
 															  <li class="list-group-item">camera.lookAty <span></span></li>
 															  <li class="list-group-item">camera.lookAtz <span></span></li>
 															  <li class="list-group-item">camera.roll <span></span></li>
+															  <li class="list-group-item">camera.speed <span></span>
+																	<input type="range" class="form-control speedRange" value="8" step="0.2" min="0.01" max="100">
+																</li>
+															  <li class="list-group-item">camera.rotation_speed <span></span>
+																	<input type="range" class="form-control rotSpeedRange" value="0.042401" step="0.000002" min="0.000001" max="0.072401">
+																</li>
+															  <li class="list-group-item">camera.up_down_speed <span></span>
+																	<input type="range" class="form-control up_down_speed" value="13000" step="100" min="200" max="20000">
+																</li>
 															</ul>
 														</div>
 													</div>

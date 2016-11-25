@@ -40,6 +40,10 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
 
   let environment;
 
+	let rotSpeed = 0.02;
+	let speed = 8;
+	let up_down_speed = 13000;
+
   /**
    * Refactor this to a non-blocking way
    * @param  {Number} sleepDuration how much time
@@ -53,6 +57,10 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   that.setEnvReference = (env) => {
     environment = env;
   };
+
+	that.getSpeed = () => {
+		return { rotSpeed: rotSpeed, speed: speed, up_down_speed: up_down_speed };
+	}
 
   that.moveTo = (x, y, z, fx, fy, fz, wait) => {
     var truthy = true;
@@ -89,6 +97,18 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       }
     }
   };
+
+  that.setSpeed = (s, r, uo) => {
+		if (s) {
+			speed = parseFloat(s);
+		}
+		if (r) {
+			rotSpeed = parseFloat(r);
+		}
+		if (uo) {
+			up_down_speed = parseFloat(uo);
+		}
+	};
 
   that.setPos = (x, y, z) => {
     cameraWritePosition.writeFloatLE(x, 0x0);
@@ -218,9 +238,6 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       }
     };
 
-    let rotSpeed = 0.02;
-    let speed = 8;
-
     cameraRoll.writeFloatLE(0, 0x0);
     let newAngle;
     cameraControls = setInterval(() => {
@@ -230,8 +247,14 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       let curFwd    = that.getFwdPosition();
       let cameraPos = that.getPosition();
 			let roll 			= that.getRoll();
+
       if (checkForKeyStroke(robot.KEY_F3)) {
-        let params = { pos: cameraPos, lookAt: curFwd, timeOfDay: environment.getTimeOfDay(), roll: roll };
+        let params = {
+					pos: cameraPos,
+					lookAt: curFwd,
+					timeOfDay: environment.getTimeOfDay(),
+					roll: roll
+				};
         sendMessage('CAMERA_ADD_POSITION', params);
       }
 
@@ -256,6 +279,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
         speed -= 0.2;
         rotSpeed -= 0.00008;
         if (speed < 0) speed = 1;
+        if (rotSpeed < 0) rotSpeed = 0.00008;
       }
 
       // get radius based on the previous point and r squared = a squared + b squared
@@ -274,16 +298,37 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
         cameraRoll.writeFloatLE(0, 0x0);
       }
 
-      if (Keyboard.getState(robot.KEY_LEFT) || Keyboard.getState(robot.KEY_A)) {
+      if (Keyboard.getState(robot.KEY_LEFT)) {
         newAngle = angle + rotSpeed;
         curFwd.x = cameraPos.x + r * Math.cos(newAngle);
         curFwd.y = cameraPos.y + r * Math.sin(newAngle);
       }
 
-      if (Keyboard.getState(robot.KEY_RIGHT) || Keyboard.getState(robot.KEY_D)) {
+      if (Keyboard.getState(robot.KEY_RIGHT)) {
         newAngle = angle - rotSpeed;
         curFwd.x = cameraPos.x + r * Math.cos(newAngle);
         curFwd.y = cameraPos.y + r * Math.sin(newAngle);
+      }
+
+			var deltaX = curFwd.x - cameraPos.x;
+			var deltaY = curFwd.y - cameraPos.y;
+			var rad = Math.atan2(deltaY, deltaX);
+			var deg = rad * (180 / Math.PI);
+			if(deg < 0) deg += 360;
+			rad = deg * (Math.PI/180);
+
+      if (Keyboard.getState(robot.KEY_A)) {
+				curFwd.x -= Math.sin(rad) * speed;
+				curFwd.y += Math.cos(rad) * speed;
+				cameraPos.x -= Math.sin(rad) * speed;
+				cameraPos.y += Math.cos(rad) * speed;
+      }
+
+      if (Keyboard.getState(robot.KEY_D)) {
+				curFwd.x += Math.sin(rad) * speed;
+				curFwd.y -= Math.cos(rad) * speed;
+				cameraPos.x += Math.sin(rad) * speed;
+				cameraPos.y -= Math.cos(rad) * speed;
       }
 
       if (Keyboard.getState(robot.KEY_CONTROL)) {
@@ -297,11 +342,11 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       }
 
       if (Keyboard.getState(robot.KEY_UP)) {
-        curFwd.z = curFwd.z - 13000 * 0.0004;
+        curFwd.z = curFwd.z - up_down_speed * 0.0004;
       }
 
       if (Keyboard.getState(robot.KEY_DOWN)) {
-        curFwd.z = curFwd.z + 13000 * 0.0004;
+        curFwd.z = curFwd.z + up_down_speed * 0.0004;
       }
 
       let dir = {};

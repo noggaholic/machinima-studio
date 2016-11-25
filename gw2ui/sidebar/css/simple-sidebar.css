@@ -8,6 +8,7 @@ body {
 
 	border-left: 2px solid #444;
 	border-right: 2px solid #444;
+	overflow: hidden;
 }
 
 a{
@@ -164,7 +165,8 @@ h1{
 }
 
 .cameraTableHeader {
-	font-size: 1.5em;
+	font-size: 1em;
+	margin-top: 5px;
 }
 .cameraTable {
 	background-color: #242526;
@@ -180,5 +182,6 @@ h1{
 .cameraTable>.list-group-item {
 	background-color: #242526;
 	color: #c3c3c3;
+	padding: 5px 15px;
 	border: 1px solid #151515;
 }

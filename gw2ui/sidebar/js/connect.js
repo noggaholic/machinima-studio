@@ -115,6 +115,9 @@ $(".play").click(() => {
 		cameraInfo[4].innerHTML = data.lookAty;
 		cameraInfo[5].innerHTML = data.lookAtz;
 		cameraInfo[6].innerHTML = data.roll;
+		cameraInfo[7].innerHTML = data.speed;
+		cameraInfo[8].innerHTML = data.rotSpeed;
+		cameraInfo[9].innerHTML = data.up_down_speed;
 	});
 
 socket.on('CAMERA_ADD_POSITION', (data) => {
@@ -135,6 +138,24 @@ $(document).ready(function() {
     var density = $(this).val();
     socket.emit('ENV_SET_FOG_DENSITY', density);
   });
+
+	$(".speedRange").on("input change", function() {
+		var speed = $(this).val();
+		cameraInfo[7].innerHTML = speed;
+    socket.emit('CAMERA_SET_SPEED', speed);
+	});
+
+	$(".rotSpeedRange").on("input change", function() {
+		var speed = $(this).val();
+		cameraInfo[8].innerHTML = speed;
+    socket.emit('CAMERA_SET_ROT_SPEED', speed);
+	});
+
+	$(".up_down_speed").on("input change", function() {
+		var speed = $(this).val();
+		cameraInfo[9].innerHTML = speed;
+    socket.emit('CAMERA_SET_UP_DOWN_SPEED', speed);
+	});
 
 	$("#flat").spectrum({
 	    flat: true,

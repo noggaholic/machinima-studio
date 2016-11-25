@@ -1,6 +1,24 @@
 /* eslint-disable */
 /**
 
+For the field of view:
+
+Gw2.exe+6C8976 - E8 4582FAFF           - call Gw2.exe+670BC0
+Gw2.exe+6C897B - FF 75 FC              - push [ebp-04]
+Gw2.exe+6C897E - 8B C8                 - mov ecx,eax
+Gw2.exe+6C8980 - 6A 03                 - push 03
+Gw2.exe+6C8982 - 8B 10                 - mov edx,[eax]
+Gw2.exe+6C8984 - FF 92 B0000000        - call dword ptr [edx+000000B0]
+Gw2.exe+6C898A - 8B 8B B4040000        - mov ecx,[ebx+000004B4]
+Gw2.exe+6C8990 - 8B 01                 - mov eax,[ecx] << breakpoint here and check eax
+Gw2.exe+6C8992 - FF 90 78010000        - call dword ptr [eax+00000178]
+Gw2.exe+6C8998 - 85 C0                 - test eax,eax
+
+enable spectate Gw2.exe+17E1F84
+AgenctCanBeSpectate
+
+hover character Gw2.exe+188CA20
+
 This bytecode
 
 00 00 00 00 FF FF 00 00 00 00 00 00 FF FF 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 30 DB FC 2D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 34 36 1B 02 97 00 00 00 01 00 00 00 00 24 02 00 96 03 00 00 00 00 00 00 54 36 1B 02 7C 36 1B 02 3C 03 2C 05 03 00 00 00 98 11 10 00 00 00 00 80 0C 00 00 00 2C 35 2E 54 20 35 2E 54 01 00 00 00 88 36 1B 02 00 37 1B 02 54 37 1B 02 70 37 1B 02 C4 37 1B 02 F4 37 1B 02 1C 38 1B 02 84 38 1B 02 34 39 1B 02 4C 39 1B 02 90 39 1B 02 A4 39 1B 02 BC 39 1B 02 CC 39 1B 02 58 3A 1B 02 FF 0F 00 00 01 00 00 00 F4 8E 8C 26 00 8F 8C 26 0C 8F 8C 26 F0 8E 8C 26 15 00 00 00 01 00 00 00 0C 00 00 00 00 00 00 00 01 00 00 00 D0 E1 6B 51

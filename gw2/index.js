@@ -39,10 +39,15 @@ gw2(function(err, process, module, memory, window) {
     socket = so;
 
 		if (firstTime) {
+			let curFwd;
+			let cameraPos;
+			let roll;
+			let velocity;
 			setInterval(() => {
-				let curFwd    = camera.getFwdPosition();
-				let cameraPos = camera.getPosition();
-				let roll 			= camera.getRoll();
+				curFwd    = camera.getFwdPosition();
+				cameraPos = camera.getPosition();
+				roll 			= camera.getRoll();
+				velocity 	= camera.getSpeed();
 				let data  	= {
 					x: cameraPos.x,
 					y: cameraPos.y,
@@ -50,7 +55,10 @@ gw2(function(err, process, module, memory, window) {
 					lookAtx: curFwd.x,
 					lookAty: curFwd.y,
 					lookAtz: curFwd.z,
-					roll: roll
+					roll: roll,
+					speed: velocity.speed,
+					rotSpeed: velocity.rotSpeed,
+					up_down_speed: velocity.up_down_speed
 				};
 				io.sockets.emit('UPDATE_UI', data);
 			}, 900);
@@ -66,6 +74,18 @@ gw2(function(err, process, module, memory, window) {
     socket.on('RENDERING', function (data) {
       environment.changeRendering(data.section);
     });
+
+		socket.on('CAMERA_SET_SPEED', function (data) {
+			camera.setSpeed(data, null);
+		});
+
+		socket.on('CAMERA_SET_ROT_SPEED', function (data) {
+			camera.setSpeed(null, data);
+		});
+
+		socket.on('CAMERA_SET_UP_DOWN_SPEED', function (data) {
+			camera.setSpeed(null, null, data);
+		});
 
     socket.on('CAMERA_ENABLE_CONTROLS', function () {
       spectate.enableSpectateMode();
