@@ -88,6 +88,10 @@ h1{
 	font-size: 1em;
 }
 
+.nav-tabs>li>a>span {
+	margin-right: 5px;
+}
+
 .rendering_block {
 	margin: 10px;
 	font-size: 1.5em;
