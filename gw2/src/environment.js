@@ -65,37 +65,41 @@ module.exports = (process, module, memory) => {
     shadows: { active: false, original: null },
     terrain: { active: false, original: null },
     cube_map: { active: false, original: null },
-    props: { active: false, original: null }
+    props: { active: false, original: null },
+    animation: { active: false, original: null }
   };
 
-  var savePattern = function(reference, section) {
+  var savePattern = function(reference, section, base) {
+		base = base || offsets.environment.rendering;
     if (!reference.original) {
-      var bufferLength = offsets.environment.rendering[section].byteLength;
+      var bufferLength = base[section].byteLength;
       var buffer = new Buffer(bufferLength);
-      memory.readData(module + offsets.environment.rendering[section].offset, buffer, bufferLength);
+      memory.readData(module + base[section].offset, buffer, bufferLength);
       reference.original = buffer;
     }
   };
 
-  var fillWithNopes = function(reference, section) {
+  var fillWithNopes = function(reference, section, base) {
+		base = base || offsets.environment.rendering;
     reference.active = true;
-    var bufferLength = offsets.environment.rendering[section].byteLength;
+    var bufferLength = base[section].byteLength;
     var nops = Buffer.alloc(bufferLength, 0x90);
-    memory.writeData(module + offsets.environment.rendering[section].offset, nops, bufferLength);
+    memory.writeData(module + base[section].offset, nops, bufferLength);
   };
 
-  var restoreCode = function(reference, section) {
+  var restoreCode = function(reference, section, base) {
+		base = base || offsets.environment.rendering;
     reference.active = false;
-    var bufferLength = offsets.environment.rendering[section].byteLength;
+    var bufferLength = base[section].byteLength;
     var byteCode = reference.original;
-    memory.writeData(module + offsets.environment.rendering[section].offset, byteCode, bufferLength);
+    memory.writeData(module + base[section].offset, byteCode, bufferLength);
   };
 
-  var toggleMapSection = function(ref, section) {
+  var toggleSection = function(ref, section, base) {
     if (!ref.active) {
-      fillWithNopes(ref, section);
+      fillWithNopes(ref, section, base);
     } else {
-      restoreCode(ref, section);
+      restoreCode(ref, section, base);
     }
   };
 
@@ -105,62 +109,67 @@ module.exports = (process, module, memory) => {
       case 'AUDIO':
         ref = patterns.audio;
         savePattern(ref, 'audio');
-        toggleMapSection(ref, 'audio');
+        toggleSection(ref, 'audio');
         break;
       case 'BLOCKS':
         ref = patterns.blocks;
         savePattern(ref, 'blocks');
-        toggleMapSection(ref, 'blocks');
+        toggleSection(ref, 'blocks');
         break;
       case 'DECAL':
         ref = patterns.decal;
         savePattern(ref, 'decal');
-        toggleMapSection(ref, 'decal');
+        toggleSection(ref, 'decal');
         break;
       case 'ENVIRONMENT':
         ref = patterns.environment;
         savePattern(ref, 'environment');
-        toggleMapSection(ref, 'environment');
+        toggleSection(ref, 'environment');
         break;
       case 'RIVER':
         ref = patterns.river;
         savePattern(ref, 'river');
-        toggleMapSection(ref, 'river');
+        toggleSection(ref, 'river');
         break;
       case 'UNDER_WATER':
         ref = patterns.under_water;
         savePattern(ref, 'under_water');
-        toggleMapSection(ref, 'under_water');
+        toggleSection(ref, 'under_water');
         break;
       case 'ZONE':
         ref = patterns.zone;
         savePattern(ref, 'zone');
-        toggleMapSection(ref, 'zone');
+        toggleSection(ref, 'zone');
         break;
       case 'LIGHTS':
         ref = patterns.lights;
         savePattern(ref, 'lights');
-        toggleMapSection(ref, 'lights');
+        toggleSection(ref, 'lights');
         break;
       case 'SHADOWS':
         ref = patterns.shadows;
         savePattern(ref, 'shadows');
-        toggleMapSection(ref, 'shadows');
+        toggleSection(ref, 'shadows');
         break;
       case 'TERRAIN':
         ref = patterns.terrain;
         savePattern(ref, 'terrain');
-        toggleMapSection(ref, 'terrain');
+        toggleSection(ref, 'terrain');
         break;
       case 'CUBE_MAP':
         ref = patterns.cube_map;
         savePattern(ref, 'cube_map');
-        toggleMapSection(ref, 'cube_map');
+        toggleSection(ref, 'cube_map');
         break;
       case 'PROPS':
         ref = patterns.props;
         savePattern(ref, 'props');
-        toggleMapSection(ref, 'props');
+        toggleSection(ref, 'props');
+        break;
+      case 'ANIMATION':
+        ref = patterns.animation;
+        savePattern(ref, 'animation', offsets.advancedView);
+        toggleSection(ref, 'animation', offsets.advancedView);
         break;
       default:
     }

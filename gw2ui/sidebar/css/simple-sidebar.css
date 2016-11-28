@@ -10,6 +10,10 @@ body {
 	border-right: 2px solid #444;
 }
 
+.tab-content {
+	padding-left: 0;
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }

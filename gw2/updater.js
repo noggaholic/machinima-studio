@@ -40,6 +40,10 @@ gw2(function(err, process, module, memory) {
   * Camera related pointers
   * @type {String}
   */
+
+	pattern = offsets.advancedView.animation.original.toString('hex');
+  pointerFound('offsets.advancedView.animation.original', memory.find(pattern), 5);
+
   pattern = offsets.camera.original.toString('hex');
   pointerFound('offsets.camera.original', memory.find(pattern));
 

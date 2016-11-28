@@ -42,6 +42,9 @@ $(".rendering").change(function() {
 		case 'props':
 			socket.emit('RENDERING', { section: 'PROPS' });
 			break;
+		case 'animation':
+			socket.emit('RENDERING', { section: 'ANIMATION' });
+			break;
 		}
 });
 
