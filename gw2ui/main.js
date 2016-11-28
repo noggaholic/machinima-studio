@@ -38,8 +38,8 @@ function createWindow () {
   var params = {
     frame: false,
     transparent: true,
-    width: halfOfHalfWidth + 20,
-    x: size.width - (halfOfHalfWidth + 20),
+    width: halfOfHalfWidth + 35,
+    x: size.width - (halfOfHalfWidth + 35),
     y: 0,
     height: size.height - 330,
 		webPreferences: {

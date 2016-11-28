@@ -120,17 +120,28 @@ $(".play").click(() => {
 		cameraInfo[9].innerHTML = data.up_down_speed;
 	});
 
-socket.on('CAMERA_ADD_POSITION', (data) => {
-  let templ = `<tr><th scope='row'>${cameraCounter}</th>
-  <td>${data.pos.x}</td>
-  <td>${data.pos.y}</td>
-  <td>${data.pos.z}</td>
-  <td>${data.lookAt.x}</td>
-  <td>${data.lookAt.y}</td>
-  <td>${data.lookAt.z}</td></tr>`;
-  cameraCounter++;
-  cameraTable.append(templ);
-});
+	var debugInfo = $('.debugInfo>.list-group-item>span');
+	socket.on('UPDATE_DEBUG_INFO', (data) => {
+		debugInfo[0].innerHTML = data.MapName;
+		debugInfo[1].innerHTML = data.MapNamespace;
+		debugInfo[2].innerHTML = data.MapSector;
+		debugInfo[3].innerHTML = data.MapType;
+		debugInfo[4].innerHTML = data.MapFloor;
+		debugInfo[5].innerHTML = data.MapId;
+		debugInfo[6].innerHTML = data.MapGuid;
+	});
+
+	socket.on('CAMERA_ADD_POSITION', (data) => {
+	  let templ = `<tr><th scope='row'>${cameraCounter}</th>
+	  <td>${data.pos.x}</td>
+	  <td>${data.pos.y}</td>
+	  <td>${data.pos.z}</td>
+	  <td>${data.lookAt.x}</td>
+	  <td>${data.lookAt.y}</td>
+	  <td>${data.lookAt.z}</td></tr>`;
+	  cameraCounter++;
+	  cameraTable.append(templ);
+	});
 
 $(document).ready(function() {
 

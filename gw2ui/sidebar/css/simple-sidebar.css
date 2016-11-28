@@ -8,7 +8,28 @@ body {
 
 	border-left: 2px solid #444;
 	border-right: 2px solid #444;
-	overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(56, 56, 56, 1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background:  rgba(56, 56, 56, 1);
 }
 
 a{
@@ -32,6 +53,7 @@ body:after {
 .panel-default>.panel-heading{
 	background: none;
 	border: none;
+	padding: 0;
 }
 
 .panel {
@@ -46,11 +68,13 @@ body:after {
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
 	background-color: #353535;
+	border: 0;
 	color: #c6c6c6;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
 	border-color: #1f1f1f;
+	border: 0;
 	border-bottom-color:transparent;
 }
 
@@ -168,22 +192,22 @@ h1{
 	margin-bottom: 10px;
 }
 
-.cameraTableHeader {
+.infoTableHeader {
 	font-size: 1em;
 	margin-top: 5px;
 }
-.cameraTable {
+.infoTable {
 	background-color: #242526;
 	color: #c3c3c3;
 	font-size: 14px;
 }
 
-.cameraTable>.list-group-item>span{
+.infoTable>.list-group-item>span{
 	display: inline-block;
 	float: right;
 }
 
-.cameraTable>.list-group-item {
+.infoTable>.list-group-item {
 	background-color: #242526;
 	color: #c3c3c3;
 	padding: 5px 15px;

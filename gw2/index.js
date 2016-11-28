@@ -8,7 +8,6 @@ const Environment  = require(__dirname + '/src/environment.js');
 const async        = require('async');
 const io           = require('socket.io')(8080);
 
-let firstTime 		= true;
 /**
  * Start by trying to find the correct GW2 process
  * Terminates with an error if no process is found
@@ -35,15 +34,16 @@ gw2(function(err, process, module, memory, window) {
   camera.setEnvReference(environment);
   environment.enableEnvPointer();
 
+	let curFwd;
+	let cameraPos;
+	let roll;
+	let velocity;
+	let uiInterval;
   io.on('connection', function (so) {
     socket = so;
 
-		if (firstTime) {
-			let curFwd;
-			let cameraPos;
-			let roll;
-			let velocity;
-			setInterval(() => {
+		if (!uiInterval) {
+			uiInterval = setInterval(() => {
 				curFwd    = camera.getFwdPosition();
 				cameraPos = camera.getPosition();
 				roll 			= camera.getRoll();
@@ -62,12 +62,16 @@ gw2(function(err, process, module, memory, window) {
 				};
 				io.sockets.emit('UPDATE_UI', data);
 			}, 900);
-			firstTime = false;
+			setInterval(() => {
+				io.sockets.emit('UPDATE_DEBUG_INFO', player.getDebugInfo());
+			}, 10000);
 		}
+
+		io.sockets.emit('UPDATE_DEBUG_INFO', player.getDebugInfo());
 
 		socket.on('error', function (err) {
 		   console.log("Socket.IO Error");
-		   console.log(err); // this is changed from your code in last comment
+		   console.log(err);
 		});
     console.log('Window connected :)');
 

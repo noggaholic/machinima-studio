@@ -1,5 +1,5 @@
 /* eslint-disable radix, no-unused-vars */
-var offsets = require('./offsets');
+const offsets = require('./offsets');
 
 module.exports = (process, module, memory) => {
   var that = {};
@@ -39,6 +39,30 @@ module.exports = (process, module, memory) => {
   var movementOffset = module + offsets.player.movement.offset;
   var movementBufferLength = offsets.player.movement.byteLength;
   memory.readData(movementOffset, movementOriginalByteCode, offsets.player.movement.byteLength);
+
+	let debugData 	= {};
+	let debugStr  	= new Buffer(0x100);
+	let mapGUIDStr  = new Buffer(0x48);
+	let MapFloor  	= new Buffer(0x4);
+	let MapId  			= new Buffer(0x4);
+	that.getDebugInfo = () => {
+		memory.readData(offsets.debug.base, debugStr, 0x100);
+		debugData.MapName = debugStr.toString('utf8');
+		memory.readData(offsets.debug.base + offsets.debug.MapNamespace, debugStr, 0x100);
+		debugData.MapNamespace = debugStr.toString('utf8');
+		memory.readData(offsets.debug.base + offsets.debug.MapSector, debugStr, 0x100);
+		debugData.MapSector = debugStr.toString('utf8');
+		memory.readData(offsets.debug.base + offsets.debug.MapType, debugStr, 0x100);
+		debugData.MapType = debugStr.toString('utf8');
+		memory.readData(offsets.debug.base + offsets.debug.MapGuid, mapGUIDStr, 0x48);
+		debugData.MapGuid = mapGUIDStr.toString('utf8');
+
+		memory.readData(offsets.debug.base + offsets.debug.MapFloor, MapFloor, 0x4);
+		memory.readData(offsets.debug.base + offsets.debug.MapId, MapId, 0x4);
+		debugData.MapFloor 	= MapFloor.readFloatLE(0x0);
+		debugData.MapId 		= MapFloor.readInt32LE(0x0);
+		return debugData;
+	};
 
   that.disablePlayerMovement = () => {
     memory.writeData(movementOffset, Buffer.alloc(movementBufferLength, 0x90), offsets.player.movement.byteLength);
