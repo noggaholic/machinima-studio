@@ -201,6 +201,14 @@ const offsets = {
       offset: 0x0065F9C0,
       byteLength: 0x20
     }
+  },
+  agent: {
+    highlight_effect: {
+        offset: 0x00EC8B55,
+        original: new Buffer([0x0F, 0x84, 0x07, 0x09, 0x00, 0x00]),
+        patch: new Buffer([0xE9, 0x08, 0x09, 0x00, 0x00, 0x90]),
+        byteLength: 0x6
+    }
   }
 };
 
