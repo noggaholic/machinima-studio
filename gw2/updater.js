@@ -21,13 +21,20 @@ gw2(function(err, process, module, memory) {
     }
     return str;
   };
-
-  const pointerFound = (descriptor, ptr, minus) => {
+	var interpretAsPTRBuffer = new Buffer(0x4);
+  const pointerFound = (descriptor, ptr, substract, add, interpretAsPTR) => {
     if (ptr) {
       var base = ptr[0] - module;
-      if (minus) {
-        base = base - minus;
+      if (substract) {
+        base = base - substract;
       }
+      if (add) {
+        base = base + add;
+      }
+			if (interpretAsPTR) {
+				memory.readData(module + base, interpretAsPTRBuffer, 0x4);
+				base = interpretAsPTRBuffer.readInt32LE() - module;
+			}
       console.log(descriptor, '0x' + (base).toString(16).toUpperCase().lpad('0', 8));
     } else {
       console.log(descriptor, 'ptr base not found');
@@ -45,7 +52,7 @@ gw2(function(err, process, module, memory) {
   pointerFound('offsets.advancedView.animation.original', memory.find(pattern), 5);
 
   pattern = offsets.camera.original.toString('hex');
-  pointerFound('offsets.camera.original', memory.find(pattern));
+  pointerFound('offsets.camera.original', memory.find(pattern), null, 0x45, true);
 
   pattern = offsets.camera.instructions.patch_1.original.toString('hex');
   pointerFound('offsets.camera.instructions.patch_1.original', memory.find(pattern));

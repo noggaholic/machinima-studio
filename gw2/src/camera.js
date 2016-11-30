@@ -85,7 +85,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
         break;
       } else {
         var camBase = cameraOffsetBase + offsets.camera.pos.x;
-        var lookT = cameraOffsetBase + offsets.camera.playerPos.x;
+        var lookT = cameraOffsetBase + offsets.camera.lookAt.x;
         cameraWritePosition.writeFloatLE(cameraPos.x + (v * dx / dist), 0x0);
         cameraWritePosition.writeFloatLE(cameraPos.y + (v * dy / dist), 0x4);
         cameraWritePosition.writeFloatLE(cameraPos.z + (v * dz / dist), 0x8);
@@ -121,7 +121,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
     cameraFwdWritePosition.writeFloatLE(x, 0x0);
     cameraFwdWritePosition.writeFloatLE(y, 0x4);
     cameraFwdWritePosition.writeFloatLE(z, 0x8);
-    memory.writeData(cameraOffsetBase + offsets.camera.playerPos.x, cameraFwdWritePosition, 0xC);
+    memory.writeData(cameraOffsetBase + offsets.camera.lookAt.x, cameraFwdWritePosition, 0xC);
   };
 
   that.moveToWithTween = (from, to, type, cb) => {
@@ -160,7 +160,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   };
 
   that.getFwdPosition = () => {
-    memory.readData(cameraOffsetBase + offsets.camera.playerPos.x, cameraFwdReadPosition, 0xC);
+    memory.readData(cameraOffsetBase + offsets.camera.lookAt.x, cameraFwdReadPosition, 0xC);
     cameraFwdCurrPosition.x = cameraFwdReadPosition.readFloatLE(0);
     cameraFwdCurrPosition.y = cameraFwdReadPosition.readFloatLE(4);
     cameraFwdCurrPosition.z = cameraFwdReadPosition.readFloatLE(8);
@@ -173,7 +173,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       cameraFwdWritePosition.writeFloatLE(curFwd.x - (- pitchDown + pitchUp ), 0x0);
       cameraFwdWritePosition.writeFloatLE(curFwd.y - (- yawRight  + yawLeft ), 0x4);
       cameraFwdWritePosition.writeFloatLE(curFwd.z - (- rollRight + rollLeft), 0x8);
-      memory.writeData(cameraOffsetBase + offsets.camera.playerPos.x, cameraFwdWritePosition, 0xC);
+      memory.writeData(cameraOffsetBase + offsets.camera.lookAt.x, cameraFwdWritePosition, 0xC);
     };
 
     const getContainerDimensions = () => {
@@ -396,7 +396,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       cameraFwdWritePosition.writeFloatLE(curFwd.y, 0x4);
       cameraFwdWritePosition.writeFloatLE(curFwd.z, 0x8);
       memory.writeData(cameraOffsetBase + offsets.camera.pos.x, cameraWritePosition, 0xC);
-      memory.writeData(cameraOffsetBase + offsets.camera.playerPos.x, cameraFwdWritePosition, 0xC);
+      memory.writeData(cameraOffsetBase + offsets.camera.lookAt.x, cameraFwdWritePosition, 0xC);
       memory.writeData(cameraOffsetBase + offsets.camera.ortientation.roll, cameraRoll, 0x4);
     }, 16);
   };
