@@ -107,16 +107,13 @@ module.exports = (process, module, memory) => {
   };
 
   var toggleSection = function(ref, section, base) {
+    base = base || offsets.environment.rendering;  
     if (!ref.active) {
-      fillWithNopes(ref, section, base);
-    } else {
-      restoreCode(ref, section, base);
-    }
-  };
-      
-  var toggleSectionPatch = function(ref, section, base) {
-    if (!ref.active) {
-      patchCode(ref, section, base);
+      if (!(base[section].hasOwnProperty('patch'))) {
+        fillWithNopes(ref, section, base);
+      } else {
+        patchCode(ref, section, base);
+      }
     } else {
       restoreCode(ref, section, base);
     }
@@ -193,7 +190,7 @@ module.exports = (process, module, memory) => {
       case 'HIGHLIGHT_EFFECT':
         ref = patterns.highlight_effect;
         savePattern(ref, 'highlight_effect', offsets.agent);
-        toggleSectionPatch(ref, 'highlight_effect', offsets.agent);
+        toggleSection(ref, 'highlight_effect', offsets.agent);
         break;
       default:
     }
