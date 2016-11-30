@@ -66,7 +66,8 @@ module.exports = (process, module, memory) => {
     terrain: { active: false, original: null },
     cube_map: { active: false, original: null },
     props: { active: false, original: null },
-    animation: { active: false, original: null }
+    animation: { active: false, original: null },
+    highlight_effect: { active: false, original: null }
   };
 
   var savePattern = function(reference, section, base) {
@@ -77,6 +78,12 @@ module.exports = (process, module, memory) => {
       memory.readData(module + base[section].offset, buffer, bufferLength);
       reference.original = buffer;
     }
+  };
+    
+  var patchCode = function(reference, section, base) {
+		base = base || offsets.environment.rendering;
+    reference.active = true;
+    memory.writeData(module + base[section].offset, base[section].patch, base[section].byteLength);
   };
 
   var fillWithNopes = function(reference, section, base) {
@@ -98,6 +105,14 @@ module.exports = (process, module, memory) => {
   var toggleSection = function(ref, section, base) {
     if (!ref.active) {
       fillWithNopes(ref, section, base);
+    } else {
+      restoreCode(ref, section, base);
+    }
+  };
+      
+  var toggleSectionPatch = function(ref, section, base) {
+    if (!ref.active) {
+      patchCode(ref, section, base);
     } else {
       restoreCode(ref, section, base);
     }
@@ -170,6 +185,11 @@ module.exports = (process, module, memory) => {
         ref = patterns.animation;
         savePattern(ref, 'animation', offsets.advancedView);
         toggleSection(ref, 'animation', offsets.advancedView);
+        break;
+      case 'HIGHLIGHT_EFFECT':
+        ref = patterns.highlight_effect;
+        savePattern(ref, 'highlight_effect', offsets.agent);
+        toggleSectionPatch(ref, 'highlight_effect', offsets.agent);
         break;
       default:
     }

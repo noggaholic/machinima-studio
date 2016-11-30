@@ -45,6 +45,9 @@ $(".rendering").change(function() {
 		case 'animation':
 			socket.emit('RENDERING', { section: 'ANIMATION' });
 			break;
+        case 'highlight_effect':
+			socket.emit('RENDERING', { section: 'HIGHLIGHT_EFFECT' });
+			break;
 		}
 });
 
