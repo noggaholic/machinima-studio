@@ -71,9 +71,14 @@ module.exports = (process, module, memory) => {
   };
 
   var savePattern = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     if (!reference.original) {
-      var bufferLength = base[section].byteLength;
+      var bufferLength = 0;
+      if (base[section].hasOwnProperty('byteLength')) {
+        bufferLength = base[section].byteLength;
+      } else if (base[section].hasOwnProperty('patch')) {
+        bufferLength = base[section].patch.length;  
+      }
       var buffer = new Buffer(bufferLength);
       memory.readData(module + base[section].offset, buffer, bufferLength);
       reference.original = buffer;
@@ -81,13 +86,13 @@ module.exports = (process, module, memory) => {
   };
     
   var patchCode = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     reference.active = true;
-    memory.writeData(module + base[section].offset, base[section].patch, base[section].byteLength);
+    memory.writeData(module + base[section].offset, base[section].patch, base[section].patch.length);
   };
 
   var fillWithNopes = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     reference.active = true;
     var bufferLength = base[section].byteLength;
     var nops = Buffer.alloc(bufferLength, 0x90);
@@ -95,11 +100,10 @@ module.exports = (process, module, memory) => {
   };
 
   var restoreCode = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     reference.active = false;
-    var bufferLength = base[section].byteLength;
     var byteCode = reference.original;
-    memory.writeData(module + base[section].offset, byteCode, bufferLength);
+    memory.writeData(module + base[section].offset, byteCode, byteCode.length);
   };
 
   var toggleSection = function(ref, section, base) {
