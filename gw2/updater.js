@@ -68,8 +68,6 @@ gw2(function(err, process, module, memory) {
   pointerFound('offsets.camera.instructions.patch_6.original', memory.find(pattern));
   pattern = offsets.camera.instructions.patch_7.original.toString('hex');
   pointerFound('offsets.camera.instructions.patch_7.original', memory.find(pattern));
-  pattern = offsets.camera.instructions.patch_8.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_8.original', memory.find(pattern));
 
   /**
   * Player related offsets
