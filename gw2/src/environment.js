@@ -66,21 +66,33 @@ module.exports = (process, module, memory) => {
     terrain: { active: false, original: null },
     cube_map: { active: false, original: null },
     props: { active: false, original: null },
-    animation: { active: false, original: null }
+    animation: { active: false, original: null },
+    highlight_effect: { active: false, original: null }
   };
 
   var savePattern = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     if (!reference.original) {
-      var bufferLength = base[section].byteLength;
+      var bufferLength = 0;
+      if (base[section].hasOwnProperty('byteLength')) {
+        bufferLength = base[section].byteLength;
+      } else if (base[section].hasOwnProperty('patch')) {
+        bufferLength = base[section].patch.length;  
+      }
       var buffer = new Buffer(bufferLength);
       memory.readData(module + base[section].offset, buffer, bufferLength);
       reference.original = buffer;
     }
   };
+    
+  var patchCode = function(reference, section, base) {
+    base = base || offsets.environment.rendering;
+    reference.active = true;
+    memory.writeData(module + base[section].offset, base[section].patch, base[section].patch.length);
+  };
 
   var fillWithNopes = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     reference.active = true;
     var bufferLength = base[section].byteLength;
     var nops = Buffer.alloc(bufferLength, 0x90);
@@ -88,16 +100,20 @@ module.exports = (process, module, memory) => {
   };
 
   var restoreCode = function(reference, section, base) {
-		base = base || offsets.environment.rendering;
+    base = base || offsets.environment.rendering;
     reference.active = false;
-    var bufferLength = base[section].byteLength;
     var byteCode = reference.original;
-    memory.writeData(module + base[section].offset, byteCode, bufferLength);
+    memory.writeData(module + base[section].offset, byteCode, byteCode.length);
   };
 
   var toggleSection = function(ref, section, base) {
+    base = base || offsets.environment.rendering;  
     if (!ref.active) {
-      fillWithNopes(ref, section, base);
+      if (!(base[section].hasOwnProperty('patch'))) {
+        fillWithNopes(ref, section, base);
+      } else {
+        patchCode(ref, section, base);
+      }
     } else {
       restoreCode(ref, section, base);
     }
@@ -170,6 +186,11 @@ module.exports = (process, module, memory) => {
         ref = patterns.animation;
         savePattern(ref, 'animation', offsets.advancedView);
         toggleSection(ref, 'animation', offsets.advancedView);
+        break;
+      case 'HIGHLIGHT_EFFECT':
+        ref = patterns.highlight_effect;
+        savePattern(ref, 'highlight_effect', offsets.agent);
+        toggleSection(ref, 'highlight_effect', offsets.agent);
         break;
       default:
     }

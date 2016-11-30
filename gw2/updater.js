@@ -44,12 +44,24 @@ gw2(function(err, process, module, memory) {
   let pattern;
 
   /**
+  * Animation related pointers
+  * @type {String}
+  */
+  pattern = offsets.advancedView.animation.original.toString('hex');
+  pointerFound('offsets.advancedView.animation.original', memory.find(pattern), 5);
+    
+
+  /**
+  * Agent related pointers
+  * @type {String}
+  */
+  pattern = offsets.agent.highlight_effect.original.toString('hex');
+  pointerFound('offsets.agent.highlight_effect.original', memory.find(pattern));
+    
+  /**
   * Camera related pointers
   * @type {String}
   */
-
-	pattern = offsets.advancedView.animation.original.toString('hex');
-  pointerFound('offsets.advancedView.animation.original', memory.find(pattern), 5);
 
   pattern = offsets.camera.original.toString('hex');
   pointerFound('offsets.camera.original', memory.find(pattern), null, 0x45, true);
@@ -89,7 +101,7 @@ gw2(function(err, process, module, memory) {
   */
   pattern = offsets.player.movement.original.toString('hex');
   pointerFound('offsets.player.movement.original', memory.find(pattern), 10);
-
+    
   /**
   * Time of day related offsets
   * @type {String}
