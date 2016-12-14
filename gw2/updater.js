@@ -48,8 +48,6 @@ gw2(function(err, process, module, memory) {
     
   const findStringRef = (str) => {
       var searchPattern = Buffer.from(str).toString('hex');
-      var stringAddress = -1;
-      var stringRefAddress = [];
       var results = memory.find(searchPattern, 0, -1, 1, '--');
       
       if (results.length > 0)
@@ -66,7 +64,7 @@ gw2(function(err, process, module, memory) {
   * @type {String}
   */
   pattern = offsets.advancedView.animation.original.toString('hex');
-  pointerFound('offsets.advancedView.animation.original', findPattern(pattern), 5);
+  pointerFound('offsets.advancedView.animation.original', findPattern(pattern, 5);
     
 
   /**
@@ -110,7 +108,6 @@ gw2(function(err, process, module, memory) {
   * Environment related offsets
   * @type {String}
   */
-  pattern = offsets.environment.fog.original.toString('hex');
   pointerFound('offsets.environment.fog.original', findStringRef("s_dxContext"), 0, 10, true);
 
   /**
