@@ -64,7 +64,7 @@ gw2(function(err, process, module, memory) {
   * @type {String}
   */
   pattern = offsets.advancedView.animation.original.toString('hex');
-  pointerFound('offsets.advancedView.animation.original', findPattern(pattern, 5);
+  pointerFound('offsets.advancedView.animation.original', findPattern(pattern), 5);
     
 
   /**
