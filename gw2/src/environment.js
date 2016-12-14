@@ -14,6 +14,13 @@ module.exports = (process, module, memory) => {
 
   let cameraOffsetBase  = memory.readMultiLevelPtr(offsets.camera.ptr);
 
+  let fogData= {
+    r: null,
+    g: null,
+    b: null,
+    density: null
+  };
+    
   that.enableEnvPointer = () => {
     var cameraNumber 	= (cameraOffsetBase + offsets.camera.envPointerFix);
     var envfix 				= new Buffer([0x89, 0x35, 0xFC, 0x1E, 0x7B, 0x2F, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90]);
@@ -51,6 +58,16 @@ module.exports = (process, module, memory) => {
     fogColor.writeFloatLE((g / 255), 0x4);
     fogColor.writeFloatLE((b / 255), 0x8);
     memory.writeData(fogColorBase + offsets.environment.fog.colors, fogColor, 0xC);
+  };
+    
+  that.getFogData = () => {
+    memory.readData(fogColorBase + offsets.environment.fog.colors, fogColor, 0xC);
+    memory.readData(fogColorBase + offsets.environment.fog.density, fogDensity, 0x4);
+    fogData.r = fogColor.readFloatLE(0)*255;
+    fogData.g = fogColor.readFloatLE(4)*255;
+    fogData.b = fogColor.readFloatLE(8)*255;
+    fogData.density = fogDensity.readFloatLE(0);
+    return fogData;
   };
 
   var patterns = {
