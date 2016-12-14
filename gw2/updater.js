@@ -21,7 +21,8 @@ gw2(function(err, process, module, memory) {
     }
     return str;
   };
-	var interpretAsPTRBuffer = new Buffer(0x4);
+    
+  var interpretAsPTRBuffer = new Buffer(0x4);
   const pointerFound = (descriptor, ptr, substract, add, interpretAsPTR) => {
     if (ptr) {
       var base = ptr[0] - module;
@@ -41,14 +42,31 @@ gw2(function(err, process, module, memory) {
     }
   };
 
+  const findPattern = (pattern) => {
+      return memory.find(pattern, 0, -1, 1, "-x");
+  }
+    
+  const findStringRef = (str) => {
+      var searchPattern = Buffer.from(str).toString('hex');
+      var stringAddress = -1;
+      var stringRefAddress = [];
+      var results = memory.find(searchPattern, 0, -1, 1, '--');
+      
+      if (results.length > 0)
+      {
+          results = memory.find(results[0].toString(16).lpad('0', 8).match(/[a-fA-F0-9]{2}/g).reverse().join(''), 0, -1, 1, '-x');
+      }
+      
+      return results;
+  };
+    
   let pattern;
-
   /**
   * Animation related pointers
   * @type {String}
   */
   pattern = offsets.advancedView.animation.original.toString('hex');
-  pointerFound('offsets.advancedView.animation.original', memory.find(pattern), 5);
+  pointerFound('offsets.advancedView.animation.original', findPattern(pattern), 5);
     
 
   /**
@@ -56,7 +74,7 @@ gw2(function(err, process, module, memory) {
   * @type {String}
   */
   pattern = offsets.agent.highlight_effect.original.toString('hex');
-  pointerFound('offsets.agent.highlight_effect.original', memory.find(pattern));
+  pointerFound('offsets.agent.highlight_effect.original', findPattern(pattern));
     
   /**
   * Camera related pointers
@@ -64,77 +82,77 @@ gw2(function(err, process, module, memory) {
   */
 
   pattern = offsets.camera.original.toString('hex');
-  pointerFound('offsets.camera.original', memory.find(pattern), null, 0x45, true);
+  pointerFound('offsets.camera.original', findPattern(pattern), 0, 0x45, true);
 
   pattern = offsets.camera.instructions.patch_1.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_1.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_1.original', findPattern(pattern));
   pattern = offsets.camera.instructions.patch_2.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_2.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_2.original', findPattern(pattern));
   pattern = offsets.camera.instructions.patch_3.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_3.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_3.original', findPattern(pattern));
   pattern = offsets.camera.instructions.patch_4.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_4.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_4.original', findPattern(pattern));
   pattern = offsets.camera.instructions.patch_5.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_5.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_5.original', findPattern(pattern));
   pattern = offsets.camera.instructions.patch_6.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_6.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_6.original', findPattern(pattern));
   pattern = offsets.camera.instructions.patch_7.original.toString('hex');
-  pointerFound('offsets.camera.instructions.patch_7.original', memory.find(pattern));
+  pointerFound('offsets.camera.instructions.patch_7.original', findPattern(pattern));
 
   /**
   * Player related offsets
   * @type {String}
   */
   pattern = offsets.player.original.toString('hex');
-  pointerFound('offsets.player.original', memory.find(pattern));
+  pointerFound('offsets.player.original', findPattern(pattern));
 
   /**
   * Environment related offsets
   * @type {String}
   */
   pattern = offsets.environment.fog.original.toString('hex');
-  pointerFound('offsets.environment.fog.original', memory.find(pattern), 6);
+  pointerFound('offsets.environment.fog.original', findStringRef("s_dxContext"), 0, 10, true);
 
   /**
   * Movement related offsets
   * @type {String}
   */
   pattern = offsets.player.movement.original.toString('hex');
-  pointerFound('offsets.player.movement.original', memory.find(pattern), 10);
+  pointerFound('offsets.player.movement.original',  findPattern(pattern), 10);
     
   /**
   * Time of day related offsets
   * @type {String}
   */
   pattern = offsets.environment.timeOfDayOriginal.toString('hex');
-  pointerFound('offsets.environment.timeOfDayOriginal', memory.find(pattern), 5);
+  pointerFound('offsets.environment.timeOfDayOriginal', findPattern(pattern), 5);
 
   /**
   * Map rendering functions offsets
   * @type {String}
   */
   pattern = offsets.environment.rendering.audio.original.toString('hex');
-  pointerFound('offsets.environment.rendering.audio', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.audio', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.blocks.original.toString('hex');
-  pointerFound('offsets.environment.rendering.blocks', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.blocks', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.decal.original.toString('hex');
-  pointerFound('offsets.environment.rendering.decal', memory.find(pattern), 0x2A);
+  pointerFound('offsets.environment.rendering.decal', findPattern(pattern), 0x2A);
   pattern = offsets.environment.rendering.environment.original.toString('hex');
-  pointerFound('offsets.environment.rendering.environment', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.environment', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.river.original.toString('hex');
-  pointerFound('offsets.environment.rendering.river', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.river', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.under_water.original.toString('hex');
-  pointerFound('offsets.environment.rendering.under_water', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.under_water', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.zone.original.toString('hex');
-  pointerFound('offsets.environment.rendering.zone', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.zone', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.lights.original.toString('hex');
-  pointerFound('offsets.environment.rendering.lights', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.lights', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.shadows.original.toString('hex');
-  pointerFound('offsets.environment.rendering.shadows', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.shadows', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.terrain.original.toString('hex');
-  pointerFound('offsets.environment.rendering.terrain', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.terrain', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.cube_map.original.toString('hex');
-  pointerFound('offsets.environment.rendering.cube_map', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.cube_map', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.props.original.toString('hex');
-  pointerFound('offsets.environment.rendering.props', memory.find(pattern), 5);
+  pointerFound('offsets.environment.rendering.props', findPattern(pattern), 5);
 });
