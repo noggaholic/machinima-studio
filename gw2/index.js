@@ -38,6 +38,7 @@ gw2(function(err, process, module, memory, window) {
 	let cameraPos;
 	let roll;
 	let velocity;
+    let fog;
 	let uiInterval;
   io.on('connection', function (so) {
     socket = so;
@@ -48,6 +49,7 @@ gw2(function(err, process, module, memory, window) {
 				cameraPos = camera.getPosition();
 				roll 			= camera.getRoll();
 				velocity 	= camera.getSpeed();
+                fog = environment.getFogData();
 				let data  	= {
 					x: cameraPos.x,
 					y: cameraPos.y,
@@ -58,7 +60,12 @@ gw2(function(err, process, module, memory, window) {
 					roll: roll,
 					speed: velocity.speed,
 					rotSpeed: velocity.rotSpeed,
-					up_down_speed: velocity.up_down_speed
+					up_down_speed: velocity.up_down_speed,
+                    fog_red: fog.r,
+                    fog_green: fog.g,
+                    fog_blue: fog.b,
+                    fog_density: fog.density,
+                    time_of_day: environment.getTimeOfDay()
 				};
 				io.sockets.emit('UPDATE_UI', data);
 			}, 900);

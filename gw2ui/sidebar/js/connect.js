@@ -124,6 +124,10 @@ $(".play").click(() => {
 		cameraInfo[7].innerHTML = data.speed;
 		cameraInfo[8].innerHTML = data.rotSpeed;
 		cameraInfo[9].innerHTML = data.up_down_speed;
+        
+        $("#flat").spectrum("set", 'rgb(' + data.fog_red + ',' + data.fog_green + "," + data.fog_blue + ')');
+        $(".fogDensity").val(data.fog_density);
+        $(".timeOfDay").val(data.time_of_day);
 	});
 
 	var debugInfo = $('.debugInfo>.list-group-item>span');
