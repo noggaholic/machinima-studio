@@ -74,7 +74,7 @@ const offsets = {
     envPointerFix: 0x1C0
   },
 	debug: {
-		base: 0x01AE5E24,
+		base: 0x02419FB4,
 		MapName: 0x0,
 		MapNamespace: 0x100,
 		MapSector: 0x200,
