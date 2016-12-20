@@ -32,13 +32,13 @@ gw2(function(err, process, module, memory) {
       if (add) {
         base = base + add;
       }
-			if (interpretAsPTR) {
-				memory.readData(module + base, interpretAsPTRBuffer, 0x4);
-				base = interpretAsPTRBuffer.readInt32LE() - module;
-			}
-			if (offsetAdjustement) {
-				base += offsetAdjustement;
-			}
+      if (interpretAsPTR) {
+        memory.readData(module + base, interpretAsPTRBuffer, 0x4);
+        base = interpretAsPTRBuffer.readInt32LE() - module;
+      }
+      if (offsetAdjustement) {
+        base += offsetAdjustement;
+      }
       console.log(descriptor, '0x' + (base).toString(16).toUpperCase().lpad('0', 8));
     } else {
       console.log(descriptor, 'ptr base not found');
