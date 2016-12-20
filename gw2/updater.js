@@ -21,9 +21,9 @@ gw2(function(err, process, module, memory) {
     }
     return str;
   };
-    
+
   var interpretAsPTRBuffer = new Buffer(0x4);
-  const pointerFound = (descriptor, ptr, substract, add, interpretAsPTR) => {
+  const pointerFound = (descriptor, ptr, substract, add, interpretAsPTR, offsetAdjustement) => {
     if (ptr) {
       var base = ptr[0] - module;
       if (substract) {
@@ -36,6 +36,9 @@ gw2(function(err, process, module, memory) {
 				memory.readData(module + base, interpretAsPTRBuffer, 0x4);
 				base = interpretAsPTRBuffer.readInt32LE() - module;
 			}
+			if (offsetAdjustement) {
+				base += offsetAdjustement;
+			}
       console.log(descriptor, '0x' + (base).toString(16).toUpperCase().lpad('0', 8));
     } else {
       console.log(descriptor, 'ptr base not found');
@@ -45,27 +48,34 @@ gw2(function(err, process, module, memory) {
   const findPattern = (pattern) => {
       return memory.find(pattern, 0, -1, 1, "-x");
   }
-    
+
   const findStringRef = (str) => {
       var searchPattern = Buffer.from(str).toString('hex');
       var results = memory.find(searchPattern, 0, -1, 1, '--');
-      
+
       if (results.length > 0)
       {
           results = memory.find(results[0].toString(16).lpad('0', 8).match(/[a-fA-F0-9]{2}/g).reverse().join(''), 0, -1, 1, '-x');
       }
-      
+
       return results;
   };
-    
+
   let pattern;
+
+	/**
+  * Debug related pointers
+  * @type {String}
+  */
+  pattern = offsets.debug.original;
+  pointerFound('offsets.debug.original', findPattern(pattern), 0, 22, true, module - 1104);
+
   /**
   * Animation related pointers
   * @type {String}
   */
   pattern = offsets.advancedView.animation.original.toString('hex');
-  pointerFound('offsets.advancedView.animation.original', findPattern(pattern), 5);
-    
+  pointerFound('offsets.advancedView.animation.original', findPattern(pattern), 5, -0x450);
 
   /**
   * Agent related pointers
@@ -73,7 +83,7 @@ gw2(function(err, process, module, memory) {
   */
   pattern = offsets.agent.highlight_effect.original.toString('hex');
   pointerFound('offsets.agent.highlight_effect.original', findPattern(pattern));
-    
+
   /**
   * Camera related pointers
   * @type {String}
@@ -116,7 +126,7 @@ gw2(function(err, process, module, memory) {
   */
   pattern = offsets.player.movement.original.toString('hex');
   pointerFound('offsets.player.movement.original',  findPattern(pattern), 10);
-    
+
   /**
   * Time of day related offsets
   * @type {String}
