@@ -2,7 +2,7 @@
 const electron = require('electron');
 const size     = require('window-size');
 const path     = require('path');
-
+const launcher = require('../launcher.js');
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
