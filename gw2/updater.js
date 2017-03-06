@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
 'use strict';
 
-const gw2          = require(__dirname + '/src/initialize.js');
-const offsets      = require(__dirname + '/src/offsets.js');
+const gw2     = require(__dirname + '/src/initialize.js');
+const offsets = require(__dirname + '/src/offsets.js');
+const fs      = require('fs');
+
+var result = {};
 
 /**
  * Start by trying to find the correct GW2 process
@@ -39,7 +42,23 @@ gw2(function(err, process, module, memory) {
       if (offsetAdjustement) {
         base += offsetAdjustement;
       }
-      console.log(descriptor, '0x' + (base).toString(16).toUpperCase().lpad('0', 8));
+      var address = '0x' + (base).toString(16).toUpperCase().lpad('0', 8)
+      console.log(descriptor, address);
+      /**
+       * Create a reference for the memory path
+       * and save the value of the address
+       * @type {Object}
+       */
+      var obj = result;
+      var s = descriptor.split('.');
+      var p;
+      while (s.length) {
+          p = s.shift();
+          obj = obj[p] || (obj[p] = {});
+          if (s.length === 0) {
+            obj[p] = address;
+          }
+      }
     } else {
       console.log(descriptor, 'ptr base not found');
     }
@@ -162,4 +181,7 @@ gw2(function(err, process, module, memory) {
   pointerFound('offsets.environment.rendering.cube_map', findPattern(pattern), 5);
   pattern = offsets.environment.rendering.props.original.toString('hex');
   pointerFound('offsets.environment.rendering.props', findPattern(pattern), 5);
+
+  fs.writeFileSync(__dirname + '/src/offsets.json', JSON.stringify(result, null, 4));
+  console.log('Offsets have been updated: src/offsets.js');
 });

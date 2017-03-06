@@ -1,0 +1,123 @@
+{
+    "offsets": {
+        "debug": {
+            "original": {
+                "original": "0x02869F14"
+            }
+        },
+        "advancedView": {
+            "animation": {
+                "original": {
+                    "original": "0x0066B9E3"
+                }
+            }
+        },
+        "agent": {
+            "highlight_effect": {
+                "original": {
+                    "original": "0x00ED4795"
+                }
+            }
+        },
+        "camera": {
+            "original": {
+                "original": "0x01806044"
+            },
+            "instructions": {
+                "patch_1": {
+                    "original": {
+                        "original": "0x00681EFA"
+                    }
+                },
+                "patch_2": {
+                    "original": {
+                        "original": "0x00681E28"
+                    }
+                },
+                "patch_3": {
+                    "original": {
+                        "original": "0x00681DC3"
+                    }
+                },
+                "patch_4": {
+                    "original": {
+                        "original": "0x00681D1C"
+                    }
+                },
+                "patch_5": {
+                    "original": {
+                        "original": "0x00681AC7"
+                    }
+                },
+                "patch_6": {
+                    "original": {
+                        "original": "0x00681C32"
+                    }
+                },
+                "patch_7": {
+                    "original": {
+                        "original": "0x00681242"
+                    }
+                }
+            }
+        },
+        "player": {
+            "original": {
+                "original": "0x00000NAN"
+            },
+            "movement": {
+                "original": {
+                    "original": "0x0066BF60"
+                }
+            }
+        },
+        "environment": {
+            "fog": {
+                "original": {
+                    "original": "0x015B5438"
+                }
+            },
+            "timeOfDayOriginal": {
+                "timeOfDayOriginal": "0x00BFE01C"
+            },
+            "rendering": {
+                "audio": {
+                    "audio": "0x00BF0F00"
+                },
+                "blocks": {
+                    "blocks": "0x00BF0F5A"
+                },
+                "decal": {
+                    "decal": "0x00BF0F82"
+                },
+                "environment": {
+                    "environment": "0x00BF0FEE"
+                },
+                "river": {
+                    "river": "0x00BF102B"
+                },
+                "under_water": {
+                    "under_water": "0x00BF108B"
+                },
+                "zone": {
+                    "zone": "0x00BF10C2"
+                },
+                "lights": {
+                    "lights": "0x00BF10FE"
+                },
+                "shadows": {
+                    "shadows": "0x00BF1145"
+                },
+                "terrain": {
+                    "terrain": "0x00BF1174"
+                },
+                "cube_map": {
+                    "cube_map": "0x00BF11AE"
+                },
+                "props": {
+                    "props": "0x00BF11F7"
+                }
+            }
+        }
+    }
+}
