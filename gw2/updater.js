@@ -67,7 +67,7 @@ gw2(function(err, process, module, memory) {
   * Debug related pointers
   * @type {String}
   */
-  pattern = offsets.debug.original;
+  pattern = offsets.debug.original.toString('hex');
   pointerFound('offsets.debug.original', findPattern(pattern), 0, 22, true, module - 1104);
 
   /**

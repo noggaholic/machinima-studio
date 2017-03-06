@@ -74,7 +74,7 @@ const offsets = {
     }
   },
 	debug: {
-		original: '55 8B EC F3 0F 10 45 08 81 0D E0 A3 86 02 00 00 00 02',
+		original: new Buffer([0x55, 0x8B, 0xEC, 0xF3, 0x0F, 0x10, 0x45, 0x08, 0x81, 0x0D]),
 		base: 0x02869F14,
 		MapName: 0x0,
 		MapNamespace: 0x100,
