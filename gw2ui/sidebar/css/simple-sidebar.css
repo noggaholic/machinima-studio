@@ -217,3 +217,27 @@ h1{
 	padding: 5px 15px;
 	border: 1px solid #151515;
 }
+
+.window_settings {
+  height: 25px;
+  background-color: #474850;
+}
+
+svg {
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+}
+svg > circle {
+    stroke: black;
+    fill: white;
+}
+svg > path {
+    stroke: black;
+}
+svg:hover > circle {
+    fill: red;
+}
+svg:hover > path {
+    stroke: white;
+}

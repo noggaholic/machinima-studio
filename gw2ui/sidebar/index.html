@@ -43,6 +43,14 @@
 	</div> -->
     <div id="wrapper">
         <div id="page-content-wrapper">
+          <div class="window_settings">
+            <svg id="close_win">
+                <circle cx="12" cy="12" r="11" stroke="black" stroke-width="2" fill="white" />
+                <path stroke="black" stroke-width="4" fill="none" d="M6.25,6.25,17.75,17.75" />
+                <path stroke="black" stroke-width="4" fill="none" d="M6.25,17.75,17.75,6.25" />
+            </svg>
+            Version 1.0.0
+          </div>
             <div class="container-fluid">
 							<img src="images/logo.png" class="logo" style="-webkit-app-region: drag" />
 								<div class="panel with-nav-tabs panel-default">
@@ -310,6 +318,7 @@
 
     <!-- Menu Toggle Script -->
     <script>
+    var electron = require('electron');
     var shell = require('electron').shell;
 		const ipc = require('electron').ipcRenderer;
 
@@ -317,6 +326,11 @@
       event.preventDefault();
       shell.openExternal(this.href);
     });
+
+    jQuery('#close_win').click(function(event) {
+      ipc.send('terminate');
+    });
+
     </script>
 
     <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>

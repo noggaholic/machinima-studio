@@ -53,6 +53,9 @@ function createWindow () {
   /**
    * Taken from https://github.com/konsumer/electron-prompt/blob/master/main.js
    */
+  ipcMain.on('terminate', function(eventRet, arg) {
+    process.exit();
+  });
   var promptResponse
   ipcMain.on('prompt', function(eventRet, arg) {
     promptResponse = null
