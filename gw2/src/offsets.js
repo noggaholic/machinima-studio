@@ -74,8 +74,8 @@ const offsets = {
     }
   },
 	debug: {
-		original: '55 8B EC F3 0F 10 45 08 81 0D 80 B4 BC 01 00 00 00 02 F3 0F 11 05 04 B4 BC 01 5D C2 04 00 CC',
-		base: 0x01B0D904,
+		original: '55 8B EC F3 0F 10 45 08 81 0D E0 A3 86 02 00 00 00 02',
+		base: 0x02869F14,
 		MapName: 0x0,
 		MapNamespace: 0x100,
 		MapSector: 0x200,
