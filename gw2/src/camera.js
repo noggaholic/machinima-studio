@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 var offsets   = require('./offsets');
+var ptrs      = require('./ptrs.json');
 var robot     = require('robot-js');
 var Tweenable = require('shifty');
 
@@ -24,7 +25,8 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   const cameraPitch = new Buffer(0x4);
   const verticalAlignment = new Buffer(0x4);
 
-  let cameraOffsetBase  = memory.readMultiLevelPtr(offsets.camera.ptr);
+  offsets.camera.offset[0] = ptrs.camera.offset;
+  let cameraOffsetBase  = memory.readMultiLevelPtr(offsets.camera.offset);
 
   let cameraCurrPosition = {
     x: null,
@@ -148,7 +150,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   };
 
   that.updateOffsetBase = () => {
-    cameraOffsetBase = memory.readMultiLevelPtr(offsets.camera.ptr);
+    cameraOffsetBase = memory.readMultiLevelPtr(offsets.camera.offset);
   };
 
   that.getPosition = () => {

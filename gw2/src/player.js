@@ -1,6 +1,6 @@
 /* eslint-disable radix, no-unused-vars */
 const offsets = require('./offsets');
-
+var ptrs      = require('./ptrs.json');
 module.exports = (process, module, memory) => {
   var that = {};
 
@@ -20,8 +20,9 @@ module.exports = (process, module, memory) => {
   speedEnabled.writeFloatLE(9.1875);
 
   let camera;
-  let playerOffsetBase    = memory.readMultiLevelPtr(offsets.player.pos.ptr);
-  let playerVisualBase    = memory.readMultiLevelPtr(offsets.player.visualPos.ptr);
+
+  let playerOffsetBase    = memory.readMultiLevelPtr(offsets.player.pos.offset);
+  let playerVisualBase    = memory.readMultiLevelPtr(offsets.player.visualPos.offset);
 
   let playerCurrPosition = {
     x: null,
@@ -36,7 +37,7 @@ module.exports = (process, module, memory) => {
   };
 
   var movementOriginalByteCode = new Buffer(offsets.player.movement.byteLength);
-  var movementOffset = module + offsets.player.movement.offset;
+  var movementOffset = module + Number(ptrs.player.movement.original);
   var movementBufferLength = offsets.player.movement.byteLength;
   memory.readData(movementOffset, movementOriginalByteCode, offsets.player.movement.byteLength);
 

@@ -54,9 +54,11 @@ gw2(function(err, process, module, memory) {
       var p;
       while (s.length) {
           p = s.shift();
-          obj = obj[p] || (obj[p] = {});
+
           if (s.length === 0) {
             obj[p] = address;
+          } else {
+            obj = obj[p] || (obj[p] = {});
           }
       }
     } else {
@@ -109,7 +111,7 @@ gw2(function(err, process, module, memory) {
   */
 
   pattern = offsets.camera.original.toString('hex');
-  pointerFound('offsets.camera.original', findPattern(pattern), 0, 0x45, true);
+  pointerFound('offsets.camera.offset', findPattern(pattern), 0, 0x45, true);
 
   pattern = offsets.camera.instructions.patch_1.original.toString('hex');
   pointerFound('offsets.camera.instructions.patch_1.original', findPattern(pattern));
@@ -182,6 +184,6 @@ gw2(function(err, process, module, memory) {
   pattern = offsets.environment.rendering.props.original.toString('hex');
   pointerFound('offsets.environment.rendering.props', findPattern(pattern), 5);
 
-  fs.writeFileSync(__dirname + '/src/offsets.json', JSON.stringify(result, null, 4));
-  console.log('Offsets have been updated: src/offsets.js');
+  fs.writeFileSync(__dirname + '/src/ptrs.json', JSON.stringify(result.offsets, null, 4));
+  console.log('Pointers have been updated: src/ptrs.js');
 });

@@ -1,0 +1,19 @@
+{
+  "name": "launcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "async": "2.1.5",
+    "window-size": "git://github.com/jonschlinkert/window-size.git"
+  },
+  "devDependencies": {
+    "tty": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC"
+}

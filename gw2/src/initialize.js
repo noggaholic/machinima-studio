@@ -16,7 +16,7 @@ module.exports = (cb) => {
    * the correct offset of the memory
    */
   const readMultiLevelPtr = function(offsets) {
-    var address = module + offsets[0];
+    var address = module + Number(offsets[0]);
     for (var i = 1; i < offsets.length; i++) {
       address = memory.readPtr(address);
       address += offsets[i];

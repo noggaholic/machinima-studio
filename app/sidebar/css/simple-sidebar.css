@@ -1,0 +1,243 @@
+html, body{ height:100%; }
+body {
+	background: url(../../bottombar/images/background.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	border-left: 2px solid #444;
+	border-right: 2px solid #444;
+}
+
+.tab-content {
+	padding-left: 0;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(56, 56, 56, 1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background:  rgba(56, 56, 56, 1);
+}
+
+a{
+	color:#d8cf86;
+}
+
+body:before, body:after {
+    content: "";
+    position: fixed;
+    background: #444;
+    left: 0;
+    right: 0;
+    height: 2px;
+}
+body:before {
+    top: 0;
+}
+body:after {
+    bottom: 0;
+}
+.panel-default>.panel-heading{
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.panel {
+	background-color: #353535;
+	color: #c6c6c6;
+	border-color: #1f1f1f;
+}
+
+.nav-tabs {
+	border-color: #1f1f1f;
+	border-bottom: initial;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	background-color: #353535;
+	border: 0;
+	color: #c6c6c6;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	border-color: #1f1f1f;
+	border: 0;
+	border-bottom-color:transparent;
+}
+
+.nav-tabs>li>a {
+	color: #c6c6c6;
+	background-color: #2a2a2a;
+}
+
+.fa-camera-retro:before, .fa-sun-o:before, .fa-gears:before, .fa-cogs:before {
+	padding-right: 5px;
+}
+
+.nav-tabs>li>a:hover{
+	border-color: #1f1f1f;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+	background-color: transparent;
+	border-bottom: initial;
+}
+
+.page-header{
+	margin: 0;
+}
+
+h1.title{
+	padding-top: 10px;
+}
+h1{
+	color: #fff;
+	margin: 0;
+}
+
+.nav-tabs>li>a {
+	font-size: 1em;
+}
+
+.nav-tabs>li>a>span {
+	margin-right: 5px;
+}
+
+.rendering_block {
+	margin: 10px;
+	font-size: 1.5em;
+}
+
+.rendering_block > input{
+
+}
+
+.rendering_block > section {
+	float: right;
+	margin-right: 10px;
+	width: 20px;
+	clear: both;
+}
+/* end .squaredTwo */
+/* .squaredThree */
+.squaredThree {
+  position: relative;
+	margin-top: 5px;
+}
+.squaredThree label {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: -webkit-linear-gradient(top, #222222 0%, #45484d 100%);
+  background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+  border-radius: 4px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+}
+.squaredThree label:after {
+	content: '';
+	font-size: 16px;
+	width: 12px;
+	height: 8px;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	border: 3px solid #fcfff4;
+	border-top: none;
+	border-right: none;
+	background: transparent;
+	opacity: 0;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.squaredThree input[type=checkbox] {
+  visibility: hidden;
+}
+.squaredThree input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+.sp-container {
+	width: 98%;
+}
+
+.sp-picker-container {
+	width: 95%;
+	margin-top: 10px;
+}
+
+.nav>li>a {
+	padding: 5px 15px;
+}
+
+.logo {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.infoTableHeader {
+	font-size: 1em;
+	margin-top: 5px;
+}
+.infoTable {
+	background-color: #242526;
+	color: #c3c3c3;
+	font-size: 14px;
+}
+
+.infoTable>.list-group-item>span{
+	display: inline-block;
+	float: right;
+}
+
+.infoTable>.list-group-item {
+	background-color: #242526;
+	color: #c3c3c3;
+	padding: 5px 15px;
+	border: 1px solid #151515;
+}
+
+.window_settings {
+  height: 25px;
+  background-color: #474850;
+}
+
+svg {
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+}
+svg > circle {
+    stroke: black;
+    fill: white;
+}
+svg > path {
+    stroke: black;
+}
+svg:hover > circle {
+    fill: red;
+}
+svg:hover > path {
+    stroke: white;
+}

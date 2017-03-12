@@ -38,7 +38,7 @@ gw2(function(err, process, module, memory, window) {
 	let cameraPos;
 	let roll;
 	let velocity;
-    let fog;
+  let fog;
 	let uiInterval;
   io.on('connection', function (so) {
     socket = so;
@@ -49,7 +49,7 @@ gw2(function(err, process, module, memory, window) {
 				cameraPos = camera.getPosition();
 				roll 			= camera.getRoll();
 				velocity 	= camera.getSpeed();
-                fog = environment.getFogData();
+        fog       = environment.getFogData();
 				let data  	= {
 					x: cameraPos.x,
 					y: cameraPos.y,

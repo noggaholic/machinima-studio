@@ -1,18 +1,21 @@
 var offsets = require('./offsets');
+var ptrs    = require('./ptrs.json');
 /**
  * Para desactivar el renderizado de props, buscar MapPropBroadPhase
  */
 
 module.exports = (process, module, memory) => {
   var that = {};
-
-  let fogColorBase 	= memory.readMultiLevelPtr(offsets.environment.fog.ptr);
+  ptrs.environment.enableTimeOfDay = Number(ptrs.environment.enableTimeOfDay);
+  offsets.environment.fog.offset[0] = Number(ptrs.environment.fog.original);
+  let fogColorBase 	= memory.readMultiLevelPtr(offsets.environment.fog.offset);
   var fogColor 			= new Buffer(0xC);
   var fogDensity 		= new Buffer(0x4);
   var timeOfDay 		= new Buffer(0x4);
   var timeOfDayRead	= new Buffer(0x4);
 
-  let cameraOffsetBase  = memory.readMultiLevelPtr(offsets.camera.ptr);
+  offsets.camera.offset[0] = ptrs.camera.offset;
+  let cameraOffsetBase  = memory.readMultiLevelPtr(offsets.camera.offset);
 
   let fogData= {
     r: null,
@@ -20,18 +23,18 @@ module.exports = (process, module, memory) => {
     b: null,
     density: null
   };
-    
+
   that.enableEnvPointer = () => {
     var cameraNumber 	= (cameraOffsetBase + offsets.camera.envPointerFix);
     var envfix 				= new Buffer([0x89, 0x35, 0xFC, 0x1E, 0x7B, 0x2F, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90]);
     envfix.writeInt32LE(cameraNumber, 0x2);
-    memory.writeData(module + offsets.environment.enableTimeOfDay, envfix, envfix.byteLength);
+    memory.writeData(module + ptrs.environment.enableTimeOfDay, envfix, envfix.byteLength);
   };
 
   that.disableEnvPointer = () => {
     // This is the original array of bytes
     var envfix = new Buffer([0x0F, 0x2F, 0xC1, 0x72, 0x0D, 0xF3, 0x0F, 0x11, 0x8E, 0xCC, 0x19, 0x00, 0x00]);
-    memory.writeData(module + offsets.environment.enableTimeOfDay, envfix, envfix.byteLength);
+    memory.writeData(module + ptrs.environment.enableTimeOfDay, envfix, envfix.byteLength);
   };
 
   that.setTimeOfDay = (value) => {
@@ -59,7 +62,7 @@ module.exports = (process, module, memory) => {
     fogColor.writeFloatLE((b / 255), 0x8);
     memory.writeData(fogColorBase + offsets.environment.fog.colors, fogColor, 0xC);
   };
-    
+
   that.getFogData = () => {
     memory.readData(fogColorBase + offsets.environment.fog.colors, fogColor, 0xC);
     memory.readData(fogColorBase + offsets.environment.fog.density, fogDensity, 0x4);
@@ -94,14 +97,14 @@ module.exports = (process, module, memory) => {
       if (base[section].hasOwnProperty('byteLength')) {
         bufferLength = base[section].byteLength;
       } else if (base[section].hasOwnProperty('patch')) {
-        bufferLength = base[section].patch.length;  
+        bufferLength = base[section].patch.length;
       }
       var buffer = new Buffer(bufferLength);
       memory.readData(module + base[section].offset, buffer, bufferLength);
       reference.original = buffer;
     }
   };
-    
+
   var patchCode = function(reference, section, base) {
     base = base || offsets.environment.rendering;
     reference.active = true;
@@ -124,7 +127,7 @@ module.exports = (process, module, memory) => {
   };
 
   var toggleSection = function(ref, section, base) {
-    base = base || offsets.environment.rendering;  
+    base = base || offsets.environment.rendering;
     if (!ref.active) {
       if (!(base[section].hasOwnProperty('patch'))) {
         fillWithNopes(ref, section, base);
