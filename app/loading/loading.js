@@ -25,11 +25,30 @@ const update = (callback) => {
 async.waterfall([
     function(callback) {
         /**
-         * Check if `npm install` has been executed
+         * Update offsets for the latest patch
          */
         setTimeout(() => {
           update(callback);
         }, 500);
+    },
+    function(callback) {
+      status.innerHTML = 'Launching server...';
+      ipcRenderer.on('open-machinima-studio-server-error', (event, error) => {
+        callback(new Error(error));
+      });
+
+      ipcRenderer.on('open-machinima-studio-server', () => {
+        console.log('open-machinima-studio-server');
+        console.log('open-machinima-studio-server');
+        console.log('open-machinima-studio-server');
+        console.log('open-machinima-studio-server');
+        console.log('open-machinima-studio-server');
+        callback();
+      });
+
+      setTimeout(() => {
+        ipcRenderer.send('open-machinima-studio-server', 1);
+      }, 300);
     }
 ], function (err) {
     var paras = document.getElementsByClassName('stick');

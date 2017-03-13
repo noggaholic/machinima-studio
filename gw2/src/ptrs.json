@@ -1,6 +1,6 @@
 {
     "debug": {
-        "original": "0x02689F14"
+        "original": "0x01C59F14"
     },
     "advancedView": {
         "animation": {
@@ -16,32 +16,32 @@
         "offset": "0x01806044",
         "instructions": {
             "patch_1": {
-                "original": "0x00681FBA"
+                "original": "0x00000NAN"
             },
             "patch_2": {
-                "original": "0x00681EE8"
+                "original": "0x00687E5A"
             },
             "patch_3": {
-                "original": "0x00681E83"
+                "original": "0x00000NAN"
             },
             "patch_4": {
-                "original": "0x00681DDC"
+                "original": "0x00000NAN"
             },
             "patch_5": {
-                "original": "0x00681B87"
+                "original": "0x00BF97B1"
             },
             "patch_6": {
-                "original": "0x00681CF2"
+                "original": "0x00000NAN"
             },
             "patch_7": {
-                "original": "0x00681302"
+                "original": "0x00AFF551"
             }
         }
     },
     "player": {
         "original": "0x00000NAN",
         "movement": {
-            "original": "0x0066C020"
+            "original": "0x0066C045"
         }
     },
     "environment": {

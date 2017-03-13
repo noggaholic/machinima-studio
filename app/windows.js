@@ -52,6 +52,14 @@ const createWindow = (mainWindow, electron) => {
 
 };
 
+const openServer = (callback) => {
+  var childProcess = require('child_process');
+  var cmdPath      = path.join(__dirname,'../', 'gw2/index.js');
+
+  childProcess.spawn('node', [cmdPath]);
+  callback();
+};
+
 const loadingWindow = (mainWindow, electron) => {
   const BrowserWindow = electron.BrowserWindow;
   let params = {
@@ -85,5 +93,6 @@ const loadingWindow = (mainWindow, electron) => {
 
 module.exports = {
   mainWindow: createWindow,
-  loadingWindow: loadingWindow
+  loadingWindow: loadingWindow,
+  openServer: openServer
 };

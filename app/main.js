@@ -3,8 +3,9 @@
 const electron = require('electron');
 const launchWindows = require('./windows.js');
 
-const launchMain = launchWindows.mainWindow;
+const launchMain    = launchWindows.mainWindow;
 const launchLoading = launchWindows.loadingWindow;
+const openServer    = launchWindows.openServer;
 
 const app = electron.app;
 /**
@@ -22,6 +23,15 @@ require('./ipc.js')(ipcMain, BrowserWindow);
 
 ipcMain.on('open-machinima-studio', (event, arg) => {
   launchMain(mainWindow, electron);
+});
+
+ipcMain.on('open-machinima-studio-server', (event, arg) => {
+  openServer((err) => {
+    if (err) {
+      return event.sender.send('open-machinima-studio-server-error', err);
+    }
+    event.sender.send('open-machinima-studio-server');
+  });
 });
 
 /**
