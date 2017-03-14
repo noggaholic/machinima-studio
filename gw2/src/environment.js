@@ -100,7 +100,7 @@ module.exports = (process, module, memory) => {
         bufferLength = base[section].patch.length;
       }
       var buffer = new Buffer(bufferLength);
-      memory.readData(module + base[section].offset, buffer, bufferLength);
+      memory.readData(module + Number(ptrs.environment.rendering[section]), buffer, bufferLength);
       reference.original = buffer;
     }
   };
@@ -108,7 +108,7 @@ module.exports = (process, module, memory) => {
   var patchCode = function(reference, section, base) {
     base = base || offsets.environment.rendering;
     reference.active = true;
-    memory.writeData(module + base[section].offset, base[section].patch, base[section].patch.length);
+    memory.writeData(module + Number(ptrs.environment.rendering[section]), base[section].patch, base[section].patch.length);
   };
 
   var fillWithNopes = function(reference, section, base) {
@@ -116,14 +116,14 @@ module.exports = (process, module, memory) => {
     reference.active = true;
     var bufferLength = base[section].byteLength;
     var nops = Buffer.alloc(bufferLength, 0x90);
-    memory.writeData(module + base[section].offset, nops, bufferLength);
+    memory.writeData(module + Number(ptrs.environment.rendering[section]), nops, bufferLength);
   };
 
   var restoreCode = function(reference, section, base) {
     base = base || offsets.environment.rendering;
     reference.active = false;
     var byteCode = reference.original;
-    memory.writeData(module + base[section].offset, byteCode, byteCode.length);
+    memory.writeData(module + Number(ptrs.environment.rendering[section]), byteCode, byteCode.length);
   };
 
   var toggleSection = function(ref, section, base) {
@@ -204,13 +204,13 @@ module.exports = (process, module, memory) => {
         break;
       case 'ANIMATION':
         ref = patterns.animation;
-        savePattern(ref, 'animation', offsets.advancedView);
-        toggleSection(ref, 'animation', offsets.advancedView);
+        savePattern(ref, 'animation');
+        toggleSection(ref, 'animation');
         break;
       case 'HIGHLIGHT_EFFECT':
         ref = patterns.highlight_effect;
-        savePattern(ref, 'highlight_effect', offsets.agent);
-        toggleSection(ref, 'highlight_effect', offsets.agent);
+        savePattern(ref, 'highlight_effect');
+        toggleSection(ref, 'highlight_effect');
         break;
       default:
     }

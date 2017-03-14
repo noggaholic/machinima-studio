@@ -20,7 +20,7 @@
         height: 100%;
       }
       .wrap {
-        background-image: url(0.png);
+        background-image: url(background.png);
         background-size: 100% 100%;
         background-repeat: no-repeat;
         border-radius: 3px;
@@ -75,6 +75,10 @@
   </head>
   <body>
     <div class="wrap">
+      <script type="text/javascript">
+        var randomBackground = Math.round(Math.random()*3);
+        document.getElementsByClassName('wrap')[0].style.backgroundImage = "url(" + randomBackground + ".png)"
+      </script>
       <div id="homescreen">
           <img src="logo.png" style="-webkit-app-region: drag" />
           <div id="container">

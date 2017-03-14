@@ -56,7 +56,12 @@ const openServer = (callback) => {
   var childProcess = require('child_process');
   var cmdPath      = path.join(__dirname,'../', 'gw2/index.js');
 
-  childProcess.spawn('node', [cmdPath]);
+  var server = childProcess.spawn('node', [cmdPath]);
+
+  process.on('exit', function () {
+    server.kill();
+  });
+
   callback();
 };
 

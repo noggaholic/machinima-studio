@@ -10,6 +10,39 @@ body {
 	border-right: 2px solid #444;
 }
 
+.app-buttons {
+  width: 30px;
+  height: 30px;
+  background-size: 26px;
+  background-color: transparent;
+  background-position: 50%;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  opacity: .6;
+  padding: 0;
+  border: 0;
+}
+
+.app-version {
+  display: block;
+  float: left;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: rgba(198, 198, 198, 0.34);
+}
+
+.win-minimize {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xOSAxOXYtMkg3djJoMTJ6Ii8+CiAgICA8cGF0aCBkPSJNMSAyNWgyNFYxSDF2MjR6Ii8+CiAgPC9nPgo8L3N2Zz4=);
+}
+
+.win-close {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGQ9Ik0xIDFoMjR2MjRIMVYxeiIvPgogICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTIwIDcuNDFMMTguNTkgNiAxMyAxMS41OSA3LjQxIDYgNiA3LjQxIDExLjU5IDEzIDYgMTguNTkgNy40MSAyMCAxMyAxNC40MSAxOC41OSAyMCAyMCAxOC41OSAxNC40MSAxMyAyMCA3LjQxeiIvPgogIDwvZz4KPC9zdmc+);
+}
+
+.app-buttons:hover {
+    opacity: 1;
+}
+
 .tab-content {
 	padding-left: 0;
 }
@@ -219,8 +252,7 @@ h1{
 }
 
 .window_settings {
-  height: 25px;
-  background-color: #474850;
+  float: right;
 }
 
 svg {

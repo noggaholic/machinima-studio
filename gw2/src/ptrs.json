@@ -1,54 +1,44 @@
 {
     "debug": {
-        "original": "0x01C59F14"
-    },
-    "advancedView": {
-        "animation": {
-            "original": "0x0066BAA3"
-        }
-    },
-    "agent": {
-        "highlight_effect": {
-            "original": "0x00ED4765"
-        }
+        "original": "0x02679F14"
     },
     "camera": {
         "offset": "0x01806044",
         "instructions": {
             "patch_1": {
-                "original": "0x00000NAN"
+                "original": "0x00681FAA"
             },
             "patch_2": {
-                "original": "0x00687E5A"
+                "original": "0x00681ED8"
             },
             "patch_3": {
-                "original": "0x00000NAN"
+                "original": "0x00681E73"
             },
             "patch_4": {
-                "original": "0x00000NAN"
+                "original": "0x00681DCC"
             },
             "patch_5": {
-                "original": "0x00BF97B1"
+                "original": "0x00681B77"
             },
             "patch_6": {
-                "original": "0x00000NAN"
+                "original": "0x00681CE2"
             },
             "patch_7": {
-                "original": "0x00AFF551"
+                "original": "0x006812F2"
             }
         }
     },
     "player": {
         "original": "0x00000NAN",
         "movement": {
-            "original": "0x0066C045"
+            "original": "0x0066C020"
         }
     },
     "environment": {
         "fog": {
             "original": "0x015B5438"
         },
-        "timeOfDayOriginal": "0x00BFE00C",
+        "enableTimeOfDay": "0x00BFE00C",
         "rendering": {
             "audio": "0x00BF0EE0",
             "blocks": "0x00BF0F3A",
@@ -61,7 +51,9 @@
             "shadows": "0x00BF1125",
             "terrain": "0x00BF1154",
             "cube_map": "0x00BF118E",
-            "props": "0x00BF11D7"
+            "props": "0x00BF11D7",
+            "animation": "0x0066BEF8",
+            "highlight_effect": "0x00000NAN"
         }
     }
 }

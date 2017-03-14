@@ -44,12 +44,9 @@
     <div id="wrapper">
         <div id="page-content-wrapper">
           <div class="window_settings">
-            <svg id="close_win">
-                <circle cx="12" cy="12" r="11" stroke="black" stroke-width="2" fill="white" />
-                <path stroke="black" stroke-width="4" fill="none" d="M6.25,6.25,17.75,17.75" />
-                <path stroke="black" stroke-width="4" fill="none" d="M6.25,17.75,17.75,6.25" />
-            </svg>
-            Version 1.0.0
+            <span class="app-version">Version 1.0.0</span>
+            <button class="app-buttons win-minimize"></button>
+            <button class="app-buttons win-close"></button>
           </div>
             <div class="container-fluid">
 							<img src="images/logo.png" class="logo" style="-webkit-app-region: drag" />
@@ -321,14 +318,18 @@
     var electron = require('electron');
     var shell = require('electron').shell;
 		const ipc = require('electron').ipcRenderer;
-
+    const { remote } = require('electron');
     jQuery('.support').click(function(event) {
       event.preventDefault();
       shell.openExternal(this.href);
     });
 
-    jQuery('#close_win').click(function(event) {
+    jQuery('.win-close').click(function(event) {
       ipc.send('terminate');
+    });
+
+    jQuery('.win-minimize').click(function(event) {
+      remote.BrowserWindow.getFocusedWindow().minimize();
     });
 
     </script>
