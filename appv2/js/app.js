@@ -51,7 +51,7 @@ var App = function() {
             loadCameraPage();
           }
         });
-        
+
       });
     };
 
@@ -64,6 +64,15 @@ var App = function() {
       event.preventDefault();
       $( "#page-content" ).load( "environment.html" , function() {
         $('.sidebar-nav-menu.open').removeClass('open');
+      });
+    });
+
+    $('a[href="environment-colors.html"]').on('click', function(event) {
+      event.preventDefault();
+      $( "#page-content" ).load( "environment-colors.html" , function() {
+        $('.sidebar-nav-menu.open').removeClass('open');
+        $('.input-slider').slider();
+        $('#example-colorpicker').colorpicker({format: 'hex'});
       });
     });
 
