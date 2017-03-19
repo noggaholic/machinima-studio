@@ -7,7 +7,9 @@ function ipcManager(ipcMain, BrowserWindow) {
   ipcMain.on('terminate', function() {
     process.exit();
   });
+
   var promptResponse;
+
   ipcMain.on('prompt', function(eventRet, arg) {
     promptResponse = null;
     var promptWindow = new BrowserWindow({
