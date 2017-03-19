@@ -23,7 +23,7 @@
 */
 
 /* Include Lato font from Google Web Fonts */
-@import url('//fonts.googleapis.com/css?family=Lato:300,400,400italic,500,500italic,600,600italic,700,700italic');
+@import url('http://fonts.googleapis.com/css?family=Lato:300,400,400italic,500,500italic,600,600italic,700,700italic');
 
 /* Preloader */
 #page-wrapper.page-loading {

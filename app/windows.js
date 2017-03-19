@@ -48,7 +48,7 @@ const createWindow = (mainWindow, electron) => {
   };
 
   var rightWindow = new BrowserWindow(params);
-  rightWindow.loadURL(`file://${__dirname}/sidebar/index.html`);
+  rightWindow.loadURL(`file://${__dirname}/../appv2/index.html`);
 
 };
 

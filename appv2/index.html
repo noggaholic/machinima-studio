@@ -12,28 +12,28 @@
 
         <!-- Stylesheets -->
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
 
         <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="css/plugins.css">
+        <link rel="stylesheet" href="./css/plugins.css">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="./css/main.css">
 
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="css/themes.css">
+        <link rel="stylesheet" href="./css/themes.css">
 
         <!-- Dark theme -->
-        <link rel="stylesheet" href="css/themes/dark.css">
+        <link rel="stylesheet" href="./css/themes/dark.css">
 
         <!-- https://raw.githubusercontent.com/michaelhue/keyscss/master/LICENSE.txt -->
         <link rel="stylesheet" href="https://raw.githubusercontent.com/michaelhue/keyscss/master/keys.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) -->
-        <script src="js/vendor/modernizr-3.3.1.min.js"></script>
+        <script src="./js/vendor/modernizr-3.3.1.min.js"></script>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -436,14 +436,17 @@
         </div>
         <!-- END Page Wrapper -->
 
+        <!-- Insert this line above script imports  -->
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
         <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
-        <script src="js/vendor/jquery-2.2.4.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/app.js"></script>
+        <script src="./js/vendor/jquery.js"></script>
+        <script src="./js/vendor/bootstrap.min.js"></script>
+        <script src="./js/plugins.js"></script>
+        <script src="./js/app.js"></script>
 
         <!-- Load and execute javascript code used only in this page -->
-        <script src="js/pages/readyDashboard.js"></script>
+        <script src="./js/pages/readyDashboard.js"></script>
         <script>$(function(){ ReadyDashboard.init(); });</script>
     </body>
 </html>
