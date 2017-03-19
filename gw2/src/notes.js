@@ -1,6 +1,42 @@
 /* eslint-disable */
 /**
 
+Ojo con esto
+Gw2.exe+C7475C - 85 F6                 - test esi,esi
+Gw2.exe+C7475E - 75 83                 - jne Gw2.exe+C746E3
+
+
+For the advanced view model
+01B37ADC
+
+From TermCheck
+Gw2.exe+C7472F - B9 F4532F01           - mov ecx,Gw2.exe+10253F4
+
+to
+Gw2.exe+C74766 - 5F                    - pop edi
+
+
+
+Gw2.exe+C74734 - E8 F7C56AFF           - call Gw2.exe+320D30
+Gw2.exe+C74739 - F3 0F10 45 0C         - movss xmm0,[ebp+0C]
+Gw2.exe+C7473E - 8D 43 01              - lea eax,[ebx+01]
+Gw2.exe+C74741 - 57                    - push edi
+Gw2.exe+C74742 - 51                    - push ecx
+Gw2.exe+C74743 - 89 43 04              - mov [ebx+04],eax
+Gw2.exe+C74746 - 8B CE                 - mov ecx,esi
+Gw2.exe+C74748 - F3 0F11 04 24         - movss [esp],xmm0
+Gw2.exe+C7474D - E8 5E680100           - call Gw2.exe+C8AFB0
+Gw2.exe+C74752 - 8B 45 C4              - mov eax,[ebp-3C]
+Gw2.exe+C74755 - A8 01                 - test al,01
+Gw2.exe+C74757 - 75 07                 - jne Gw2.exe+C74760
+Gw2.exe+C74759 - 8B 75 C4              - mov esi,[ebp-3C]
+Gw2.exe+C7475C - 85 F6                 - test esi,esi
+Gw2.exe+C7475E - 75 83                 - jne Gw2.exe+C746E3
+Gw2.exe+C74760 - 8B 45 C0              - mov eax,[ebp-40]
+Gw2.exe+C74763 - 8D 4D C0              - lea ecx,[ebp-40]
+
+
+
 For the field of view:
 
 Gw2.exe+6C8976 - E8 4582FAFF           - call Gw2.exe+670BC0
