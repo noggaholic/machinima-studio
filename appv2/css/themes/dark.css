@@ -204,6 +204,36 @@ body {
 	background:  rgba(56, 56, 56, 1);
 }
 
+.sidebar-nav {
+  padding-top: 0;
+}
+
+.nav-tabs {
+  border-bottom-color: #545454;
+}
+
+.nav-tabs > li > a {
+  background-color: #585858;
+  color: #ffffff;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #585858;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #222222;
+}
+
+.nav-tabs>li>a {
+  border:none;
+}
+
+.sidebar-title {
+    font-weight: 500;
+    font-size: 24px;
+}
+
 /* Medium devices, Desktops (>991px) */
 @media screen and (max-width: 992px) {
 
