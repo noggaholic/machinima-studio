@@ -32,6 +32,10 @@ var App = function() {
       });
     };
 
+    var loadDebugPage = function() {
+      $( "#page-content" ).load( "debug.html" , function() {});
+    };
+
     var loadCameraPage = function() {
       $( "#page-content" ).load( "camera.html" , function() {
         $('.camera-type').select2({
@@ -55,14 +59,31 @@ var App = function() {
       });
     };
 
+    $('a[href="index.html"]').on('click', function(event) {
+      event.preventDefault();
+      $( "#page-content" ).load('home.html');
+    });
+
     $('a[href="camera.html"]').on('click', function(event) {
       event.preventDefault();
       loadCameraPage();
     });
 
+    $('a[href="debug.html"]').on('click', function(event) {
+      event.preventDefault();
+      loadDebugPage();
+    });
+
     $('a[href="environment.html"]').on('click', function(event) {
       event.preventDefault();
       $( "#page-content" ).load( "environment.html" , function() {
+        $('.sidebar-nav-menu.open').removeClass('open');
+      });
+    });
+
+    $('a[href="environment-labs.html"]').on('click', function(event) {
+      event.preventDefault();
+      $( "#page-content" ).load( "environment-labs.html" , function() {
         $('.sidebar-nav-menu.open').removeClass('open');
       });
     });
@@ -76,9 +97,13 @@ var App = function() {
       });
     });
 
+    $('a[href="https://github.com/karliky/machinima-studio"]').on('click', function(event) {
+      event.preventDefault();
+      require('electron').shell.openExternal("https://github.com/karliky/machinima-studio");
+    });
     /* Initialization UI Code */
     var uiInit = function() {
-
+        $( "#page-content" ).load('home.html');
         // Set variables - Cache some often used Jquery objects in variables */
         page            = $('#page-container');
         header          = $('header');
@@ -103,7 +128,7 @@ var App = function() {
 
         // Header glass effect on scrolling
         if ((header.hasClass('navbar-fixed-top') || header.hasClass('navbar-fixed-bottom'))) {
-            $(window).on('scroll', function(){
+            $(window).on('scroll', function() {
                 if ($(this).scrollTop() > 50) {
                     header.addClass('navbar-glass');
                 } else {
