@@ -19,4 +19,4 @@ If you **really want to contribute** to the development of Machinima Studio, you
 # License and terms of use
 The license of Machinima Studio is http://unlicense.org/.
 
-This project is not affiliated with Arenanet. you should not use it in official servers. I made this tool just for learning purposes, Arenanet doesn't approve the usage of this tool in the game. You might be banned if you use this tool. **Use at your own risk.**
+This project is not affiliated with Arenanet. you should not use it in official servers. I made this tool just for learning purposes, Arenanet doesn't approve the usage of this tool in the game. You might be banned if you use this tool.
