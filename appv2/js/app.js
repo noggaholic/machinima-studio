@@ -92,7 +92,8 @@ var App = function() {
       event.preventDefault();
       $( "#page-content" ).load( "environment-colors.html" , function() {
         $('.sidebar-nav-menu.open').removeClass('open');
-        $('.input-slider').slider();
+        $('#timeOfDay').slider();
+        
         $('#example-colorpicker').colorpicker({format: 'hex'});
       });
     });
@@ -101,6 +102,7 @@ var App = function() {
       event.preventDefault();
       require('electron').shell.openExternal("https://github.com/karliky/machinima-studio");
     });
+
     /* Initialization UI Code */
     var uiInit = function() {
         $( "#page-content" ).load('home.html');
