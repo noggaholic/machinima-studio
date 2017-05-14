@@ -56,7 +56,7 @@ const createWindow = (mainWindow, electron) => {
     mainWindow = null;
   });
 
-  rightWindow.loadURL(`file://${__dirname}/../appv2/index.html`);
+  rightWindow.loadURL(`file://${__dirname}/../app/sidebar/index.html`);
   loadBottomn(rightWindow);
 };
 
