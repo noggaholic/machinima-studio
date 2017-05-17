@@ -38,11 +38,18 @@
         "fog": {
             "original": "0x0162F338"
         },
+        "enableTimeOfDay": "0x00C45E5C",
         "rendering": {
             "audio": "0x00C38F0D",
             "blocks": "0x00C38F67",
+            "decal": "0x00C38F8F",
+            "environment": "0x00C38FFB",
             "river": "0x00C39038",
             "under_water": "0x00C39098",
+            "zone": "0x00C390CF",
+            "lights": "0x00C3910B",
+            "shadows": "0x00C39152",
+            "terrain": "0x00C39181",
             "cube_map": "0x00C391BB",
             "props": "0x00C39204",
             "animation": "0x00682148",
