@@ -124,7 +124,7 @@ $(".play").click(() => {
 		cameraInfo[7].innerHTML = data.speed;
 		cameraInfo[8].innerHTML = data.rotSpeed;
 		cameraInfo[9].innerHTML = data.up_down_speed;
-        
+
         $("#flat").spectrum("set", 'rgb(' + data.fog_red + ',' + data.fog_green + "," + data.fog_blue + ')');
         $(".fogDensity").val(data.fog_density);
         $(".timeOfDay").val(data.time_of_day);
@@ -154,6 +154,12 @@ $(".play").click(() => {
 	});
 
 $(document).ready(function() {
+
+  $(".btn-pref .btn").click(function () {
+      $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+      // $(".tab").addClass("active"); // instead of this do the below
+      $(this).removeClass("btn-default").addClass("btn-primary");
+  });
 
 	$(".fogDensity").on("input change", function() {
     var density = $(this).val();

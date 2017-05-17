@@ -153,6 +153,12 @@ h1 {
     width: 20px;
     clear: both;
 }
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 /* end .squaredTwo */
 /* .squaredThree */
 
@@ -248,4 +254,9 @@ svg:hover > circle {
 }
 svg:hover > path {
     stroke: white;
+}
+
+.btn-group-vertical>.btn, .btn-group>.btn {
+    width: 25.11111111%;
+    background: white;
 }
