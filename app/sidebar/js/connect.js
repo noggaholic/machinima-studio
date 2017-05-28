@@ -59,6 +59,11 @@ $("#enableFlying").change(function() {
 	}
 });
 
+$(".menu button").click(function() {
+  $(".menu button").removeClass('active');
+  $(this).addClass('active');
+});
+
 $("#enableTimeOfDay").change(function() {
 	if(this.checked) {
 		socket.emit('ENV_ENABLE_TIME_OF_DAY');
