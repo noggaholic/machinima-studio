@@ -3,13 +3,11 @@ body {
     height: 100%;
 }
 body {
-    background: url(../../bottombar/images/background.png) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background-color: #353535;
     border-left: 2px solid #444;
     border-right: 2px solid #444;
+    font-size: 15px;
+    line-height: 1.5;
 }
 .app-buttons {
     width: 30px;
@@ -64,7 +62,13 @@ body {
     background: rgba(56, 56, 56, 1);
 }
 a {
-    color: #d8cf86;
+    color: #F5FF63;
+}
+a:hover, a:focus, a:visited {
+  color: #D698F7;
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  transition: all .2s ease;
 }
 body:before,
 body:after {
@@ -90,6 +94,8 @@ body:after {
     background-color: #353535;
     color: #c6c6c6;
     border-color: #1f1f1f;
+    border: 0;
+    box-shadow: none;
 }
 .nav-tabs {
     border-color: #1f1f1f;
@@ -258,5 +264,16 @@ svg:hover > path {
 
 .btn-group-vertical>.btn, .btn-group>.btn {
     width: 25.11111111%;
-    background: white;
+    background: none;
+    color:  #c3c3c3;
+    border: 1px solid #222;
+    border-bottom: 2px solid #222;
+    border-radius: 0px;
+}
+.btn-group-vertical>.btn:hover, .btn-group>.btn:hover, .btn.active {
+  color: #FFF;
+  box-shadow: inset 0px -2px 0px #F5FF63;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+  outline: none;
 }
