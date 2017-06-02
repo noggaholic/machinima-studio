@@ -78,6 +78,12 @@ $(".timeOfDay").on("input change", function() {
 	var density = $(this).val();
 	socket.emit('ENV_SET_TIME_OF_DAY', density);
 });
+const fpsCounter = $('.fpsCounter');
+$(".bulletTime").on("input change", function() {
+	const frameRate = $(this).val();
+  fpsCounter.html('Bullet time / Frame rate (' + frameRate + 'fps)');
+	socket.emit('ANIM_SET_FRAME_RATE', frameRate);
+});
 
 $(".enableCamera").change(function() {
     if(this.checked) {

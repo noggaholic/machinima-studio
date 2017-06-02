@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sidebar - Machinima Studio</title>
+    <title>Machinima Studio</title>
 		<link rel='stylesheet' href='css/spectrum.css' />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -275,17 +275,18 @@
 																</div><!-- /.row -->
 															</li>
 															<li class="tab-pane" id="module1-step3">
-																<div class="rendering_block">Disable animations
+																<!-- <div class="rendering_block">Disable animations
 																	<section title=".animation">
-																		<!-- .squaredThree -->
 																		<div class="squaredThree">
 																			<input type="checkbox" id="animation" class="rendering" name="check" data-id="animation" />
 																			<label for="animation"></label>
 																		</div>
-																		<!-- end .squaredThree -->
 																	</section>
+																</div> -->
+																<div class="rendering_block"><span class='fpsCounter'>Bullet time / Frame rate</span>
+																	<input type="range" id="bulletTime" class="rendering bulletTime" min="0" max="60" name="check" data-id="bulletTime" />
 																</div>
-                                                                <div class="rendering_block">Disable highlight effect
+                                <div class="rendering_block">Disable highlight effect
 																	<section title=".highlight_effect">
 																		<!-- .squaredThree -->
 																		<div class="squaredThree">

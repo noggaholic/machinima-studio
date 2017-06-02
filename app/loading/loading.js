@@ -38,11 +38,6 @@ async.waterfall([
       });
 
       ipcRenderer.on('open-machinima-studio-server', () => {
-        console.log('open-machinima-studio-server');
-        console.log('open-machinima-studio-server');
-        console.log('open-machinima-studio-server');
-        console.log('open-machinima-studio-server');
-        console.log('open-machinima-studio-server');
         callback();
       });
 

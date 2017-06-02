@@ -33,5 +33,61 @@ module.exports = (process, module, memory) => {
     memory.writeData(module + Number(ptrs.camera.instructions.patch_7.original), patch_7.original, patch_7.original.byteLength);
   };
 
+  const requestAnimationFrame = function () {
+    var fps = 60;
+    var delay = 1000 / fps;
+    var animationStartTime = Date.now();
+    var previousCallTime = animationStartTime;
+
+    return function (callback) {
+      var requestTime = Date.now();
+      var timeout = Math.max(0, delay - (requestTime - previousCallTime));
+      var timeToCall = requestTime + timeout;
+
+      previousCallTime = timeToCall;
+
+      return setTimeout(function onAnimationFrame() {
+          callback(timeToCall - animationStartTime);
+      }, timeout);
+    };
+  }();
+
+  const base = 0x00D2D50C;
+  const frameNop  = new Buffer([0x90, 0x90]);
+  const frameDone = new Buffer([0x85, 0xF6]);
+
+  let bulletTimeRunning = false;
+  let lastFrameTimeMs   = 0;
+  let currFps           = 60;
+
+  /**
+   * Throttle the frame rate.
+   */
+  const mainLoop = (timestamp) => {
+      if (!bulletTimeRunning) {
+        return;
+      }
+      if (timestamp < lastFrameTimeMs + (1000 / currFps)) {
+        memory.writeData(base, frameNop, frameNop.byteLength);
+        requestAnimationFrame(mainLoop);
+      } else {
+        lastFrameTimeMs = timestamp;
+        memory.writeData(base, frameDone, frameDone.byteLength);
+        requestAnimationFrame(mainLoop);
+      }
+  };
+
+  that.toogleFrameRate = (status) => {
+    bulletTimeRunning = status;
+  };
+
+  that.setFrameRate = (frameRate) => {
+    currFps = frameRate;
+    if (!bulletTimeRunning) {
+      requestAnimationFrame(mainLoop);
+      bulletTimeRunning = true;
+    }
+  };
+
   return that;
 };

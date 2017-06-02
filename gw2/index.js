@@ -113,6 +113,14 @@ gw2(function(err, process, module, memory, window) {
       }
     });
 
+    socket.on('ANIM_SET_FRAME_RATE', function (frameRate) {
+      frameRate = ~~frameRate; // cast to integer
+      if (spectate === 60 || spectate < 0) {
+        spectate.toogleFrameRate(false);
+      }
+      spectate.setFrameRate(frameRate);
+    });
+
     socket.on('CAMERA_DISABLE_CONTROLS', function () {
       spectate.disableSpectateMode();
       player.enablePlayerMovement();
