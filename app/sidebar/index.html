@@ -15,8 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Lato" rel="stylesheet">
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet" >
     <link href="css/simple-sidebar.css" rel="stylesheet">
 
@@ -84,20 +83,33 @@
 														<li>karliky</li>
 														<li>nightlark</li>
 														<li>guillaumeguerin</li>
+                            <li>alejandraarri</li>
 													</ul>
 				                  <p>Any questions regarding this tool? Contact me at <a href="http://www.twitter.com/k4rliky" class="support" target="_blank">@k4rliky</a> and I will get back to you soon!</p> -->
                           <div class="widget">
-                              <div class="widget-content">
+                              <div class="widget-title">
                                   <span class="pull-right text-muted">Featured</span>
                                   Welcome to Machinima Studio
                               </div>
-                              <div class="widget-image">
-                                <img src="images/intro.png" alt="image" class="bckg">
+                              <div class="widget-image widget-image-intro">
                                   <div class="widget-image-content">
                                       <h2 class="widget-heading text-light"><a href="page_ready_article.html"><strong>How to use Machinima Studio</strong></a></h2>
                                       <h3 class="widget-heading text-light-op h4">10 min length introduction</h3>
                                   </div>
-                                  <i class="gi gi-play"></i>
+                                  <div  class="widget-icon">
+                                    <i class="fa fa-youtube-play "></i>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="widget">
+                              <div class="widget-image widget-image-inspire">
+                                  <div class="widget-image-content">
+                                      <h2 class="widget-heading text-light"><a href="page_ready_article.html"><strong>Get inspired</strong></a></h2>
+                                      <h3 class="widget-heading text-light-op h4">This Machinima will inspire you</h3>
+                                  </div>
+                                  <div  class="widget-icon">
+                                    <i class="fa fa-gamepad "></i>
+                                  </div>
                               </div>
                           </div>
                         </div>
@@ -241,28 +253,24 @@
 																</div>
 															</li>
 															<li class="tab-pane" id="module1-step2">
-																<div class="row">
-																	<div class="rendering_block">
-																		<p>Uncheck the "Environment" section under "Map settings" before doing changes here.</p>
-																	</div>
+																<div class="rendering_block">
+																	<p>Uncheck the "Environment" section under "Map settings" before doing changes here.</p>
 																</div>
-																<div class="row">
-																	<div class="rendering_block">Fog density
-																		<input type="range" class="form-control fogDensity" value="-0.2623151243" step="0.000001" min="-6" max="6">
-																	</div>
-																	<div class="rendering_block">Fog color
-																    <input type='text' id="flat" />
-																	</div>
-																	<div class="rendering_block">Enable time of day
-																		<section title="enableTimeOfDay">
-																			<div class="checkbox">
-																				<input type="checkbox" id="enableTimeOfDay" class="rendering" name="check" checked data-id="enableTimeOfDay" />
-																				<label for="enableTimeOfDay"></label>
-																			</div>
-																		</section>
-																		<input type="range" class="form-control timeOfDay" value="0" step="0.000001" min="0" max="1">
-																	</div>
-																</div><!-- /.row -->
+																<div class="rendering_block">Fog density
+																	<input type="range" class="form-control fogDensity" value="-0.2623151243" step="0.000001" min="-6" max="6">
+																</div>
+																<div class="rendering_block">Fog color
+															    <input type='text' id="flat" />
+																</div>
+																<div class="rendering_block">Enable time of day
+																	<section title="enableTimeOfDay">
+																		<div class="checkbox">
+																			<input type="checkbox" id="enableTimeOfDay" class="rendering" name="check" checked data-id="enableTimeOfDay" />
+																			<label for="enableTimeOfDay"></label>
+																		</div>
+																	</section>
+																	<input type="range" class="form-control timeOfDay" value="0" step="0.000001" min="0" max="1">
+																</div>
 															</li>
 															<li class="tab-pane" id="module1-step3">
 																<!-- <div class="rendering_block">Disable animations

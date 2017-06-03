@@ -1,5 +1,10 @@
-html, body{ height:100%; }
 
+/**
+ * Base
+ */
+html, body {
+  height:100%;
+}
 body:before, body:after {
     content: "";
     position: fixed;
@@ -14,97 +19,112 @@ body:before {
 body:after {
     bottom: 0;
 }
-
-.deleteWaypoint{
-	cursor: pointer;
-}
-
 body {
-	background: url(../images/background.png) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-
-	border-left: 5px solid #444;
-	border-right: 5px solid #444;
-}
-
-.navbar {
-	margin-bottom: 0;
-	border: 0px;
-	border-radius: 0px;
-}
-
-.waypoints thead {
   background-color: #1a1a1a;
-  color: #F5FF63;
-}
-.waypoints tbody{
-	font-size: 11px;
-}
-
-.easingInfoParent {
-	margin-left:10px;
+  border-left: 5px solid #444;
+  border-right: 5px solid #444;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.5;
 }
 
+/**
+ * Navbar
+ */
+ .navbar {
+   margin-bottom: 0;
+   border: 0px;
+   border-radius: 0px;
+ }
+ .navbar-inverse {
+   background-color: #1a1a1a;
+   background-image: initial;
+   border-top: 1px solid #222;
+ }
+ .navbar-inverse .navbar-nav > li > a.play {
+   color: #dc2c2c;
+ }
+ .navbar-inverse .navbar-nav > li.player {
+   width: 95px;
+ }
+ .navbar-inverse .navbar-nav > li > a.playing {
+   color: #dc2c2c;
+ }
+
+
+ /**
+  * Navbar controls
+  */
 #subConfig {
 	display: inline;
 }
-
 #subConfig input {
 	width: 100px;
 	margin-right: 5px;
 }
-
+.easingInfoParent {
+  margin-left:10px;
+}
 .easingInfo {
 	color: #8e8e8e;
 	text-decoration: none;
 	font-style: italic;
 }
-
 .easingInfo:focus {
 	color: #8e8e8e;
 	text-decoration: none;
 	font-style: italic;
 }
-
 .easingInfo:hover {
 	color: #989898;
 	text-decoration: none;
 }
+
 .interSelector {
 	color:#9d9d9d;
 	margin-top: 9px;
 }
-
-.interSelector select{
+.interSelector select {
 	color: #000;
 }
 
-.durationSelector{
+.durationSelector {
 	color:#9d9d9d;
 	margin-top: 15px;
 	margin-left: 5px;
 }
-.durationSelector input{
+.durationSelector input {
 	width: 40px;
 	height: 21px;
 	color:#000;
 }
 
-.navbar-inverse .navbar-nav>li>a.play {
-	color: #dc2c2c;
+/**
+ * Table, waypoints
+ */
+.table > thead > tr > th {
+  border-bottom: 1px solid #555;
 }
-
-.navbar-inverse .navbar-nav>li.player {
-	width: 95px;
+.table-striped > tbody > tr > td,
+.table-striped > tbody > tr > th {
+  background-color: #353535;
+  border-color: #353535;
+  color: #fff;
 }
-.navbar-inverse .navbar-nav>li>a.playing {
-	color: #dc2c2c;
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #212121;
 }
-
-.waypoints tbody textarea{
+.waypoints thead {
+  background-color: #1a1a1a;
+  color: #ccc;
+  font-size: 15px;
+}
+.waypoints tbody {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+}
+.waypoints tbody textarea {
 	background: transparent;
 	width: 100%;
 	height: 14px;
@@ -114,17 +134,10 @@ body {
   padding: 0;
   outline: none;
 }
+.deleteWaypoint {
+  cursor: pointer;
+}
 
-.table-striped>tbody>tr>td,
-.table-striped>tbody>tr>th {
-   background-color: #9a9a9a;
-	 color: #fff;
- }
-
-.table-striped>tbody>tr:nth-child(odd)>td,
-.table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #6f6f6f;
- }
 
 ::-webkit-scrollbar {
     width: 12px;
