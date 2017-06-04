@@ -1,6 +1,6 @@
 {
     "debug": {
-        "original": "0x029C67F4"
+        "original": "0x027267F4"
     },
     "camera": {
         "offset": "0x018817A4",
@@ -38,7 +38,7 @@
         "fog": {
             "original": "0x0162F338"
         },
-        "enableTimeOfDay": "0x00C468DC",
+        "enableTimeOfDay": "0x00000NAN",
         "rendering": {
             "audio": "0x00C3983D",
             "blocks": "0x00C39897",
