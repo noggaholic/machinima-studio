@@ -151,6 +151,7 @@ a:hover, a:focus, a:visited {
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 15px;
+    outline: 1px solid #222222;
   }
   .widget-image-intro {
     background-image: url('../images/intro.png');
@@ -184,36 +185,69 @@ a:hover, a:focus, a:visited {
     font-size: 4em;
     color: rgba(255,255,255,.5);
   }
+  .widget-icon-tutorial {
+    margin: .2em .8em;
+    font-size: 4em;
+    color: rgba(255,255,255,.5);
+    padding-bottom: 0.2em;
+  }
   .widget-icon:hover {
     color: rgba(255,255,255,1);
-    transition: color ease .2s; 
+    transition: color ease .2s;
   }
-
-
-
+  .themed-background .widget-icon-tutorial .fa {
+    font-size: 55px;
+  }
+  .themed-background-info {
+    background-color: rgb(92, 175, 222);
+  }
+  .themed-background-danger {
+    background-color: rgb(222, 129, 92);
+  }
+  .widget-content{
+    font-family: 'Lato', sans-serif;
+  }
+  a.widget {
+    font-family: 'Raleway', sans-serif;
+    color: rgb(195, 195, 195);
+  }
+  a.widget:hover {
+    color: white;
+  }
+  .table-striped.widget-list > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+      background-color: #212121;
+  }
+  .table-striped.widget-list > tbody > tr > td, .table-striped > tbody > tr > th {
+      background-color: #353535;
+      border-color: #353535;
+      color: #fff;
+  }
+  .widget-list .date{
+    text-align: right;
+  }
  /******************
   *  Camera tab
   *****************/
   .rendering_block {
-      margin: 10px;
+    margin: 10px;
   }
   .rendering_block > input {} .rendering_block > section {
-      float: right;
-      margin-right: 10px;
-      width: 20px;
-      clear: both;
+    float: right;
+    margin-right: 10px;
+    width: 20px;
+    clear: both;
   }
   .infoTableHeader {
-      font-size: 1em;
+    font-size: 1em;
   }
   .infoTable {
-      margin-top: 15px;
-      font-size: 15px;
+    margin-top: 15px;
+    font-size: 15px;
   }
   .infoTable > .list-group-item > span {
-      display: inline-block;
-      float: right;
-      font-family: 'Lato', sans-serif;
+    display: inline-block;
+    float: right;
+    font-family: monospace;
   }
   .infoTable > .list-group-item {
     background-color: transparent;
