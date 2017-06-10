@@ -113,8 +113,10 @@ a:hover, a:focus, a:visited {
  }
  .btn-group-vertical > .btn:hover, .btn-group > .btn:hover, .btn.active {
    color: #FFF;
-   box-shadow: inset 0px -2px 0px #F5FF63;
-   transition: all .2s ease;
+   transition: color .2s ease;
+ }
+ .btn.active {
+    /*box-shadow: inset 0px -2px 0px #F5FF63;*/
  }
  .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
    outline: none;
@@ -128,6 +130,18 @@ a:hover, a:focus, a:visited {
  .btn > div {
    margin-top: 7px;
  }
+ #marker {
+    position: absolute;
+    display: none;
+    border-bottom: 2px solid #F5FF63;
+    height: 2px;
+    z-index: 5;
+    -webkit-transition: width 0.3s, left 0.3s;
+    -moz-transition: width 0.3s, left 0.3s;
+    -ms-transition: width 0.3s, left 0.3s;
+    -o-transition: width 0.3s, left 0.3s;
+    transition: width 0.3s, left 0.3s;
+}
 
 
  /******************
@@ -309,6 +323,7 @@ a:hover, a:focus, a:visited {
      top: 0;
      left: 0;
      background: #222;
+     border: 1px solid #333;
      border-radius: 2px;
  }
  .checkbox label:after {
@@ -317,7 +332,7 @@ a:hover, a:focus, a:visited {
      width: 12px;
      height: 8px;
      position: absolute;
-     top: 4px;
+     top: 3px;
      left: 4px;
      border: 2px solid #fcfff4;
      border-top: none;

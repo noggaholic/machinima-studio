@@ -59,9 +59,36 @@ $("#enableFlying").change(function() {
 	}
 });
 
+
+// Initialize the marker position and the active class
+var marker = $('#marker'),
+    current = $('.active');
+marker.css({
+    // Place the marker in the middle of the border
+    bottom: -(marker.height() / 2),
+    left: current.position().left,
+    width: current.outerWidth(),
+    display: "block"
+});
+
+
 $(".menu button").click(function() {
+  //$(".menu button").removeClass('active');
+  //$(this).addClass('active');
+
+
+
+  var self = $(this),
+  offsetLeft = self.position().left,
+  width = self.outerWidth() || current.outerWidth(),
+  left = offsetLeft == 0 ? 0 : offsetLeft || current.position().left;
   $(".menu button").removeClass('active');
-  $(this).addClass('active');
+  self.addClass('active');
+    marker.css({
+        left: left,
+        width: width,
+    });
+
 });
 
 $("#enableTimeOfDay").change(function() {

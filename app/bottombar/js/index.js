@@ -245,6 +245,7 @@ $(document).ready(function() {
 			for (var i = 0; i < total; i++) {
 				item = currAnim.configurable[i];
 				var input = document.createElement("input");
+				input.type = "text"
 				input.placeholder = item.placeholder
 				subConfig.append(input);
 			}

@@ -1,58 +1,58 @@
 {
     "debug": {
-        "original": "0x024F50B4"
+        "original": "0x02B450B4"
     },
     "camera": {
         "offset": "0x018AF4C4",
         "instructions": {
             "patch_1": {
-                "original": "0x0069C7F1"
+                "original": "0x0069C801"
             },
             "patch_2": {
-                "original": "0x0069C721"
+                "original": "0x0069C731"
             },
             "patch_3": {
-                "original": "0x0069C6BC"
+                "original": "0x0069C6CC"
             },
             "patch_4": {
-                "original": "0x0069C618"
+                "original": "0x0069C628"
             },
             "patch_5": {
-                "original": "0x0069C3C6"
+                "original": "0x0069C3D6"
             },
             "patch_6": {
-                "original": "0x0069C531"
+                "original": "0x0069C541"
             },
             "patch_7": {
-                "original": "0x0069BB4A"
+                "original": "0x0069BB5A"
             }
         }
     },
     "player": {
         "original": "0x00000NAN",
         "movement": {
-            "original": "0x00686320"
+            "original": "0x00686360"
         }
     },
     "environment": {
         "fog": {
             "original": "0x0165D0F8"
         },
-        "enableTimeOfDay": "0x00C4CC5C",
+        "enableTimeOfDay": "0x00C4CC3C",
         "rendering": {
-            "audio": "0x00C3FB8D",
-            "blocks": "0x00C3FBE7",
-            "decal": "0x00C3FC0F",
-            "environment": "0x00C3FC7B",
-            "river": "0x00C3FCB8",
-            "under_water": "0x00C3FD18",
-            "zone": "0x00C3FD4F",
-            "lights": "0x00C3FD8B",
-            "shadows": "0x00C3FDD2",
-            "terrain": "0x00C3FE01",
-            "cube_map": "0x00C3FE3B",
-            "props": "0x00C3FE84",
-            "animation": "0x006861F8",
+            "audio": "0x00C3FB6D",
+            "blocks": "0x00C3FBC7",
+            "decal": "0x00C3FBEF",
+            "environment": "0x00C3FC5B",
+            "river": "0x00C3FC98",
+            "under_water": "0x00C3FCF8",
+            "zone": "0x00C3FD2F",
+            "lights": "0x00C3FD6B",
+            "shadows": "0x00C3FDB2",
+            "terrain": "0x00C3FDE1",
+            "cube_map": "0x00C3FE1B",
+            "props": "0x00C3FE64",
+            "animation": "0x00686238",
             "highlight_effect": "0x00000NAN"
         }
     }

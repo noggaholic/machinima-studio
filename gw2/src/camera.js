@@ -350,7 +350,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       if (Keyboard.getState(robot.KEY_DOWN)) {
         curFwd.z = curFwd.z + up_down_speed * 0.0004;
       }
-
+// spectate 0270E6F8
       let dir = {};
       dir.x = cameraPos.x - curFwd.x;
       dir.y = cameraPos.y - curFwd.y;
