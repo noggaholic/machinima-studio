@@ -38,20 +38,20 @@
         "fog": {
             "original": "0x0176C558"
         },
-        "enableTimeOfDay": "0x00A4C2FC",
+        "enableTimeOfDay": "0x00A4C322",
         "rendering": {
-            "audio": "0x00000NAN",
+            "audio": "0x00A3F94C",
             "blocks": "0x00A3F9A6",
-            "decal": "0x00000NAN",
-            "environment": "0x00000NAN",
+            "decal": "0x00A3F9D5",
+            "environment": "0x00A3FA1D",
             "river": "0x00A3FA5A",
-            "under_water": "0x00000NAN",
-            "zone": "0x00000NAN",
-            "lights": "0x00000NAN",
+            "under_water": "0x00A3FABA",
+            "zone": "0x00A3FAF1",
+            "lights": "0x00A3FB29",
             "shadows": "0x00A3FB70",
-            "terrain": "0x00000NAN",
-            "cube_map": "0x00000NAN",
-            "props": "0x00000NAN",
+            "terrain": "0x00A3FB9F",
+            "cube_map": "0x00A3FBD9",
+            "props": "0x00A3FC22",
             "animation": "0x00483DFB",
             "highlight_effect": "0x00000NAN"
         }
