@@ -52,7 +52,7 @@ module.exports = (process, module, memory) => {
     };
   }();
 
-  const base = 0x00D2D50C;
+  const base = 0x01903BCC;
   const frameNop  = new Buffer([0x90, 0x90]);
   const frameDone = new Buffer([0x85, 0xF6]);
 

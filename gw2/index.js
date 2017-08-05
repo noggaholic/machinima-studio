@@ -111,6 +111,7 @@ gw2(function(err, process, module, memory, window) {
       if (data.timeOfDay > 0 && data.timeOfDay < 1) {
         environment.setTimeOfDay(data.timeOfDay);
       }
+      spectate.setFrameRate(data.frameRate);
     });
 
     socket.on('ANIM_SET_FRAME_RATE', function (frameRate) {

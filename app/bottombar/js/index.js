@@ -85,7 +85,8 @@ $(document).ready(function() {
 
 			var roll 		= parseFloat($(row.children()[7]).find("textarea").val());
 			var timeOfDay = parseFloat($(row.children()[8]).find("textarea").val());
-			path.push({ x: x, y: y, z: z, lookAtx: lookAtx, lookAty:lookAty, lookAtz: lookAtz, timeOfDay: timeOfDay, roll: roll});
+			var frameRate = parseFloat($(row.children()[9]).find("textarea").val());
+			path.push({ x: x, y: y, z: z, lookAtx: lookAtx, lookAty:lookAty, lookAtz: lookAtz, timeOfDay: timeOfDay, roll: roll, frameRate: frameRate});
 		}).promise().done( function() {
 
 			cinematicValues.x = path[0].x;
@@ -97,6 +98,7 @@ $(document).ready(function() {
 
 			cinematicValues.timeOfDay = path[0].timeOfDay;
 			cinematicValues.roll = path[0].roll;
+			cinematicValues.frameRate = path[0].frameRate;
 
 			tween =	TweenLite.to(cinematicValues, duration, {
 				bezier: {
@@ -118,7 +120,8 @@ $(document).ready(function() {
 						lookAty: cinematicValues.lookAty,
 						lookAtz: cinematicValues.lookAtz,
 						timeOfDay: cinematicValues.timeOfDay,
-						roll: cinematicValues.roll
+						roll: cinematicValues.roll,
+						frameRate: cinematicValues.frameRate
 					});
 				}
 			});
