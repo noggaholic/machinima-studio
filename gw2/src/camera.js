@@ -242,6 +242,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
 
     cameraRoll.writeFloatLE(0, 0x0);
     let newAngle;
+    let movementEnabled = false;
     cameraControls = setInterval(() => {
 			if (robot.Window.getActive().getTitle() !== offsets.WINDOW_NAME) {
 				return; // only move the camera if we are inside GW2
@@ -258,6 +259,16 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
 					roll: roll
 				};
         sendMessage('CAMERA_ADD_POSITION', params);
+      }
+
+      if (checkForKeyStroke(robot.KEY_F2)) {
+        if (movementEnabled) {
+          player.disablePlayerMovement();
+          movementEnabled = false;
+        } else {
+          player.enablePlayerMovement();
+          movementEnabled = true;
+        }
       }
 
       if (checkForKeyStroke(robot.KEY_F4)) {
@@ -350,7 +361,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       if (Keyboard.getState(robot.KEY_DOWN)) {
         curFwd.z = curFwd.z + up_down_speed * 0.0004;
       }
-
+      // spectate 01903BCC
       let dir = {};
       dir.x = cameraPos.x - curFwd.x;
       dir.y = cameraPos.y - curFwd.y;

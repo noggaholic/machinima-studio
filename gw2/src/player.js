@@ -47,19 +47,20 @@ module.exports = (process, module, memory) => {
 	let MapFloor  	= new Buffer(0x4);
 	let MapId  			= new Buffer(0x4);
 	that.getDebugInfo = () => {
-		memory.readData(offsets.debug.base, debugStr, 0x100);
+    const debugBase = Number(ptrs.debug.original);
+		memory.readData(debugBase, debugStr, 0x100);
 		debugData.MapName = debugStr.toString('utf8');
-		memory.readData(offsets.debug.base + offsets.debug.MapNamespace, debugStr, 0x100);
+		memory.readData(debugBase + offsets.debug.MapNamespace, debugStr, 0x100);
 		debugData.MapNamespace = debugStr.toString('utf8');
-		memory.readData(offsets.debug.base + offsets.debug.MapSector, debugStr, 0x100);
+		memory.readData(debugBase + offsets.debug.MapSector, debugStr, 0x100);
 		debugData.MapSector = debugStr.toString('utf8');
-		memory.readData(offsets.debug.base + offsets.debug.MapType, debugStr, 0x100);
+		memory.readData(debugBase + offsets.debug.MapType, debugStr, 0x100);
 		debugData.MapType = debugStr.toString('utf8');
-		memory.readData(offsets.debug.base + offsets.debug.MapGuid, mapGUIDStr, 0x48);
+		memory.readData(debugBase + offsets.debug.MapGuid, mapGUIDStr, 0x48);
 		debugData.MapGuid = mapGUIDStr.toString('utf8');
 
-		memory.readData(offsets.debug.base + offsets.debug.MapFloor, MapFloor, 0x4);
-		memory.readData(offsets.debug.base + offsets.debug.MapId, MapId, 0x4);
+		memory.readData(debugBase + offsets.debug.MapFloor, MapFloor, 0x4);
+		memory.readData(debugBase + offsets.debug.MapId, MapId, 0x4);
 		debugData.MapFloor 	= MapFloor.readFloatLE(0x0);
 		debugData.MapId 		= MapFloor.readInt32LE(0x0);
 		return debugData;

@@ -7,25 +7,24 @@ const createWindow = (mainWindow, electron) => {
 
   const BrowserWindow = electron.BrowserWindow;
 
-  let params = {
-		frame: false,
-		transparent: true,
-		width: size.width - 10,
-		height: 297,
-    x: 5,
-    y: size.height - 297 - 40,
-    icon: path.join(__dirname, '/machinimastudio.ico'),
-    webPreferences: {
-      nodeIntegration: true
-    },
-	};
+  const loadBottomn   = (mainWindow) => {
+    let params = {
+      parent: mainWindow,
+      frame: false,
+      transparent: true,
+      width: size.width - 10,
+      height: 297,
+      x: 5,
+      y: size.height - 297 - 40,
+      icon: path.join(__dirname, '/machinimastudio.ico'),
+      webPreferences: {
+        nodeIntegration: true
+      },
+    };
 
-	mainWindow = new BrowserWindow(params);
-	mainWindow.loadURL(`file://${__dirname}/bottombar/index.html`);
-
-	mainWindow.on('closed', function () {
-		mainWindow = null;
-	});
+    mainWindow = new BrowserWindow(params);
+    mainWindow.loadURL(`file://${__dirname}/bottombar/index.html`);
+  };
 
   /**
    * Use a quarter of the screen
@@ -34,7 +33,7 @@ const createWindow = (mainWindow, electron) => {
   var halfOfHalfWidth = (size.width / 2) / 2;
   // var halfOfHalfHeight = (size.height / 2);
 
-  params = {
+  let params = {
     frame: false,
     transparent: true,
     width: halfOfHalfWidth + 35,
@@ -48,8 +47,17 @@ const createWindow = (mainWindow, electron) => {
   };
 
   var rightWindow = new BrowserWindow(params);
-  rightWindow.loadURL(`file://${__dirname}/sidebar/index.html`);
 
+  rightWindow.once('ready-to-show', () => {
+    rightWindow.show();
+  });
+
+  rightWindow.on('closed', function () {
+    mainWindow = null;
+  });
+
+  rightWindow.loadURL(`file://${__dirname}/../app/sidebar/index.html`);
+  loadBottomn(rightWindow);
 };
 
 const openServer = (callback) => {

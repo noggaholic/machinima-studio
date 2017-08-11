@@ -1,5 +1,10 @@
-html, body{ height:100%; }
 
+/**
+ * Base
+ */
+html, body {
+  height:100%;
+}
 body:before, body:after {
     content: "";
     position: fixed;
@@ -14,97 +19,163 @@ body:before {
 body:after {
     bottom: 0;
 }
-
-.deleteWaypoint{
-	cursor: pointer;
-}
-
 body {
-	background: url(../images/background.png) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-
-	border-left: 5px solid #444;
-	border-right: 5px solid #444;
-}
-
-.navbar {
-	margin-bottom: 0;
-	border: 0px;
-	border-radius: 0px;
-}
-
-.waypoints thead {
   background-color: #1a1a1a;
-  color: #e7e399;
+  border-left: 5px solid #444;
+  border-right: 5px solid #444;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.5;
+  color: #c3c3c3;
 }
-.waypoints tbody{
-	font-size: 11px;
+a:focus {
+  outline: none;
+}
+input[type="text"] {
+  padding: 1px 8px;
+  color: #333;
+  margin-left: 0.4em;
 }
 
-.easingInfoParent {
-	margin-left:10px;
-}
-
+/**
+ * Navbar
+ */
+ .navbar {
+   margin-bottom: 0;
+   border: 0px;
+   border-radius: 0px;
+ }
+ .navbar-inverse {
+   background-color: #1a1a1a;
+   background-image: initial;
+   border-top: 1px solid #222;
+ }
+ .navbar-inverse .navbar-nav > li > * {
+   padding-left: 20px;
+   padding-right: 20px;
+ }
+ .navbar-inverse .navbar-nav > li > a.play {
+   color: #fb1c1c;
+ }
+ .navbar-inverse .navbar-nav > li.player {
+   min-width: 113px;
+   text-align: center;
+ }
+ 
+ /**
+  * Navbar controls
+  */
 #subConfig {
 	display: inline;
 }
-
 #subConfig input {
 	width: 100px;
 	margin-right: 5px;
 }
-
+.easingInfoParent {
+  margin-left:15px;
+}
 .easingInfo {
 	color: #8e8e8e;
 	text-decoration: none;
-	font-style: italic;
 }
-
-.easingInfo:focus {
-	color: #8e8e8e;
-	text-decoration: none;
-	font-style: italic;
-}
-
+.easingInfo:focus,
 .easingInfo:hover {
-	color: #989898;
+	color: #c3c3c3;
 	text-decoration: none;
+  transition: color .2s ease;
 }
+
 .interSelector {
-	color:#9d9d9d;
+	color:#c3c3c3;
 	margin-top: 9px;
 }
-
-.interSelector select{
+.interSelector select {
 	color: #000;
 }
+.btn-group {
+   margin-left: 0.4em;
+}
+.btn-default {
+  background: transparent;
+  border-color: #333;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #c3c3c3;
+  font-weight: normal;
+  text-shadow: none;
+  box-shadow: none;
+}
+.btn-default.active.focus, .btn-default.active:focus,
+.btn-default.active:hover, .btn-default:active.focus,
+.btn-default:active:focus, .btn-default:active:hover,
+.open>.dropdown-toggle.btn-default.focus,
+.open>.dropdown-toggle.btn-default:focus,
+.open>.dropdown-toggle.btn-default:hover,
+.open>.dropdown-toggle.btn-default,
+.btn-default:hover,
+.btn-default.active, .btn-default:active {
+  background-color: transparent;
+  border-color: #777;
+  color: #fff;
+  transition: all .2s ease;
+}
+.dropdown-menu {
+  background-color: #1a1a1a;
+}
+.dropdown-menu > li > a {
+  color: #8e8e8e;
+}
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
+  background-image: initial;
+  background-color: transparent;
+  color: #fff;
+  transition: all .2s ease;
+}
 
-.durationSelector{
-	color:#9d9d9d;
-	margin-top: 15px;
+.durationSelector {
+	color:#c3c3c3;
+	margin-top: 9px;
 	margin-left: 5px;
 }
-.durationSelector input{
+.durationSelector input {
 	width: 40px;
-	height: 21px;
-	color:#000;
 }
 
-.navbar-inverse .navbar-nav>li>a.play {
-	color: #dc2c2c;
+/**
+ * Table, waypoints
+ */
+.table {
+  margin-top: 10px;
 }
-
-.navbar-inverse .navbar-nav>li.player {
-	width: 95px;
+.table > thead > tr > th {
+  border-bottom: 1px solid #555;
+  font-weight: normal;
 }
-.navbar-inverse .navbar-nav>li>a.playing {
-	color: #dc2c2c;
+.table-striped > tbody > tr > td,
+.table-striped > tbody > tr > th {
+  background-color: #353535;
+  border-color: #353535;
+  color: #fff;
 }
-
-.waypoints tbody textarea{
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #212121;
+}
+.waypoints thead {
+  background-color: #1a1a1a;
+  color: #ccc;
+  font-size: 15px;
+}
+.waypoints tbody {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+}
+.waypoints tbody textarea {
 	background: transparent;
 	width: 100%;
 	height: 14px;
@@ -114,17 +185,10 @@ body {
   padding: 0;
   outline: none;
 }
+.deleteWaypoint {
+  cursor: pointer;
+}
 
-.table-striped>tbody>tr>td,
-.table-striped>tbody>tr>th {
-   background-color: #9a9a9a;
-	 color: #fff;
- }
-
-.table-striped>tbody>tr:nth-child(odd)>td,
-.table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #6f6f6f;
- }
 
 ::-webkit-scrollbar {
     width: 12px;

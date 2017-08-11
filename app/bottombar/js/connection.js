@@ -40,6 +40,7 @@ $(document).ready(function() {
 			'<td class="float"><textarea>'+data.lookAt.z+'</textarea></td>' +
 			'<td class="float"><textarea>'+data.roll+'</textarea></td>' +
 			'<td class="float"><textarea>'+data.timeOfDay+'</textarea></td>' +
+			'<td class="float"><textarea>60</textarea></td>' +
 		'</tr>';
 		var rowSelector = $('.waypoints tbody:last-child').append(newRow);
 	});

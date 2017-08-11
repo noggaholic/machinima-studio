@@ -59,6 +59,38 @@ $("#enableFlying").change(function() {
 	}
 });
 
+
+// Initialize the marker position and the active class
+var marker = $('#marker'),
+    current = $('.active');
+marker.css({
+    // Place the marker in the middle of the border
+    bottom: -(marker.height() / 2),
+    left: current.position().left,
+    width: current.outerWidth(),
+    display: "block"
+});
+
+
+$(".menu button").click(function() {
+  //$(".menu button").removeClass('active');
+  //$(this).addClass('active');
+
+
+
+  var self = $(this),
+  offsetLeft = self.position().left,
+  width = self.outerWidth() || current.outerWidth(),
+  left = offsetLeft == 0 ? 0 : offsetLeft || current.position().left;
+  $(".menu button").removeClass('active');
+  self.addClass('active');
+    marker.css({
+        left: left,
+        width: width,
+    });
+
+});
+
 $("#enableTimeOfDay").change(function() {
 	if(this.checked) {
 		socket.emit('ENV_ENABLE_TIME_OF_DAY');
@@ -72,6 +104,12 @@ $("#enableTimeOfDay").change(function() {
 $(".timeOfDay").on("input change", function() {
 	var density = $(this).val();
 	socket.emit('ENV_SET_TIME_OF_DAY', density);
+});
+const fpsCounter = $('.fpsCounter');
+$(".bulletTime").on("input change", function() {
+	const frameRate = $(this).val();
+  fpsCounter.html('Bullet time / Frame rate (' + frameRate + 'fps)');
+	socket.emit('ANIM_SET_FRAME_RATE', frameRate);
 });
 
 $(".enableCamera").change(function() {
@@ -124,7 +162,7 @@ $(".play").click(() => {
 		cameraInfo[7].innerHTML = data.speed;
 		cameraInfo[8].innerHTML = data.rotSpeed;
 		cameraInfo[9].innerHTML = data.up_down_speed;
-        
+
         $("#flat").spectrum("set", 'rgb(' + data.fog_red + ',' + data.fog_green + "," + data.fog_blue + ')');
         $(".fogDensity").val(data.fog_density);
         $(".timeOfDay").val(data.time_of_day);
@@ -154,6 +192,12 @@ $(".play").click(() => {
 	});
 
 $(document).ready(function() {
+
+  $(".btn-pref .btn").click(function () {
+      $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+      // $(".tab").addClass("active"); // instead of this do the below
+      $(this).removeClass("btn-default").addClass("btn-primary");
+  });
 
 	$(".fogDensity").on("input change", function() {
     var density = $(this).val();

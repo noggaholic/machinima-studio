@@ -97,7 +97,7 @@ gw2(function(err, process, module, memory) {
   */
 
   pattern = offsets.camera.original.toString('hex');
-  pointerFound('offsets.camera.offset', findPattern(pattern), 0, 0x45, true);
+  pointerFound('offsets.camera.offset', findPattern(pattern), 0, 0xF, true);
 
   pattern = offsets.camera.instructions.patch_1.original.toString('hex');
   pointerFound('offsets.camera.instructions.patch_1.original', findPattern(pattern));
@@ -183,6 +183,13 @@ gw2(function(err, process, module, memory) {
   */
   pattern = offsets.environment.rendering.highlight_effect.toString('hex');
   pointerFound('offsets.environment.rendering.highlight_effect', findPattern(pattern));
+
+  /**
+  * ViewAdvanceModel to throttle the frame rate.
+  * @type {String}
+  */
+  pattern = offsets.ViewAdvanceModel.original.toString('hex');
+  pointerFound('offsets.ViewAdvanceModel', findPattern(pattern), 0, 0x1B);
 
   fs.writeFileSync(__dirname + '/src/ptrs.json', JSON.stringify(result.offsets, null, 4));
   console.log('Pointers have been updated: src/ptrs.js');
