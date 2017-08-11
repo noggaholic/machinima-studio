@@ -5,7 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "async": "2.1.5",
-    "window-size": "git://github.com/jonschlinkert/window-size.git"
+    "window-size": "git://github.com/karliky/window-size.git"
   },
   "devDependencies": {
     "tty": "^1.0.1"
