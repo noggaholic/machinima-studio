@@ -38,7 +38,7 @@
         "fog": {
             "original": "0x01771E98"
         },
-        "enableTimeOfDay": "0x00000NAN",
+        "enableTimeOfDay": "0x00A538B2",
         "rendering": {
             "audio": "0x00A46AAC",
             "blocks": "0x00A46B06",
