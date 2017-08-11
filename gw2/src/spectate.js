@@ -47,12 +47,12 @@ module.exports = (process, module, memory) => {
       previousCallTime = timeToCall;
 
       return setTimeout(function onAnimationFrame() {
-          callback(timeToCall - animationStartTime);
+        callback(timeToCall - animationStartTime);
       }, timeout);
     };
   }();
 
-  const base = 0x01903BCC;
+  const base = module + Number(ptrs.ViewAdvanceModel);
   const frameNop  = new Buffer([0x90, 0x90]);
   const frameDone = new Buffer([0x85, 0xF6]);
 
