@@ -1,0 +1,60 @@
+{
+    "debug": {
+        "original": "0x01CD21D4"
+    },
+    "camera": {
+        "offset": "0x01969CC4",
+        "instructions": {
+            "patch_1": {
+                "original": "0x004BE796"
+            },
+            "patch_2": {
+                "original": "0x004BE6CF"
+            },
+            "patch_3": {
+                "original": "0x004BE66A"
+            },
+            "patch_4": {
+                "original": "0x004BE5CF"
+            },
+            "patch_5": {
+                "original": "0x004BE380"
+            },
+            "patch_6": {
+                "original": "0x004BE4DF"
+            },
+            "patch_7": {
+                "original": "0x004BDAF3"
+            }
+        }
+    },
+    "player": {
+        "original": "0x00000NAN",
+        "movement": {
+            "original": "0x004A8863"
+        }
+    },
+    "environment": {
+        "fog": {
+            "original": "0x01717F18"
+        },
+        "enableTimeOfDay": "0x00000NAN",
+        "rendering": {
+            "audio": "0x00A8250C",
+            "blocks": "0x00A82566",
+            "decal": "0x00A82595",
+            "environment": "0x00A825DD",
+            "river": "0x00A8261A",
+            "under_water": "0x00A8267A",
+            "zone": "0x00A826B1",
+            "lights": "0x00A826E9",
+            "shadows": "0x00A82730",
+            "terrain": "0x00A8275F",
+            "cube_map": "0x00A82799",
+            "props": "0x00A827E2",
+            "animation": "0x004A873B",
+            "highlight_effect": "0x00000NAN"
+        }
+    },
+    "ViewAdvanceModel": "0x00B03A9A"
+}

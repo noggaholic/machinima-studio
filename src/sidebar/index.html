@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Machinima Studio</title>
+		<link rel='stylesheet' href='css/spectrum.css' />
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Lato" rel="stylesheet">
+    <link href="fonts/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<!-- <div class="panel list-group">
+	    <span href="#" class="list-group-item" style="-webkit-app-region: drag;">Machinima Studio</span>
+	    <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">MESSAGES <span class="label label-info">5</span> <span class="glyphicon glyphicon-envelope pull-right"></span></a>
+	    <div id="sm" class="sublinks collapse">
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> inbox</a>
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> sent</a>
+	    </div>
+	    <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sl" data-parent="#menu">TASKS <span class="glyphicon glyphicon-tag pull-right"></span></a>
+	    <div id="sl" class="sublinks collapse">
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>
+	        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>
+	    </div>
+	    <a href="#" class="list-group-item">ANOTHER LINK ...<span class="glyphicon glyphicon-stats pull-right"></span></a>
+	</div> -->
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+          <div class="window_settings">
+            <span class="app-version">Version <script>document.write(require("../../package.json").version)</script></span>
+            <button class="app-buttons win-minimize"></button>
+            <button class="app-buttons win-close"></button>
+          </div>
+            <div class="container-fluid">
+								<div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                  <div class="btn-group btn-block menu" role="group">
+                      <button type="button" href="#intro" class="btn active" data-toggle="tab">
+                        <span class="fa fa-map-signs fa-lg" aria-hidden="true"></span>
+                          <div>Intro</div>
+                      </button>
+                      <button type="button" href="#camera" class="btn" data-toggle="tab">
+                        <span class="fa fa-camera-retro fa-lg" aria-hidden="true"></span>
+                          <div>Camera</div>
+                      </button>
+                      <button type="button" href="#env" class="btn" data-toggle="tab">
+                        <span class="fa fa-leaf fa-lg" aria-hidden="true"></span>
+                          <div>Environment</div>
+                      </button>
+                      <button type="button" href="#debug" class="btn" data-toggle="tab">
+                        <span class="fa fa-cogs fa-lg menu-debug" aria-hidden="true"></span>
+                          <div>Debug</div>
+                      </button>
+                      <div id="marker"></div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="intro">
+				                  <!-- <p>This is a free Machinima tool for GW2 Machinima makers only.
+				                    Use it freely and make awesome videos with it, explore or just play around.
+				                    This tool is not associated to ArenaNet in any way.</p>
+				                  <p><b>Do not use</b> this tool for cheating.</p>
+				                  <p><b>Contributors:</b></p>
+													<ul>
+														<li>karliky</li>
+														<li>nightlark</li>
+														<li>guillaumeguerin</li>
+                            <li>alejandraarri</li>
+													</ul>
+				                  <p>Any questions regarding this tool? Contact me at <a href="http://www.twitter.com/k4rliky" class="support" target="_blank">@k4rliky</a> and I will get back to you soon!</p> -->
+                          <div class="widget">
+                              <div class="widget-title">
+                                  <span class="pull-right text-muted">Featured</span>
+                                  Welcome to Machinima Studio
+                              </div>
+                              <div class="widget-image widget-image-intro">
+                                  <div class="widget-image-content">
+                                      <h2 class="widget-heading text-light"><a href="page_ready_article.html"><strong>How to use Machinima Studio</strong></a></h2>
+                                      <h3 class="widget-heading text-light-op h4">10 min length introduction</h3>
+                                  </div>
+                                  <div  class="widget-icon">
+                                    <i class="fa fa-youtube-play "></i>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <!-- Mini Widgets Row -->
+                                  <div class="row">
+                                      <div class="col-xs-6">
+                                          <a href="javascript:void(0)" class="widget">
+                                              <div class="widget-content themed-background themed-background-info text-light-op text-center">
+                                                  <div class="widget-icon-tutorial">
+                                                      <i class="fa fa-video-camera"></i>
+                                                  </div>
+                                              </div>
+                                              <div class="widget-content text-dark text-center">
+                                                  <strong>Your First Cinematic</strong><br>5 min tutorial
+                                              </div>
+                                          </a>
+                                      </div>
+                                      <div class="col-xs-6">
+                                          <a href="javascript:void(0)" class="widget">
+                                              <div class="widget-content themed-background themed-background-danger text-light-op text-center">
+                                                  <div class="widget-icon-tutorial">
+                                                      <i class="fa fa-book"></i>
+                                                  </div>
+                                              </div>
+                                              <div class="widget-content text-dark text-center">
+                                                  <strong>Learn the Basics</strong><br>
+                                                  of Machinima Studio
+                                              </div>
+                                          </a>
+                                      </div>
+                                  </div>
+                                  <!-- END Mini Widgets Row -->
+                              </div>
+                          </div>
+                          <div class="widget">
+                              <div class="widget-image widget-image-inspire">
+                                  <div class="widget-image-content">
+                                      <h2 class="widget-heading text-light"><a href="page_ready_article.html"><strong>Get inspired</strong></a></h2>
+                                      <h3 class="widget-heading text-light-op h4">This Machinima will inspire you</h3>
+                                  </div>
+                                  <div  class="widget-icon">
+                                    <i class="fa fa-gamepad "></i>
+                                  </div>
+                              </div>
+                              <table class="table table-striped widget-list table-hover">
+                                  <tbody>
+                                     <tr>
+                                         <td>Nogg-aholic the movie</td>
+                                         <td class="date"><span>2005</span></td>
+                                     </tr>
+                                     <tr>
+                                         <td>Exploration the movie</td>
+                                         <td class="date"><span>2005</span></td>
+                                     </tr>
+                                     <tr>
+                                         <td>Dream scape</td>
+                                         <td class="date"><span>2008</span></td>
+                                     </tr>
+                                     <tr>
+                                         <td>Sammpo Studios</td>
+                                         <td class="date"><span>2017</span></td>
+                                     </tr>
+                                     <tr>
+                                         <td>Expedition to tyria</td>
+                                         <td class="date"><span>2017</span></td>
+                                     </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="camera">
+													<div class="rendering_block">
+														Enable spectate mode
+														<section title="spectate">
+															<!-- .checkbox -->
+															<div class="checkbox">
+																<input type="checkbox" id="spectate" class="enableCamera" />
+																<label for="spectate"></label>
+															</div>
+															<!-- end .checkbox -->
+														</section>
+														<div>
+															<h3 class="infoTableHeader">Current camera data</h3>
+															<ul class="list-group infoTable cameraTable">
+															  <li class="list-group-item">camera.x <span></span></li>
+															  <li class="list-group-item">camera.y <span></span></li>
+															  <li class="list-group-item">camera.z <span></span></li>
+															  <li class="list-group-item">camera.lookAtx <span></span></li>
+															  <li class="list-group-item">camera.lookAty <span></span></li>
+															  <li class="list-group-item">camera.lookAtz <span></span></li>
+															  <li class="list-group-item">camera.roll <span></span></li>
+															  <li class="list-group-item">camera.speed <span></span>
+																	<input type="range" class="form-control speedRange" value="8" step="0.2" min="0.01" max="100">
+																</li>
+															  <li class="list-group-item">camera.rotation_speed <span></span>
+																	<input type="range" class="form-control rotSpeedRange" value="0.042401" step="0.000002" min="0.000001" max="0.072401">
+																</li>
+															  <li class="list-group-item">camera.up_down_speed <span></span>
+																	<input type="range" class="form-control up_down_speed" value="13000" step="100" min="200" max="20000">
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+                        <div class="tab-pane fade" id="env">
+													<ul class="nav nav-tabs">
+															<li  class="active"><a href="#module1-step1" data-toggle="tab">Map settings</a></li>
+															<li><a href="#module1-step2" data-toggle="tab">Map advanced settings</a></li>
+															<li><a href="#module1-step3" data-toggle="tab">Labs</a></li>
+													</ul>
+													<ul class="tab-content">
+															<li class="tab-pane active" id="module1-step1">
+																<div class="rendering_block">Audio
+																	<section title="audio">
+																		<div class="checkbox">
+																			<input type="checkbox" id="audio" class="rendering" name="check" checked data-id="audio" />
+																			<label for="audio"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Blocks
+																	<section title="blocks">
+																		<div class="checkbox">
+																			<input type="checkbox" id="blocks" class="rendering" name="check" checked data-id="blocks" />
+																			<label for="blocks"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Decal
+																	<section title="decal">
+																		<div class="checkbox">
+																			<input type="checkbox" id="decal" class="rendering" name="check" checked data-id="decal" />
+																			<label for="decal"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Environment
+																	<section title="environment">
+																		<div class="checkbox">
+																			<input type="checkbox" id="environment" class="rendering" name="check" checked data-id="environment" />
+																			<label for="environment"></label>
+																		</div>
+																		</section>
+																</div>
+																<div class="rendering_block">River
+																	<section title="river">
+																		<div class="checkbox">
+																			<input type="checkbox" id="river" class="rendering" name="check" checked data-id="river" />
+																			<label for="river"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Under water
+																	<section title="under_water">
+																		<div class="checkbox">
+																			<input type="checkbox" id="under_water" class="rendering" name="check" checked data-id="under_water" />
+																			<label for="under_water"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Zone
+																	<section title="zone">
+																		<div class="checkbox">
+																			<input type="checkbox" id="zone" class="rendering" name="check" checked data-id="zone" />
+																			<label for="zone"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Lights
+																	<section title="lights">
+																	<div class="checkbox">
+																			<input type="checkbox" id="lights" class="rendering" name="check" checked data-id="lights" />
+																			<label for="lights"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Shadows
+																	<section title="shadows">
+																	<div class="checkbox">
+																			<input type="checkbox" id="shadows" class="rendering" name="check" checked data-id="shadows" />
+																			<label for="shadows"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Terrain
+																	<section title="terrain">
+																		<div class="checkbox">
+																			<input type="checkbox" id="terrain" class="rendering" name="check" checked data-id="terrain" />
+																			<label for="terrain"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Cube map
+																	<section title="cube_map">
+																		<div class="checkbox">
+																			<input type="checkbox" id="cube_map" class="rendering" name="check" checked data-id="cube_map" />
+																			<label for="cube_map"></label>
+																		</div>
+																	</section>
+																</div>
+																<div class="rendering_block">Props (Doodads)
+																	<section title="props">
+																		<div class="checkbox">
+																			<input type="checkbox" id="props" class="rendering" name="check" checked data-id="props" />
+																			<label for="props"></label>
+																		</div>
+																	</section>
+																</div>
+															</li>
+															<li class="tab-pane" id="module1-step2">
+																<div class="rendering_block">
+																	<p>Uncheck the "Environment" section under "Map settings" before doing changes here.</p>
+																</div>
+																<div class="rendering_block">Fog density
+																	<input type="range" class="form-control fogDensity" value="-0.2623151243" step="0.000001" min="-24" max="6">
+																</div>
+																<div class="rendering_block">Fog color
+															    <input type='text' id="flat" />
+																</div>
+																<div class="rendering_block">Enable time of day
+																	<section title="enableTimeOfDay">
+																		<div class="checkbox">
+																			<input type="checkbox" id="enableTimeOfDay" class="rendering" name="check" checked data-id="enableTimeOfDay" />
+																			<label for="enableTimeOfDay"></label>
+																		</div>
+																	</section>
+																	<input type="range" class="form-control timeOfDay" value="0" step="0.000001" min="0" max="1">
+																</div>
+															</li>
+															<li class="tab-pane" id="module1-step3">
+																<!-- <div class="rendering_block">Disable animations
+																	<section title="animation">
+																		<div class="checkbox">
+																			<input type="checkbox" id="animation" class="rendering" name="check" data-id="animation" />
+																			<label for="animation"></label>
+																		</div>
+																	</section>
+																</div> -->
+																<div class="rendering_block"><span class='fpsCounter'>Bullet time / Frame rate</span>
+																	<input type="range" id="bulletTime" class="rendering bulletTime" min="0" max="60" name="check" data-id="bulletTime" />
+																</div>
+                                <div class="rendering_block">Disable highlight effect
+																	<section title="highlight_effect">
+																		<div class="checkbox">
+																			<input type="checkbox" id="highlight_effect" class="rendering" name="check" data-id="highlight_effect" />
+																			<label for="highlight_effect"></label>
+																		</div>
+																	</section>
+																</div>
+															</li>
+													</ul>
+												</div>
+                        <div class="tab-pane fade" id="debug">
+													<ul class="list-group infoTable debugInfo">
+														<li class="list-group-item">MapName <span></span></li>
+														<li class="list-group-item">MapNamespace <span></span></li>
+														<li class="list-group-item">MapSector <span></span></li>
+														<li class="list-group-item">MapType <span></span></li>
+														<li class="list-group-item">MapFloor <span></span></li>
+														<li class="list-group-item">MapId <span></span></li>
+														<li class="list-group-item">MapGuid <span></span></li>
+													</ul>
+												</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    var electron = require('electron');
+    var shell = require('electron').shell;
+		const ipc = require('electron').ipcRenderer;
+    const { remote } = require('electron');
+    jQuery('.support').click(function(event) {
+      event.preventDefault();
+      shell.openExternal(this.href);
+    });
+
+    jQuery('.win-close').click(function(event) {
+      ipc.send('terminate');
+    });
+
+    jQuery('.win-minimize').click(function(event) {
+      remote.BrowserWindow.getFocusedWindow().minimize();
+    });
+
+    </script>
+
+    <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+		<script src='js/spectrum.js'></script>
+    <script src="js/connect.js"></script>
+</body>
+
+</html>
