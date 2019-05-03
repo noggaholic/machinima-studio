@@ -24,7 +24,6 @@ gw2(function(err, process, module, memory, window) {
     io.sockets.emit(message, data);
   };
 
-  let socket;
   const player      = Player(process, module, memory);
   const spectate    = Spectate(process, module, memory);
   const camera      = Camera(process, module, memory, window, player, sendMessage);
@@ -34,22 +33,17 @@ gw2(function(err, process, module, memory, window) {
   camera.setEnvReference(environment);
   environment.enableEnvPointer();
 
-	let curFwd;
-	let cameraPos;
-	let roll;
-	let velocity;
-  let fog;
 	let uiInterval;
   io.on('connection', function (so) {
-    socket = so;
+    const socket = so;
 
 		if (!uiInterval) {
 			uiInterval = setInterval(() => {
-				curFwd    = camera.getFwdPosition();
-				cameraPos = camera.getPosition();
-				roll 			= camera.getRoll();
-				velocity 	= camera.getSpeed();
-        fog       = environment.getFogData();
+				const curFwd    = camera.getFwdPosition();
+				const cameraPos = camera.getPosition();
+				const roll 			= camera.getRoll();
+				const velocity 	= camera.getSpeed();
+        const fog       = environment.getFogData();
 				let data  	= {
 					x: cameraPos.x,
 					y: cameraPos.y,
@@ -115,7 +109,7 @@ gw2(function(err, process, module, memory, window) {
     });
 
     socket.on('ANIM_SET_FRAME_RATE', function (frameRate) {
-      frameRate = ~~frameRate; // cast to integer
+      frameRate = ~~frameRate;
       if (spectate === 60 || spectate < 0) {
         spectate.toogleFrameRate(false);
       }
@@ -131,10 +125,10 @@ gw2(function(err, process, module, memory, window) {
     socket.on('CAMERA_TWEEN_TO', function (data) {
       spectate.enableSpectateMode();
       player.disablePlayerMovement();
-      let tweenTo = (item, next) => {
-        let curFwd    = camera.getFwdPosition();
-        let cameraPos = camera.getPosition();
-        let from  = {
+      const tweenTo = (item, next) => {
+        const curFwd    = camera.getFwdPosition();
+        const cameraPos = camera.getPosition();
+        const from  = {
           x: cameraPos.x,
           y: cameraPos.y,
           z: cameraPos.z,
@@ -142,7 +136,7 @@ gw2(function(err, process, module, memory, window) {
           looky: curFwd.y,
           lookz: curFwd.z
         };
-        let to = {
+        const to = {
           x: item[0],
           y: item[1],
           z: item[2],
@@ -177,9 +171,7 @@ gw2(function(err, process, module, memory, window) {
       environment.setTimeOfDay(value);
     });
 
-    socket.on('disconnect', function () {
-      console.log('user disconnected');
-    });
+    socket.on('disconnect', () => console.log('user disconnected'));
 
   });
 

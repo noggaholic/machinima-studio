@@ -1,7 +1,7 @@
 window.socket = io('http://127.0.0.1:8080');
 socket.on('error', function (err) {
    console.log("Socket.IO Error");
-   console.log(err); // this is changed from your code in last comment
+   console.log(err);
 });
 var firstTime = true;
 

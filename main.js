@@ -3,7 +3,7 @@
 const electron = require('electron');
 const app = electron.app;
 
-if (require('electron-squirrel-startup')) return app.quit();
+if (require('electron-squirrel-startup')) (() => app.quit())();
 
 
 const BrowserWindow = electron.BrowserWindow;
@@ -27,7 +27,6 @@ const ipcMain       = electron.ipcMain;
 require('./ipc.js')(ipcMain, BrowserWindow);
 
 ipcMain.on('open-machinima-studio', (event, arg) => {
-  console.log('Launching windows...');
   launchMain(mainWindow, electron);
 });
 

@@ -24,7 +24,6 @@ const createWindow = (mainWindow, electron) => {
 
     mainWindow = new BrowserWindow(params);
     const bottomBarPath = path.join(__dirname, `../bottombar/index.html`);
-    console.log('Loading bottom', bottomBarPath);
     mainWindow.loadURL(bottomBarPath);
   };
 
@@ -53,7 +52,6 @@ const createWindow = (mainWindow, electron) => {
     mainWindow = null;
   });
   const sideBarPath = path.join(__dirname, `../sidebar/index.html`)
-  console.log('Loading sidebar', sideBarPath);
   rightWindow.loadURL(sideBarPath);
   loadBottomn(rightWindow);
 };

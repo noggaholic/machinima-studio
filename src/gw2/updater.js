@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 'use strict';
-console.log('Trying to get initialize');
+
 const gw2     = require(__dirname + '/src/initialize.js');
 const offsets = require(__dirname + '/src/offsets.js');
 const fs      = require('fs');
 
-var result = {};
+const result = {};
 
 /**
  * Start by trying to find the correct GW2 process

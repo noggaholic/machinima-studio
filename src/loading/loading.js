@@ -18,7 +18,6 @@ const update = (callback) => {
 async.waterfall([
     callback => setTimeout(() => update(callback) , 500) ,
     function(callback) {
-      console.log('Launching server...');
       status.innerHTML = 'Launching server...';
       ipcRenderer.on('open-machinima-studio-server-error', (event, error) => {
         callback(new Error(error));
@@ -41,7 +40,6 @@ async.waterfall([
     status.classList.remove("fade");
     if (err) {
       if (!err.message) {
-        console.log('#### Error', err);
         status.innerHTML = `Unknown error ${err}`;
         return;
       }

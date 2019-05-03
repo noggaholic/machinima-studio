@@ -146,7 +146,6 @@ $(".play").click(() => {
 });
 
 	socket.on('CAMERA_PLAY', () => {
-		console.log('playing...')
 		$(".play").click();
 	});
 
