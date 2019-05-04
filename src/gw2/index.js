@@ -170,7 +170,5 @@ gw2((err, process, module, memory, window) => {
     });
 
     socket.on('disconnect', () => console.log('user disconnected'));
-
   });
-
 });

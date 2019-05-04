@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
-'use strict';
+const fs = require('fs');
 
-const gw2     = require(__dirname + '/src/initialize.js');
-const offsets = require(__dirname + '/src/offsets.js');
-const fs      = require('fs');
+const gw2 = require(`${__dirname}/src/initialize.js`);
+const offsets = require(`${__dirname}/src/offsets.js`);
 
 const result = {};
 
@@ -11,30 +9,22 @@ const result = {};
  * Start by trying to find the correct GW2 process
  * Terminates with an error if no process is found
  */
-gw2(function(err, process, module, memory) {
-  if (err) {
-    throw new Error(err);
-  }
+gw2((err, process, module, memory) => {
+  if (err) throw new Error(err);
 
-  /* eslint-disable no-extend-native */
-  String.prototype.lpad = function(padString, length) {
-    var str = this;
+  const lpad = (str, padString, length) => {
     while (str.length < length) {
       str = padString + str;
     }
     return str;
   };
 
-  var interpretAsPTRBuffer = Buffer.alloc(0x4);
+  const interpretAsPTRBuffer = Buffer.alloc(0x4);
   const pointerFound = (descriptor, ptr, substract, add, interpretAsPTR, offsetAdjustement) => {
     if (ptr) {
-      var base = ptr[0] - module;
-      if (substract) {
-        base = base - substract;
-      }
-      if (add) {
-        base = base + add;
-      }
+      let base = ptr[0] - module;
+      if (substract) base -= substract;
+      if (add) base += add;
       if (interpretAsPTR) {
         memory.readData(module + base, interpretAsPTRBuffer, 0x4);
         base = interpretAsPTRBuffer.readInt32LE() - module;
@@ -42,24 +32,25 @@ gw2(function(err, process, module, memory) {
       if (offsetAdjustement) {
         base += offsetAdjustement;
       }
-      var address = '0x' + (base).toString(16).toUpperCase().lpad('0', 8)
+      const baseAsHex = (base).toString(16).toUpperCase();
+      const address = `0x${lpad(baseAsHex, '0', 8)}`;
       console.log(descriptor, address);
       /**
        * Create a reference for the memory path
        * and save the value of the address
        * @type {Object}
        */
-      var obj = result;
-      var s = descriptor.split('.');
-      var p;
+      const s = descriptor.split('.');
+      let obj = result;
+      let p;
       while (s.length) {
-          p = s.shift();
+        p = s.shift();
 
-          if (s.length === 0) {
-            obj[p] = address;
-          } else {
-            obj = obj[p] || (obj[p] = {});
-          }
+        if (s.length === 0) {
+          obj[p] = address;
+        } else {
+          obj = obj[p] || (obj[p] = {});
+        }
       }
     } else {
       console.log(descriptor, 'ptr base not found');
@@ -67,19 +58,20 @@ gw2(function(err, process, module, memory) {
   };
 
   const findPattern = (pattern) => {
-      return memory.find(pattern, 0, -1, 1, "-x");
-  }
+    return memory.find(pattern, 0, -1, 1, '-x');
+  };
 
   const findStringRef = (str) => {
-      var searchPattern = Buffer.from(str).toString('hex');
-      var results = memory.find(searchPattern, 0, -1, 1, '--');
+    const searchPattern = Buffer.from(str).toString('hex');
+    let results = memory.find(searchPattern, 0, -1, 1, '--');
 
-      if (results.length > 0)
-      {
-          results = memory.find(results[0].toString(16).lpad('0', 8).match(/[a-fA-F0-9]{2}/g).reverse().join(''), 0, -1, 1, '-x');
-      }
+    if (results.length > 0) {
+      results = memory.find(results[0].toString(16).lpad('0', 8).match(/[a-fA-F0-9]{2}/g)
+        .reverse()
+        .join(''), 0, -1, 1, '-x');
+    }
 
-      return results;
+    return results;
   };
 
   let pattern;
@@ -125,14 +117,14 @@ gw2(function(err, process, module, memory) {
   * Environment related offsets
   * @type {String}
   */
-  pointerFound('offsets.environment.fog.original', findStringRef("s_dxContext"), 0, 10, true);
+  pointerFound('offsets.environment.fog.original', findStringRef('s_dxContext'), 0, 10, true);
 
   /**
   * Movement related offsets
   * @type {String}
   */
   pattern = offsets.player.movement.original.toString('hex');
-  pointerFound('offsets.player.movement.original',  findPattern(pattern), 10);
+  pointerFound('offsets.player.movement.original', findPattern(pattern), 10);
 
   /**
   * Time of day related offsets
@@ -191,6 +183,6 @@ gw2(function(err, process, module, memory) {
   pattern = offsets.ViewAdvanceModel.original.toString('hex');
   pointerFound('offsets.ViewAdvanceModel', findPattern(pattern), 0, 0x1B);
 
-  fs.writeFileSync(__dirname + '/src/ptrs.json', JSON.stringify(result.offsets, null, 4));
+  fs.writeFileSync(`${__dirname}/src/ptrs.json`, JSON.stringify(result.offsets, null, 4));
   console.log(`Pointers have been updated: ${__dirname}/src/ptrs.js`);
 });

@@ -7,6 +7,8 @@
     "rules": {
         "comma-dangle": ["off"],
         "import/no-dynamic-require": ["off"],
-        "no-bitwise": ["off"]
+        "no-bitwise": ["off"],
+        "no-console": ["off"],
+        "no-param-reassign": ["off"]
     }
 }
