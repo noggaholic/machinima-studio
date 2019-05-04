@@ -11,6 +11,7 @@ const result = {};
  */
 gw2((err, process, module, memory) => {
   if (err) throw new Error(err);
+  if (global.process.platform === 'darwin') return;
 
   const lpad = (str, padString, length) => {
     while (str.length < length) {

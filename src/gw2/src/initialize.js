@@ -1,7 +1,7 @@
 const robot = require('robot-js');
 const offsets = require('./offsets');
 
-const { Memory, Window } = robot.Memory;
+const { Memory, Window } = robot;
 
 module.exports = (cb) => {
   let memory;

@@ -73,6 +73,8 @@ module.exports = (process, module, memory) => {
     memory.writeData(movementOffset, movementOriginalByteCode, offsets.player.movement.byteLength);
   };
 
+  that.setCameraReference = (camera) => {};
+
   that.updateOffsetBase = () => {
     playerOffsetBase = memory.readMultiLevelPtr(offsets.player.pos.ptr);
     playerVisualBase = memory.readMultiLevelPtr(offsets.player.visualPos.ptr);
