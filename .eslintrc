@@ -13,6 +13,7 @@
         "max-len": ["off"],
         "no-plusplus": ["off"],
         "no-restricted-syntax": ["off"],
-        "no-prototype-builtins": ["off"]
+        "no-prototype-builtins": ["off"],
+        "global-require": ["off"]
     }
 }

@@ -1,15 +1,13 @@
-"use strict";
-
 const size = require('window-size');
 const path = require('path');
 
 const createWindow = (mainWindow, electron) => {
 
-  const BrowserWindow = electron.BrowserWindow;
+  const { BrowserWindow } = electron;
 
-  const loadBottomn   = (mainWindow) => {
-    let params = {
-      parent: mainWindow,
+  const loadBottomn = (window) => {
+    const params = {
+      parent: window,
       frame: false,
       transparent: true,
       width: size.width - 10,
@@ -22,14 +20,14 @@ const createWindow = (mainWindow, electron) => {
       },
     };
 
-    mainWindow = new BrowserWindow(params);
-    const bottomBarPath = path.join(__dirname, `../bottombar/index.html`);
-    mainWindow.loadURL(bottomBarPath);
+    window = new BrowserWindow(params);
+    const bottomBarPath = path.join(__dirname, '../bottombar/index.html');
+    window.loadURL(bottomBarPath);
   };
 
-  var halfOfHalfWidth = (size.width / 2) / 2;
+  const halfOfHalfWidth = (size.width / 2) / 2;
 
-  let params = {
+  const params = {
     frame: false,
     transparent: true,
     width: halfOfHalfWidth + 35,
@@ -42,30 +40,31 @@ const createWindow = (mainWindow, electron) => {
     },
   };
 
-  var rightWindow = new BrowserWindow(params);
+  const rightWindow = new BrowserWindow(params);
 
   rightWindow.once('ready-to-show', () => {
     rightWindow.show();
   });
 
-  rightWindow.on('closed', function () {
+  rightWindow.on('closed', () => {
     mainWindow = null;
   });
-  const sideBarPath = path.join(__dirname, `../sidebar/index.html`)
+  const sideBarPath = path.join(__dirname, '../sidebar/index.html')
   rightWindow.loadURL(sideBarPath);
   loadBottomn(rightWindow);
 };
 
 const openServer = (callback) => {
-    require('../gw2/index.js');
-    callback();
+  require('../gw2/index.js');
+  callback();
 };
 
 const loadingWindow = (mainWindow, electron) => {
-  const BrowserWindow = electron.BrowserWindow;
-  let params = {
-		frame: false,
-		transparent: true,
+  const { BrowserWindow } = electron;
+  
+  const params = {
+    frame: false,
+    transparent: true,
     width: 1170,
     height: 600,
     center: true,
@@ -86,7 +85,7 @@ const loadingWindow = (mainWindow, electron) => {
     mainWindow.show();
   });
 
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
@@ -95,6 +94,6 @@ const loadingWindow = (mainWindow, electron) => {
 
 module.exports = {
   mainWindow: createWindow,
-  loadingWindow: loadingWindow,
-  openServer: openServer
+  loadingWindow,
+  openServer
 };
