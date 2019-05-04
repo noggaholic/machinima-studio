@@ -1,18 +1,15 @@
-"use strict";
 
 function ipcManager(ipcMain, BrowserWindow) {
   /**
    * Taken from https://github.com/konsumer/electron-prompt/blob/master/main.js
    */
-  ipcMain.on('terminate', function() {
-    process.exit();
-  });
+  ipcMain.on('terminate', process.exit);
 
-  var promptResponse;
+  let promptResponse;
 
-  ipcMain.on('prompt', function(eventRet, arg) {
+  ipcMain.on('prompt', (eventRet, arg) => {
     promptResponse = null;
-    var promptWindow = new BrowserWindow({
+    let promptWindow = new BrowserWindow({
       width: 200,
       height: 100,
       show: false,
@@ -31,14 +28,14 @@ function ipcManager(ipcMain, BrowserWindow) {
       button {float:right; margin-left: 10px;}
       label,input {margin-bottom: 10px; width: 100%; display:block;}
     </style>`;
-    promptWindow.loadURL('data:text/html,' + promptHtml);
+    promptWindow.loadURL(`data:text/html,${promptHtml}`);
     promptWindow.show();
-    promptWindow.on('closed', function() {
+    promptWindow.on('closed', () => {
       eventRet.returnValue = promptResponse;
       promptWindow = null;
     });
   });
-  ipcMain.on('prompt-response', function(event, arg) {
+  ipcMain.on('prompt-response', (event, arg) => {
     if (arg === '') { arg = null; }
     promptResponse = arg;
   });
