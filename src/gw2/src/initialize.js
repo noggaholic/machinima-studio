@@ -1,25 +1,22 @@
-var robot   = require('robot-js');
-var offsets = require('./offsets');
+const robot = require('robot-js');
+const offsets = require('./offsets');
 
-var Memory  = robot.Memory;
-var Window  = robot.Window;
+const { Memory, Window } = robot.Memory;
 
 module.exports = (cb) => {
-
   let memory;
   let process;
   let module;
-  let window;
 
   /*
    * Resolves the given multi level pointer to
    * the correct offset of the memory
    */
-  const readMultiLevelPtr = function(offsets) {
-    var address = module + Number(offsets[0]);
-    for (var i = 1; i < offsets.length; i++) {
+  const readMultiLevelPtr = (offs) => {
+    let address = module + Number(offs[0]);
+    for (let i = 1; i < offs.length; i++) {
       address = memory.readPtr(address);
-      address += offsets[i];
+      address += offs[i];
     }
     return address;
   };
@@ -39,12 +36,12 @@ module.exports = (cb) => {
     // Ensure that the process was opened
     if (!process.isValid()) return false;
     /* eslint-disable quotes, no-useless-escape */
-    module = process.getModules(".*\.exe")[0];
+    [module] = process.getModules(".*\.exe");
     if (!module) return false;
     module = module.getBase();
 
     // Determine if game is 64Bit
-    let is64Bit = process.is64Bit();
+    const is64Bit = process.is64Bit();
 
     if (is64Bit) {
       return cb(new Error('64bit process is not supported at the moment'));
@@ -53,7 +50,6 @@ module.exports = (cb) => {
     // Create a new memory object
     memory = Memory(process);
     memory.readMultiLevelPtr = readMultiLevelPtr;
-    window = wind;
     return true;
   }
 
@@ -63,5 +59,5 @@ module.exports = (cb) => {
     }
   }
 
-  return cb(new Error('Cannot find "' + offsets.WINDOW_NAME + '" window'));
+  return cb(new Error(`Cannot find ${offsets.WINDOW_NAME} window`));
 };

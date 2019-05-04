@@ -57,9 +57,7 @@ gw2((err, process, module, memory) => {
     }
   };
 
-  const findPattern = (pattern) => {
-    return memory.find(pattern, 0, -1, 1, '-x');
-  };
+  const findPattern = pattern => memory.find(pattern, 0, -1, 1, '-x');
 
   const findStringRef = (str) => {
     const searchPattern = Buffer.from(str).toString('hex');
@@ -76,7 +74,7 @@ gw2((err, process, module, memory) => {
 
   let pattern;
 
-	/**
+  /**
   * Debug related pointers
   * @type {String}
   */
