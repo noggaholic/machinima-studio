@@ -1,40 +1,39 @@
-/* eslint-disable no-console */
-var offsets   = require('./offsets');
-var ptrs      = require('./ptrs.json');
-var robot     = require('robot-js');
-var Tweenable = require('shifty');
+const robot = require('robot-js');
+const Tweenable = require('shifty');
 
-Tweenable.prototype.formula.linear = function (pos) {
-  return pos;
-};
+const offsets = require('./offsets');
+const ptrs = require('./ptrs.json');
+
+Tweenable.prototype.formula.linear = pos => pos;
 
 module.exports = (process, module, memory, window, player, sendMessage) => {
-  var that = {};
+  const that = {};
 
-  const Mouse    = robot.Mouse;
-  const Keyboard = robot.Keyboard;
+  const { Mouse, Keyboard } = robot;
 
-  const cameraReadPosition      = Buffer.alloc(0xC);
-  const cameraFwdReadPosition   = Buffer.alloc(0xC);
-  const cameraWritePosition     = Buffer.alloc(0xC);
-  const cameraFwdWritePosition  = Buffer.alloc(0xC);
+  const cameraReadPosition = Buffer.alloc(0xC);
+  const cameraFwdReadPosition = Buffer.alloc(0xC);
+  const cameraWritePosition = Buffer.alloc(0xC);
+  const cameraFwdWritePosition = Buffer.alloc(0xC);
 
-  const cameraRoll  			= Buffer.alloc(0x4);
-	const cameraRollReader  = Buffer.alloc(0x4);
-  const cameraYaw   = Buffer.alloc(0x4);
+  const cameraRoll = Buffer.alloc(0x4);
+  const cameraRollReader = Buffer.alloc(0x4);
+  const cameraYaw = Buffer.alloc(0x4);
   const cameraPitch = Buffer.alloc(0x4);
   const verticalAlignment = Buffer.alloc(0x4);
 
   offsets.camera.offset[0] = ptrs.camera.offset;
-  let cameraOffsetBase  = memory.readMultiLevelPtr(offsets.camera.offset);
+  let cameraOffsetBase = memory.readMultiLevelPtr(offsets.camera.offset);
+  let yawLeft;
+  let pitchDown;
 
-  let cameraCurrPosition = {
+  const cameraCurrPosition = {
     x: null,
     y: null,
     z: null
   };
 
-  let cameraFwdCurrPosition = {
+  const cameraFwdCurrPosition = {
     x: null,
     y: null,
     z: null
@@ -42,17 +41,17 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
 
   let environment;
 
-	let rotSpeed = 0.02;
-	let speed = 8;
-	let up_down_speed = 13000;
+  let rotSpeed = 0.02;
+  let speed = 8;
+  let upDownSpeed = 13000;
 
   /**
    * Refactor this to a non-blocking way
    * @param  {Number} sleepDuration how much time
    * @return {undefined}
    */
-  var sleepFor = function(sleepDuration) {
-    var now = new Date().getTime();
+  const sleepFor = (sleepDuration) => {
+    const now = new Date().getTime();
     while (new Date().getTime() < now + sleepDuration) { /* do nothing */ }
   };
 
@@ -60,25 +59,23 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
     environment = env;
   };
 
-	that.getSpeed = () => {
-		return { rotSpeed: rotSpeed, speed: speed, up_down_speed: up_down_speed };
-	}
+  that.getSpeed = () => ({ rotSpeed, speed, upDownSpeed });
 
   that.moveTo = (x, y, z, fx, fy, fz, wait) => {
-    var truthy = true;
+    const truthy = true;
     while (truthy) {
-      var cameraPos = that.getPosition();
-      var dx = x - cameraPos.x;
-      var dy = y - cameraPos.y;
-      var dz = z - cameraPos.z;
+      const cameraPos = that.getPosition();
+      const dx = x - cameraPos.x;
+      const dy = y - cameraPos.y;
+      const dz = z - cameraPos.z;
 
-      var cameraFwdPos = that.getFwdPosition();
-      var fwddx = fx - cameraFwdPos.x;
-      var fwddy = fy - cameraFwdPos.y;
-      var fwddz = fz - cameraFwdPos.z;
-      var v = 0.009;
+      const cameraFwdPos = that.getFwdPosition();
+      const fwddx = fx - cameraFwdPos.x;
+      const fwddy = fy - cameraFwdPos.y;
+      const fwddz = fz - cameraFwdPos.z;
+      const v = 0.009;
 
-      var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
       if (dist <= v) {
         console.log('Reached the point!');
         if (wait) {
@@ -86,8 +83,8 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
         }
         break;
       } else {
-        var camBase = cameraOffsetBase + offsets.camera.pos.x;
-        var lookT = cameraOffsetBase + offsets.camera.lookAt.x;
+        const camBase = cameraOffsetBase + offsets.camera.pos.x;
+        const lookT = cameraOffsetBase + offsets.camera.lookAt.x;
         cameraWritePosition.writeFloatLE(cameraPos.x + (v * dx / dist), 0x0);
         cameraWritePosition.writeFloatLE(cameraPos.y + (v * dy / dist), 0x4);
         cameraWritePosition.writeFloatLE(cameraPos.z + (v * dz / dist), 0x8);
@@ -101,16 +98,10 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   };
 
   that.setSpeed = (s, r, uo) => {
-		if (s) {
-			speed = parseFloat(s);
-		}
-		if (r) {
-			rotSpeed = parseFloat(r);
-		}
-		if (uo) {
-			up_down_speed = parseFloat(uo);
-		}
-	};
+    if (s) speed = parseFloat(s);
+    if (r) rotSpeed = parseFloat(r);
+    if (uo) upDownSpeed = parseFloat(uo);
+  };
 
   that.setPos = (x, y, z) => {
     cameraWritePosition.writeFloatLE(x, 0x0);
@@ -127,14 +118,14 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   };
 
   that.moveToWithTween = (from, to, type, cb) => {
-    var tweenable = new Tweenable();
+    const tweenable = new Tweenable();
     tweenable.tween({
-      from: from,
-      to: to,
+      from,
+      to,
       duration: 2000,
       easing: type,
-      finish: function() { cb(); },
-      step: function (state) {
+      finish: () => cb,
+      step(state) {
         that.setPos(state.x, state.y, state.z);
         that.lookAt(state.lookx, state.looky, state.lookz);
       }
@@ -142,7 +133,7 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
   };
 
   that.moveUp = () => {
-    var cameraPos = that.getPosition();
+    const cameraPos = that.getPosition();
     cameraWritePosition.writeFloatLE(cameraPos.x, 0x0);
     cameraWritePosition.writeFloatLE(cameraPos.y, 0x4);
     cameraWritePosition.writeFloatLE(cameraPos.z + -0.03, 0x8);
@@ -185,19 +176,15 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
         offset: [boundingClientRect.x,  boundingClientRect.y]
       };
     };
-    /* eslint-enable */
-    // mouseMove
+
     const start = () => {
       setInterval(() => {
-        const container    = getContainerDimensions();
-        const mouse        = Mouse.getPos();
-        const halfWidth    = container.size[0] / 2;
-        const halfHeight   = container.size[1] / 2;
-        /* eslint-disable no-unused-vars */
-        let yawLeft   = - ((mouse.x - container.offset[0]) - halfWidth);
-        /* eslint-disable no-unused-vars */
-        let pitchDown =   ((mouse.y - container.offset[1]) - halfHeight);
-
+        const container = getContainerDimensions();
+        const mouse = Mouse.getPos();
+        const halfWidth = container.size[0] / 2;
+        const halfHeight = container.size[1] / 2;
+        yawLeft = -((mouse.x - container.offset[0]) - halfWidth);
+        pitchDown = ((mouse.y - container.offset[1]) - halfHeight);
         update();
       }, 0);
     };
@@ -355,19 +342,19 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
       }
 
       if (Keyboard.getState(robot.KEY_UP)) {
-        curFwd.z = curFwd.z - up_down_speed * 0.0004;
+        curFwd.z = curFwd.z - upDownSpeed * 0.0004;
       }
 
       if (Keyboard.getState(robot.KEY_DOWN)) {
-        curFwd.z = curFwd.z + up_down_speed * 0.0004;
+        curFwd.z = curFwd.z + upDownSpeed * 0.0004;
       }
       // spectate 01903BCC
-      let dir = {};
+      const dir = {};
       dir.x = cameraPos.x - curFwd.x;
       dir.y = cameraPos.y - curFwd.y;
       dir.z = cameraPos.z - curFwd.z;
 
-      let hyp = Math.sqrt(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z);
+      const hyp = Math.sqrt(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z);
       dir.x /= hyp;
       dir.y /= hyp;
       dir.z /= hyp;
@@ -389,18 +376,6 @@ module.exports = (process, module, memory, window, player, sendMessage) => {
         cameraPos.y += dir.y * speed;
         cameraPos.z += dir.z * speed;
       }
-
-
-      // const container    = getContainerDimensions();
-      // const mouse        = Mouse.getPos();
-      //
-      // halfWidth  = container.size[ 0 ] / 2;
-      // halfHeight = container.size[ 1 ] / 2;
-      // mousex = mouse.x;
-      // mousey = mouse.y;
-      //
-      // lastx = mousex;
-      // lasty = mousey;
 
       cameraWritePosition.writeFloatLE(cameraPos.x, 0x0);
       cameraWritePosition.writeFloatLE(cameraPos.y, 0x4);
