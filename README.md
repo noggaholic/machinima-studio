@@ -7,7 +7,7 @@ Get the latest [release here.](https://github.com/noggaholic/machinima-studio/re
 
 <img src="http://i.imgur.com/2GEaYvO.png"/>
 
-Machinima Studio is still in *alpha* state, bugs may occur, if you think that something doesn’t work correctly please create a new issue and tell me exactly steps to reproduce it.
+If you think that something doesn’t work as expected, create a new issue with the steps to reproduce it.
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=T-LmVy0EfNA"><img src="https://raw.githubusercontent.com/karliky/machinima-studio/master/resources/promo.gif"/></a>
