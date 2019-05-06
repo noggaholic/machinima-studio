@@ -9,7 +9,7 @@ socket.on('error', (err) => {
   console.log(err); // this is changed from your code in last comment
 });
 
-$('.rendering').change(() => {
+$('.rendering').change(function() {
   switch ($(this).data('id')) {
     case 'audio':
       socket.emit('RENDERING', { section: 'AUDIO' });
@@ -58,7 +58,7 @@ $('.rendering').change(() => {
   }
 });
 
-$('#enableFlying').change(() => {
+$('#enableFlying').change(function() {
   if (this.checked) {
     socket.emit('PLAYER_ENABLE_FLY');
   } else {
@@ -79,7 +79,7 @@ marker.css({
 });
 
 
-$('.menu button').click(() => {
+$('.menu button').click(function() {
   // $(".menu button").removeClass('active');
   // $(this).addClass('active');
   const self = $(this);
@@ -91,7 +91,7 @@ $('.menu button').click(() => {
   marker.css({ left, width });
 });
 
-$('#enableTimeOfDay').change(() => {
+$('#enableTimeOfDay').change(function() {
   if (this.checked) {
     socket.emit('ENV_ENABLE_TIME_OF_DAY');
     $('.timeOfDay').removeAttr('disabled');
@@ -101,18 +101,18 @@ $('#enableTimeOfDay').change(() => {
   }
 });
 
-$('.timeOfDay').on('input change', () => {
+$('.timeOfDay').on('input change', function() {
   const density = $(this).val();
   socket.emit('ENV_SET_TIME_OF_DAY', density);
 });
 const fpsCounter = $('.fpsCounter');
-$('.bulletTime').on('input change', () => {
+$('.bulletTime').on('input change', function() {
   const frameRate = $(this).val();
   fpsCounter.html(`Bullet time / Frame rate (${frameRate}fps)`);
   socket.emit('ANIM_SET_FRAME_RATE', frameRate);
 });
 
-$('.enableCamera').change(() => {
+$('.enableCamera').change(function() {
   if (this.checked) {
     socket.emit('CAMERA_ENABLE_CONTROLS');
   } else {
@@ -123,16 +123,16 @@ $('.enableCamera').change(() => {
 const cameraTable = $('.cameraTable tbody');
 let cameraCounter = 0;
 
-$('.advance').click(() => {
+$('.advance').click(function() {
   socket.emit('PLAYER_ADVANCE_IN_DIRECTION');
 });
-$('.stepdown').click(() => {
+$('.stepdown').click(function() {
   socket.emit('PLAYER_DOWN');
 });
-$('.stepup').click(() => {
+$('.stepup').click(function() {
   socket.emit('PLAYER_UP');
 });
-$('.play').click(() => {
+$('.play').click(function() {
   const positions = [];
   const listOfPositions = cameraTable.find('tr');
   listOfPositions.each((i, tr) => {
@@ -145,7 +145,7 @@ $('.play').click(() => {
   socket.emit('CAMERA_TWEEN_TO', positions);
 });
 
-socket.on('CAMERA_PLAY', () => {
+socket.on('CAMERA_PLAY', function() {
   $('.play').click();
 });
 
@@ -190,31 +190,31 @@ socket.on('CAMERA_ADD_POSITION', (data) => {
   cameraTable.append(templ);
 });
 
-$(document).ready(() => {
-  $('.btn-pref .btn').click(() => {
+$(document).ready(function() {
+  $('.btn-pref .btn').click(function() {
     $('.btn-pref .btn').removeClass('btn-primary').addClass('btn-default');
     // $(".tab").addClass("active"); // instead of this do the below
     $(this).removeClass('btn-default').addClass('btn-primary');
   });
 
-  $('.fogDensity').on('input change', () => {
+  $('.fogDensity').on('input change', function() {
     const density = $(this).val();
     socket.emit('ENV_SET_FOG_DENSITY', density);
   });
 
-  $('.speedRange').on('input change', () => {
+  $('.speedRange').on('input change', function() {
     const speed = $(this).val();
     cameraInfo[7].innerHTML = speed;
     socket.emit('CAMERA_SET_SPEED', speed);
   });
 
-  $('.rotSpeedRange').on('input change', () => {
+  $('.rotSpeedRange').on('input change', function() {
     const speed = $(this).val();
     cameraInfo[8].innerHTML = speed;
     socket.emit('CAMERA_SET_ROT_SPEED', speed);
   });
 
-  $('.up_down_speed').on('input change', () => {
+  $('.up_down_speed').on('input change', function() {
     const speed = $(this).val();
     cameraInfo[9].innerHTML = speed;
     socket.emit('CAMERA_SET_UP_DOWN_SPEED', speed);

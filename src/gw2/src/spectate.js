@@ -1,5 +1,5 @@
 const offsets = require('./offsets');
-const ptrs    = require('./ptrs.json');
+const ptrs = require('./ptrs.json');
 
 module.exports = (process, module, memory) => {
   const that = {};

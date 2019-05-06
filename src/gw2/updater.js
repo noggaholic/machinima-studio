@@ -59,13 +59,14 @@ gw2((err, process, module, memory) => {
   };
 
   const findPattern = pattern => memory.find(pattern, 0, -1, 1, '-x');
+  global.findPattern = findPattern;
 
   const findStringRef = (str) => {
     const searchPattern = Buffer.from(str).toString('hex');
     let results = memory.find(searchPattern, 0, -1, 1, '--');
 
     if (results.length > 0) {
-      results = memory.find(results[0].toString(16).lpad('0', 8).match(/[a-fA-F0-9]{2}/g)
+      results = memory.find(lpad(results[0].toString(16), '0', 8).match(/[a-fA-F0-9]{2}/g)
         .reverse()
         .join(''), 0, -1, 1, '-x');
     }
@@ -172,7 +173,7 @@ gw2((err, process, module, memory) => {
   * Agent related pointers
   * @type {String}
   */
-  pattern = offsets.environment.rendering.highlight_effect.toString('hex');
+  pattern = offsets.environment.rendering.highlight_effect.original.toString('hex');
   pointerFound('offsets.environment.rendering.highlight_effect', findPattern(pattern));
 
   /**
