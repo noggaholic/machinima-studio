@@ -3,7 +3,7 @@
 
 Machinima Studio is a tool that let’s you create **in-game cinematics for GW2**. It also can be used for exploring the game without limits.
 
-Get the latest [release here.](https://github.com/noggaholic/machinima-studio/releases/tag/2.0)
+Get the latest [release here.](https://github.com/noggaholic/machinima-studio/releases/)
 
 <img src="http://i.imgur.com/2GEaYvO.png"/>
 
