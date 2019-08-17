@@ -70,7 +70,12 @@
         margin: auto;
         margin-top: 5%;
       }
-
+      .devTools {
+        color: rgba(250, 235, 215, 0.37);
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
     </style>
   </head>
   <body>
@@ -90,6 +95,7 @@
             <div class="stick"></div>
             <h1 id="status" class="fade">Updating offsets...</h1>
           </div>
+          <div style="text-align: center"><a href="#" class="devTools" onclick="javascript:ipcRenderer.send('open-dev-tools', 1);">Click to open dev tools.</a></div>
       </div>
     </div>
     <link rel="stylesheet" href="loading.css">

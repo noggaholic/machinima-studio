@@ -8,7 +8,7 @@ Tweenable.prototype.formula.linear = pos => pos;
 
 module.exports = (process, module, memory, window, player, sendMessage) => {
   const that = {};
-
+  // To enable free camera mode of internal game just go to offsets.camera.offset and look at the upper bytes 
   const { Mouse, Keyboard } = robot;
 
   const cameraReadPosition = Buffer.alloc(0xC);

@@ -90,6 +90,8 @@ const loadingWindow = (mainWindow, electron) => {
   });
 
   mainWindow.loadFile('./src/loading/index.html');
+
+  return mainWindow;
 };
 
 module.exports = {

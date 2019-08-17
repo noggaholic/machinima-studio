@@ -13,7 +13,7 @@ const launchWindows = require('./src/loading/windows.js');
 const launchMain = launchWindows.mainWindow;
 const launchLoading = launchWindows.loadingWindow;
 const { openServer } = launchWindows;
-
+let loadingRef = null;
 /**
  * Keep a reference to the main window
  */
@@ -30,6 +30,11 @@ ipcMain.on('open-machinima-studio', () => {
   launchMain(mainWindow, electron);
 });
 
+ipcMain.on('open-dev-tools', (event) => {
+  console.log('Opening dev tools');
+  loadingRef.webContents.openDevTools();
+});
+
 ipcMain.on('open-machinima-studio-server', (event) => {
   openServer((err) => {
     if (err) {
@@ -44,7 +49,7 @@ ipcMain.on('open-machinima-studio-server', (event) => {
  * is ready to render and launch windows
  */
 app.on('ready', () => {
-  launchLoading(mainWindow, electron);
+  loadingRef = launchLoading(mainWindow, electron);
 });
 
 /**
