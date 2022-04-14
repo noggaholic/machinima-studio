@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^7.13.0"
   },
   "dependencies": {
-    "async": "^2.6.2",
+    "async": "^3.2.2",
     "electron-squirrel-startup": "^1.0.0",
     "robot-js": "github:Robot/robot-js#dev",
     "window-size": "git://github.com/karliky/window-size.git",
